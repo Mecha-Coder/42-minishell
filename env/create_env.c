@@ -1,13 +1,5 @@
 #include "../minishell.h"
 
-//1 2 3 4 5 6 7 8 9 10
-//0 1 2 3 4 5 6 7 8 9
-//T E S T = h a h a h
-
-//1 2 3 4 5 6 7 8 9 10
-//0 1 2 3 4 5 6 7 8 9
-//T E S T =
-
 char *extract_key(char *s, int i)
 {
     char *key;
@@ -70,11 +62,11 @@ int create_env(t_shell *data, char **env)
     while (env[++i])
     {
         if (!current)
-            return (FALSE);
+            return (0);
         current->next = create_env_node(env[i]);
         current = current->next;
     }
-    return (TRUE);
+    return (1);
 }
 
 /*
@@ -90,5 +82,3 @@ int main(int ac, char **av, char **env)
     return 0;
 }
 */
-
-char *cmd = ["echo", "-nnnnn", "Hello      world", "World", NULL]
