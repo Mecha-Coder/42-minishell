@@ -6,18 +6,32 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:12:19 by jetan             #+#    #+#             */
-/*   Updated: 2024/10/07 09:01:46 by jetan            ###   ########.fr       */
+/*   Updated: 2024/10/11 16:38:10 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	builtin_env()
+void	builtin_env(t_shell *data)
 {
-	while ()
+	t_env	*current;
+	
+	current = data->env;
+	while (current)
 	{
-		printf("%s\n", );
-		
+		printf("%s=%s\n", current->key, current->val);
+		current = current->next;
 	}
-	get_exit_status();
 }
+
+// int main(int ac, char **av, char **env)
+// {
+//     t_shell data;
+//     (void)ac;
+//     (void)av;
+
+//     create_env(&data, env);
+//     builtin_env(&data);
+//     destroy_env(&data);
+//     return 0;
+// }
