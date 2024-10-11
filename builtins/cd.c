@@ -6,15 +6,33 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:24:56 by jetan             #+#    #+#             */
-/*   Updated: 2024/10/10 18:16:10 by jetan            ###   ########.fr       */
+/*   Updated: 2024/10/11 17:23:21 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	update_pwd()
+void	update_pwd(t_shell *data)
 {
+	char	cwd[1024];
+	t_env	*current;
 	
+	current = data->env;
+	if (getcwd(cwd, sizeof(cwd)) == NULL)
+	{
+		perror("getcwd error");
+		return;
+	}
+	while (current)
+	{
+		if (ft_strcmp(current->key ,"PWD") == 0)
+		{
+			free(current->val);
+			current->val = ft_strdup(cwd);
+			return;
+		}
+		current = current->next;
+	}
 }
 
 void	cd_previous()
