@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:24:56 by jetan             #+#    #+#             */
-/*   Updated: 2024/10/11 17:23:21 by jetan            ###   ########.fr       */
+/*   Updated: 2024/10/13 17:17:50 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,26 @@ void	update_pwd(t_shell *data)
 	}
 }
 
-void	cd_previous()
+void	cd_previous_dir(t_shell *data)
 {
 	char	*oldpwd;
 	
 	oldpwd = getenv("OLDPWD");
-	if (chdir(oldpwd))
+	if (!oldpwd)
 	{
-		printf("%s", oldpwd);
+		error_msg("cd", "OLDPWD not set");
+		return;
 	}
+	if (chdir(oldpwd) == -1)
+	{
+		perror("cd");
+		return;
+	}
+	printf("%s", oldpwd);
+	update_pwd(data);
 }
 
-void	cd_home()
+void	cd_home(t_shell *data)
 {
 	char	*home;
 	
@@ -56,18 +64,23 @@ void	cd_home()
 		error_msg("cd", "Home not set");
 		return;
 	}
-	chdir(home);
+	if (chdir(home) == -1)
+	{
+		perror("cd");
+		return;
+	}
+	update_pwd(data);
 }
 
-void	builtin_cd(char **av)
+void	builtin_cd(char **av, t_shell *data)
 {
-	
 	arg_count(av, "cd");
 	if (!av[1])//no argument
-		cd_home();
-	else if (av[1] == '-')
-		cd_previous();
-	else if ()
+		cd_home(data);
+	else if (ft_strcmp(av[1], "-") == 0)
+		cd_previous_dir();
+	else
+		cd_relative_and_absolute(data, av[1]);
 }
 
 int	main(int ac, char **av)
@@ -75,5 +88,5 @@ int	main(int ac, char **av)
 	(void) ac;
 	// builtin_cd(av);
 	// cd_previous();
-	cd_home();
+	// cd_home();
 }
