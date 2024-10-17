@@ -6,15 +6,24 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:03:34 by jetan             #+#    #+#             */
-/*   Updated: 2024/10/16 18:04:42 by jetan            ###   ########.fr       */
+/*   Updated: 2024/10/17 16:51:53 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	add_update_env(t_env *env)
+void	add_update_env(t_env *env,char *key, char *val)
 {
-	
+	while (env)
+	{
+		if (ft_strcmp(env->key, key) == 0)
+		{
+			free(env->val);
+			env->val = ft_strdup(val);
+			return;
+		}
+		env = env->next;
+	}
 }
 
 /* check validate variable name */
@@ -38,22 +47,20 @@ int	valid_name(char *name)
 void	builtin_export(char **av, t_env *env)
 {
 	int	i;
+	char	*key;
+	char	*val;
 	
 	if (!av[1])
 		return;
-	i = -1;
+	i = 0;
 	while (av[++i])
 	{
 		if (valid_name(av[i]))
 		{
 			if (ft_strcmp(av[i], '='))
-			{
 				add_update_env(av[i], );
-			}
 			else
-			{
 				mark_export();
-			}
 		}
 		// else
 			//error message
