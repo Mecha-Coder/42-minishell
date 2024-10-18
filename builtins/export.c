@@ -6,11 +6,27 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:03:34 by jetan             #+#    #+#             */
-/*   Updated: 2024/10/18 14:37:05 by jetan            ###   ########.fr       */
+/*   Updated: 2024/10/18 15:12:28 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	export_env(char *var, t_env **env)
+{
+	int	i;
+	char	*key;
+	char	*val;
+	
+	if (ft_strchr(var, '='))
+	{
+		
+	}
+	else
+	{
+		
+	}
+}
 
 int	valid_name(char *str)
 {
@@ -27,13 +43,13 @@ int	valid_name(char *str)
 	return (1);
 }
 
-void	builtin_export(char **args, t_env *env)
+void	builtin_export(char **args, t_env **env)
 {
 	int	i;
 	
 	if (!args[1])
 	{
-		
+		print_sorted_env(env);
 		return;
 	}
 	i = 0;
@@ -43,9 +59,7 @@ void	builtin_export(char **args, t_env *env)
 		{
 			
 		}
-		if (ft_strchr(args[i], '='))
-			add_update_env(args[i], env)
-		
+		export_env(args[i], env);
 	}
 }
 
