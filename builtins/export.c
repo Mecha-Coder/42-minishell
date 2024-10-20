@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:03:34 by jetan             #+#    #+#             */
-/*   Updated: 2024/10/20 15:26:06 by jetan            ###   ########.fr       */
+/*   Updated: 2024/10/20 16:52:42 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	update_existing_env(t_env **env, char *key, char *val)
 	t_env	*current;
 	t_env	*new_node;
 	
-	current = env;
+	current = *env;
 	while (current)
 	{
 		if (ft_strcmp(current->key, key) == 0)
@@ -26,7 +26,7 @@ void	update_existing_env(t_env **env, char *key, char *val)
 			current->val = val;
 			free(key);
 		}
-		current = current->key;
+		current = current->next;
 	}
 	new_node = create_env_node(val);
 	if (new_node)
@@ -42,14 +42,14 @@ void	export_env(char *var, t_env **env)
 	char	*key;
 	char	*val;
 	
-	if (ft_strchr(var, '='))
-	{
-		
-	}
+	while (var[i] && var[i] != '=')
+		i++;
+	key = extract_key(var, i);
+	if (var[i] == '=')
+		val = extract_val(var, i + 1);
 	else
-	{
-		
-	}
+		val = NULL;
+	update_existing_env(env, key, val);
 }
 
 int	valid_name(char *str)
