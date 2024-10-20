@@ -6,11 +6,35 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:03:34 by jetan             #+#    #+#             */
-/*   Updated: 2024/10/18 15:12:28 by jetan            ###   ########.fr       */
+/*   Updated: 2024/10/20 15:26:06 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	update_existing_env(t_env **env, char *key, char *val)
+{
+	t_env	*current;
+	t_env	*new_node;
+	
+	current = env;
+	while (current)
+	{
+		if (ft_strcmp(current->key, key) == 0)
+		{
+			free(current->val);
+			current->val = val;
+			free(key);
+		}
+		current = current->key;
+	}
+	new_node = create_env_node(val);
+	if (new_node)
+	{
+		new_node->next = *env;
+		*env = new_node;
+	}
+}
 
 void	export_env(char *var, t_env **env)
 {
