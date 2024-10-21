@@ -6,11 +6,25 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:03:34 by jetan             #+#    #+#             */
-/*   Updated: 2024/10/20 16:52:42 by jetan            ###   ########.fr       */
+/*   Updated: 2024/10/21 10:48:37 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	print_sorted_env(t_env **env_array)
+{
+	int	i;
+	
+	i = -1;
+	while (env_array[++i])
+	{
+		if (env_array[i]->val)
+			printf("declare -x %s=\"%s\"\n", env_array[i]->key, env_array[i]->val);
+		else
+			printf("declare -x %s\n", env_array[i]->key);
+	}
+}
 
 void	update_existing_env(t_env **env, char *key, char *val)
 {
@@ -73,7 +87,7 @@ void	builtin_export(char **args, t_env **env)
 	
 	if (!args[1])
 	{
-		print_sorted_env(env);
+		
 		return;
 	}
 	i = 0;
@@ -81,7 +95,7 @@ void	builtin_export(char **args, t_env **env)
 	{
 		if (!valid_name(args[i]))
 		{
-			
+			continue;
 		}
 		export_env(args[i], env);
 	}
