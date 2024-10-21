@@ -6,11 +6,22 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:02:40 by jetan             #+#    #+#             */
-/*   Updated: 2024/10/10 15:05:08 by jetan            ###   ########.fr       */
+/*   Updated: 2024/10/21 14:10:58 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	error_msg_export(char *builtin, char *arg, char *msg)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(builtin, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd("`arg'", 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd("\n", 2);
+}
 
 void	error_arg_msg(char *builtin, char *arg, char *msg)
 {
