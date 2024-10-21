@@ -6,11 +6,38 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:03:34 by jetan             #+#    #+#             */
-/*   Updated: 2024/10/21 10:48:37 by jetan            ###   ########.fr       */
+/*   Updated: 2024/10/21 14:12:13 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+t_env	**env_array(t_env *env)
+{
+	int	count;
+	int	i;
+	t_env	**array;
+	t_env	*current;
+	
+	current = env;
+	count = 0;
+	while (current)
+	{
+		count++;
+		current = current->next;
+	}
+	array = (t_env **)malloc(sizeof(t_env *) * (count + 1));
+	if (!array)
+		return NULL;
+	i = -1;
+	while (env)
+	{
+		array[++i] = env;
+		env = env->next;
+	}
+	array[i] = NULL;
+	return (array);
+}
 
 void	print_sorted_env(t_env **env_array)
 {
@@ -87,7 +114,7 @@ void	builtin_export(char **args, t_env **env)
 	
 	if (!args[1])
 	{
-		
+		print_sorted_env();
 		return;
 	}
 	i = 0;
@@ -95,6 +122,7 @@ void	builtin_export(char **args, t_env **env)
 	{
 		if (!valid_name(args[i]))
 		{
+			error_msg_export("export", args[i], "not a valid identifier");
 			continue;
 		}
 		export_env(args[i], env);
