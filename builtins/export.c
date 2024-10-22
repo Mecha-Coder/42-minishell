@@ -6,13 +6,31 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:03:34 by jetan             #+#    #+#             */
-/*   Updated: 2024/10/21 14:12:13 by jetan            ###   ########.fr       */
+/*   Updated: 2024/10/22 15:39:55 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_env	**env_array(t_env *env)
+void	sort_env(t_env **env)
+{
+	t_env	*tmp;
+	
+	while ()
+	{
+		while ()
+		{
+			if (ft_strcmp(env[], env[]) > 0)
+			{
+				tmp = env[];
+				env[] = env[];
+				env[] = tmp;
+			}
+		}
+	}
+}
+
+t_env	**convert_env_array(t_env *env)
 {
 	int	count;
 	int	i;
@@ -39,10 +57,13 @@ t_env	**env_array(t_env *env)
 	return (array);
 }
 
-void	print_sorted_env(t_env **env_array)
+void	print_sorted_env(t_env *env)
 {
 	int	i;
+	t_env	**env_array;
 	
+	env_array = convert_env_array(env);
+	sort_env(env_array);
 	i = -1;
 	while (env_array[++i])
 	{
