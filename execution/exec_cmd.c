@@ -6,11 +6,13 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:36:26 by jetan             #+#    #+#             */
-/*   Updated: 2024/10/22 22:58:27 by jetan            ###   ########.fr       */
+/*   Updated: 2024/10/23 19:45:06 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+
 
 void	exec_cmd(t_tree *node, t_env *env)
 {
