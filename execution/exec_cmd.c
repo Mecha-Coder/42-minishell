@@ -12,14 +12,40 @@
 
 #include "../minishell.h"
 
-left
+int	left(int fd)
+{
+	int	exit_status;
+	pid_t	pid;
+	
+	pipe(fd);
+	pid = fork();
+	if (pid == -1)
+	{
+		perror("fork failed");
+		return (-1);
+	}
+	else if (pid == 0)
+	{
+		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
+		close(fd[1]);
+	}
+	else
+	{
+		waitpid(pid, &exit_status, 0);
+		close(fd[1]);
+	}
+	return (exit_status);
+}
 
 exec_pipe()
 {
 	int	fd[2];
 
-	left();
-	exit_code = right();
+	if (pid < 0)
+		printf();
+	left(fd, );
+	exit_code = right(fd, );
 }
 
 void	exec_cmd(t_tree *node, t_env *env)
