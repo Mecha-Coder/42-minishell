@@ -12,6 +12,32 @@
 
 #include "../minishell.h"
 
+int	right(int fd)
+{
+	int	exit_status;
+	pid_t	pid;
+
+	pipe(fd);
+	pid = fork();
+	if (pid == -1)
+	{
+		perror("fork failed");
+		return (-1);
+	}
+	else if (pid == 0)
+	{
+		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
+		close(fd[1]);
+	}
+	else
+	{
+		waitpid(pid, &exit_status, 0);
+		close(fd[1]);
+	}
+	return (exit_status);
+}
+
 int	left(int fd)
 {
 	int	exit_status;
