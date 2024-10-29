@@ -14,13 +14,13 @@ typedef struct s_file
     char file[100];
     int fd;
     struct s_file *next;
-} t_file;
+} t_file
 
 typedef struct s_tree
 {
     char **cmd;
     char **out;
-} t_tree;
+}
 
 typedef struct s_shell
 {
