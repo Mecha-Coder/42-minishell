@@ -12,6 +12,33 @@
 
 #include "../minishell.h"
 
+char	**convert_env_array(t_env *env)
+{
+	char	**array;
+	int	count;
+	t_env	*current;
+
+	while (env)
+	{
+		count++;
+		env = env->next;
+	}
+	array = (char **)malloc(sizeof(char *) * (count + 1));
+	if (!array)
+	{
+		perror("malloc failed");
+		return NULL;
+	}
+	current = env;
+	while (current)
+	{
+		array[] = ;
+		current = current->next;
+	}
+	array[] = NULL;
+	return (array);
+}
+
 void	exec_builtins(t_tree *node, t_env *env)
 {
 	if (ft_strcmp(node->cmd[0], "echo") == 0)
