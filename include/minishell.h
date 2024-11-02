@@ -8,8 +8,8 @@
 #include <unistd.h>
 #include "libft/libft.h"
 
-#include "defines.h"
-#include "builtins.h"
+#include "struct.h"
+#include "built_in.h"
 // #include "utils.h"
 
 # endif
