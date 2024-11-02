@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 16:29:03 by jetan             #+#    #+#             */
-/*   Updated: 2024/10/09 18:34:15 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/02 15:46:24 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	is_numeric(char *str)
 	return (1);
 }
 
-void	builtin_exit(char **av)
+void	exit(char **av)
 {
 	int	exit_status;
 	

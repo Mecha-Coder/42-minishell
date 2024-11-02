@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:03:34 by jetan             #+#    #+#             */
-/*   Updated: 2024/10/22 15:39:55 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/02 15:46:41 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int	valid_name(char *str)
 	return (1);
 }
 
-void	builtin_export(char **args, t_env **env)
+void	export(char **args, t_env **env)
 {
 	int	i;
 	

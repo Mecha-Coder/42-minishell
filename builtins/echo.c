@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 14:17:06 by jetan             #+#    #+#             */
-/*   Updated: 2024/10/06 17:22:50 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/02 15:46:10 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	n_option(char *str)
 	return (0);
 }
 
-void	builtin_echo(char **av)
+void	echo(char **av)
 {
 	int	i;
 	int	new_line;
