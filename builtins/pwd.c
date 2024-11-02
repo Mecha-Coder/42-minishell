@@ -6,11 +6,11 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 18:36:36 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/02 15:46:47 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/02 16:10:16 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../include/minishell.h"
 
 void	pwd()
 {

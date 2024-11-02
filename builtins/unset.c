@@ -6,11 +6,11 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:49:49 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/02 15:46:55 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/02 16:10:25 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../include/minishell.h"
 
 void	remove_env_var()
 {

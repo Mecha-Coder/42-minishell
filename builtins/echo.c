@@ -6,11 +6,11 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 14:17:06 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/02 15:46:10 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/02 16:09:40 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../include/minishell.h"
 
 int	n_option(char *str)
 {

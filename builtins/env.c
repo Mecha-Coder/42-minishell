@@ -6,11 +6,11 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:12:19 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/02 15:46:16 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/02 16:09:48 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../include/minishell.h"
 
 void	env(t_shell *data)
 {
