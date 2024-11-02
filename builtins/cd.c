@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:24:56 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/02 16:08:45 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/02 19:38:37 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,11 @@ void	cd_home(t_shell *data)
 	update_pwd(data);
 }
 
-void	cd(char **av, t_shell *data)
+void	builtin_cd(char **av, t_shell *data)
 {
 	arg_count(av, "cd");
 	if (!av[1])//no argument
 		cd_home(data);
-	else if (ft_strcmp(av[1], "-") == 0)
-		cd_previous_dir();
 	else
 		cd_relative_and_absolute(data, av[1]);
 }
