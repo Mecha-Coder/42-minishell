@@ -6,11 +6,11 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:02:40 by jetan             #+#    #+#             */
-/*   Updated: 2024/10/21 14:10:58 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/03 15:18:40 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../include/minishell.h"
 
 void	error_msg_export(char *builtin, char *arg, char *msg)
 {
