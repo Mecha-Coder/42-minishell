@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 16:29:03 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/02 16:09:57 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/03 17:44:13 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int	is_numeric(char *str)
 		i = 1;
 	while (str[++i])
 	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
+		if (!ft_isdigit(str[i]))
 			return (0);
 	}
 	return (1);
 }
 
-void	exit(char **av)
+void	builtin_exit(char **av)
 {
 	int	exit_status;
 	
