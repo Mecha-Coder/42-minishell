@@ -12,6 +12,24 @@
 
 #include "../include/minishell.h"
 
+void	update_oldpwd(t_shell *data)
+{
+	char	cwd[1024];
+	t_env	*current;
+
+	current = data->env;
+	while (current)
+	{
+		if (ft_strcmp(current->key, "OLDPWD") == 0)
+		{
+			free(current->val);
+			current->val = ft_strdup(cwd);
+			return;
+		}
+		current = current->next;
+	}
+}
+
 void	update_pwd(t_shell *data)
 {
 	char	cwd[1024];
@@ -77,27 +95,37 @@ void	builtin_cd(char **args, t_shell *data)
 	arg_count(args, "cd");
 	if (!args[1] || ft_strcmp(args[1], "~") == 0)
 		cd_home(data);
-	if (chdir(args[1]) == -1)
+	else
 	{
+		update_oldpwd(data);
+		if (chdir(args[1]) == -1)
+		{
 		perror("cd");
 		return;
+		}
 	}
 	update_pwd(data);
 }
 /*
-int main(int argc, char **argv)
+int main(int ac, char **av)
 {
-	(void)argc;
-	(void)argv;
+	(void)ac;
+	(void)av;
 	t_shell data;
 	char *args[] = {"/path/to/directory", NULL};
 	t_env env1 = {"PWD", ft_strdup("/initial/path"), NULL};
 	data.env = &env1;
 	// Initialize data and environment variables here
 	// For example, you might want to set up the data.env linked list
-
-	builtin_cd(args, &data);
 	char cwd[1024];
+
+	if (getcwd(cwd, sizeof(cwd)) != NULL) {
+		printf("Current working dir: %s\n", cwd);
+	} else {
+		perror("getcwd() error");
+	}
+
+	builtin_cd(av, &data);
 
 	if (getcwd(cwd, sizeof(cwd)) != NULL) {
 		printf("Current working dir: %s\n", cwd);
