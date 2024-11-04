@@ -1,7 +1,7 @@
 #ifndef EXECUTE_H
 #define EXECUTE_H
 
-#include "../struct.h"
+#include "struct.h"
 
 //EXECUTE
 void run_ast(t_shell *data);
@@ -24,5 +24,5 @@ void parse_path(char *s, char **path);
 //CMD
 void prep_cmd(t_tree *node);
 //void none_builtin(char **cmd, t_env *list);
-char **env_list(t_env *current);
+
 #endif

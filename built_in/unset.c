@@ -56,7 +56,7 @@ int main()
 /* unset
 Description: Remove var from env listed-list
 */
-void builtin_unset(char **arg, t_shell *data)
+void ft_unset(char **arg, t_shell *data)
 {
     int i;
     t_env *current;
@@ -69,7 +69,7 @@ void builtin_unset(char **arg, t_shell *data)
         previous = NULL;
         while (current)
         {
-            if (!strcmp(arg[i], current->key))
+            if (!ft_strcmp(arg[i], current->key))
             { 
                 if (previous)
                     previous->next = current->next;

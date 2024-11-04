@@ -1,6 +1,9 @@
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
-int process_var(char *s, t_env *env);
+static int process_var(char *s, t_env *env);
+static void print_sorted_env(t_env *env);
+static char **env_key_list(t_env *env);
+static void sort_list(char **list);
 
 /* Test
 int main()
@@ -77,7 +80,7 @@ Description: Update or append variable inside env
 
 Return: None
 */
-void builtin_export(char **arg, t_env *env)
+void ft_export(char **arg, t_env *env)
 {
     int i;
 
@@ -90,7 +93,7 @@ void builtin_export(char **arg, t_env *env)
     while (arg[++i])
     {
         if (!process_var(arg[i], env))
-            printf("export: `%s\': fail to add into env\n");
+            printf("export: `%s\': fail to add into env\n", arg[i]);
     }
 }
 
@@ -107,4 +110,61 @@ int process_var(char *s, t_env *env)
         else                    return (append_env(s, &s[i + 1], env));
     }
     return (TRUE);
+}
+
+static void print_sorted_env(t_env *env)
+{
+    int i;
+    char **list;
+
+    i = -1;
+    list = env_key_list(env);
+    if (!list)
+        return ;
+    sort_list(list);
+    while (list[++i])
+        printf("declare -x %s=\"%s\"\n", list[i], env_val(list[i], env));
+    free(list);
+}
+
+static char **env_key_list(t_env *env)
+{
+    int i;
+    char **list;
+    
+    i = 0;
+    list = (char **)malloc(sizeof(char *) * (env_len(env) + 1));
+    if (!list)
+        return (NULL);
+    while (env)
+    {
+        list[i++] = env->key;   
+        env = env->next;
+    }
+    list[i] = NULL;
+    return (list);
+}
+
+static void sort_list(char **list)
+{
+    char *temp;
+    int i;
+    int len;
+
+    (i = 1 , len = 0);
+    while (list && list[len])
+        len++;
+    while (--len)
+    {
+        i = -1;
+        while (++i < len)
+        {
+            if (ft_strcmp(list[i], list[i + 1]) > 0)
+            {
+                temp = list[i + 1];
+                list[i + 1] = list[i];
+                list[i] = temp;
+            }
+        }
+    }
 }

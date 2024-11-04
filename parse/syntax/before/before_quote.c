@@ -56,7 +56,7 @@ void before_quote(t_shell *data, int *return_index, int *trigger)
 	int pos[3];
 
 	(i = -1, detect = ON, *trigger = 1);
-	memset(&count, 0, sizeof(count));
+	ft_memset(&count, 0, sizeof(count));
 	while (data->s[++i])
 	{
 		pos[EVAL] = detection(data->s[i], &detect);

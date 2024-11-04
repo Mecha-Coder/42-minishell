@@ -3,11 +3,11 @@
 int parse(t_shell *data)
 {
     if (is_empty(data->input))                return (FALSE);
-    if (strlen(data->input) >= BUFFER_SIZE)  return (printf(LONG_INPUT), FALSE);
+    if (ft_strlen(data->input) >= BUFFER_SIZE)  return (printf(LONG_INPUT), FALSE);
     
     add_history(data->input);
-    strcpy(data->s, data->input);
-    data->s_len = strlen(data->s);
+    ft_strcpy(data->s, data->input);
+    data->s_len = ft_strlen(data->s);
 
     return (check_syntax_before(data)
         && tokenize(data)
@@ -50,7 +50,7 @@ int main(int ac, char **av, char **env)
     (void)ac;
     (void)av;
     if (!setup_env(&data, env)) exit(EXIT_FAILURE);
-    data.exit_code = 1;
+    data.cmd_exit_no = 0;
 
     interective_mode(&data);
 

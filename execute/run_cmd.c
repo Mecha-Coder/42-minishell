@@ -11,20 +11,13 @@ int run_cmd(t_tree *node, t_shell *data)
     {
         prep_cmd(node);
 
-
-
-        if (!strcmp(node->cmd[0], "cd"))
-            builtin_cd(node->cmd, data);
-        else if (!strcmp(node->cmd[0], "pwd"))
-            builtin_pwd();
-
-
-
-
-
-
-
-
+        // if      (!ft_strcmp(node->cmd[0], "cd"))     ft_cd(node->cmd, data);
+        // else if (!ft_strcmp(node->cmd[0], "pwd"))    ft_pwd();
+        // else if (!ft_strcmp(node->cmd[0], "env"))    ft_env();
+        // else if (!ft_strcmp(node->cmd[0], "exit"))   ft_exit();
+        // else if (!ft_strcmp(node->cmd[0], "echo"))   ft_echo();
+        if      (!ft_strcmp(node->cmd[0], "export")) ft_export(node->cmd, data->env);
+        else if (!ft_strcmp(node->cmd[0], "unset"))  ft_unset(node->cmd, data);
 
         // id = fork();
         // if (id < 0) return (perror("fork failed"), EXIT_FAILURE);

@@ -20,7 +20,7 @@ int none_builtin(t_tree *node, t_env *list)
     return (WEXITSTATUS(status));
 }
 
-void	none_builtin(char **cmd, t_env *list)
+void	child(char **cmd, t_env *list)
 {
     char **env;
 	char *path;

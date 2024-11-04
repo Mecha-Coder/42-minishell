@@ -1,7 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include "../struct.h"
+#include "struct.h"
 
 int blank_char(char c);
 int detection(char c, int *state);

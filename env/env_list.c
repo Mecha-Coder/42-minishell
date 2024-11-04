@@ -55,7 +55,7 @@ char **env_list(t_env *env)
         return (NULL);
     while (env)
     { 
-        total = strlen(env->key) + strlen(env->val) + 2;
+        total = ft_strlen(env->key) + ft_strlen(env->val) + 2;
         s = (char *)malloc(total);
         if (!s)
             return (free_list(list), NULL);
@@ -68,8 +68,8 @@ char **env_list(t_env *env)
 
 static char *concat_key_val(char *s, t_env *env)
 {
-    strcpy(s, env->key);
-    strcat(s,"=");
-    strcat(s, env->val);
+    ft_strcpy(s, env->key);
+    ft_strcat(s,"=");
+    ft_strcat(s, env->val);
     return (s);
 }

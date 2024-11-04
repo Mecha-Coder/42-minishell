@@ -17,7 +17,7 @@ char *env_val(char *key, t_env *env)
 {
     while (key && env)
     {
-        if (!strcmp(key,env->key))
+        if (!ft_strcmp(key,env->key))
             return(env->val);
         env = env->next;
     }

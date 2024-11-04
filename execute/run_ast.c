@@ -11,5 +11,5 @@ int descent_tree(t_tree *node, t_shell *data)
 
 void run_ast(t_shell *data)
 {
-    data->exit_code = descent_tree(data->tree, data);
+    data->cmd_exit_no = descent_tree(data->tree, data);
 }

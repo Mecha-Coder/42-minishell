@@ -1,13 +1,13 @@
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
 int update_env(char *key, char *val, t_env *env)
 {
     char *temp;
 
-    while (env && strcmp(key, env->key))
+    while (env && ft_strcmp(key, env->key))
         env = env->next;
     
-    temp = strdup(val);
+    temp = ft_strdup(val);
     if (temp)
     {
         free(env->val);

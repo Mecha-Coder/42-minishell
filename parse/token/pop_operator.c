@@ -35,15 +35,15 @@ void pop_operator(t_shell *data, int *j)
 
 static void initialize_pattern(char pattern[10][3])
 {
-    strcpy(pattern[OR], "||");
-    strcpy(pattern[PIPE], "|");
-    strcpy(pattern[HERE], "<<");
-    strcpy(pattern[RD], "<");
-    strcpy(pattern[APPD], ">>");
-    strcpy(pattern[WR], ">");
-    strcpy(pattern[AND], "&&");
-    strcpy(pattern[OB], "(");
-    strcpy(pattern[CB], ")");
+    ft_strcpy(pattern[OR], "||");
+    ft_strcpy(pattern[PIPE], "|");
+    ft_strcpy(pattern[HERE], "<<");
+    ft_strcpy(pattern[RD], "<");
+    ft_strcpy(pattern[APPD], ">>");
+    ft_strcpy(pattern[WR], ">");
+    ft_strcpy(pattern[AND], "&&");
+    ft_strcpy(pattern[OB], "(");
+    ft_strcpy(pattern[CB], ")");
     pattern[10][0] = '\0';
 }
 

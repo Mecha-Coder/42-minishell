@@ -1,7 +1,7 @@
 #ifndef PARSE_H
 #define PARSE_H
 
-#include "../struct.h"
+#include "struct.h"
 
 // SYNTAX - BEFORE
 int check_syntax_before(t_shell *data);
