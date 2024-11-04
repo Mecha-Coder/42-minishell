@@ -4,6 +4,7 @@
 void	ft_echo(char **av);
 void	ft_pwd();
 void	ft_cd(char **args, t_shell *data);
-void	ft_exit(char **av);
+void	ft_exit(char **args, t_shell *data);
+void	ft_env(char **args, t_shell *data);
 
 # endif

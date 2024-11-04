@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:24:56 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/03 18:13:50 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/04 16:03:44 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,31 +107,31 @@ void	ft_cd(char **args, t_shell *data)
 	}
 	update_pwd(data);
 }
-/*
-int main(int ac, char **av)
-{
-	(void)ac;
-	(void)av;
-	t_shell data;
-	char *args[] = {"/path/to/directory", NULL};
-	t_env env1 = {"PWD", ft_strdup("/initial/path"), NULL};
-	data.env = &env1;
-	// Initialize data and environment variables here
-	// For example, you might want to set up the data.env linked list
-	char cwd[1024];
 
-	if (getcwd(cwd, sizeof(cwd)) != NULL) {
-		printf("Current working dir: %s\n", cwd);
-	} else {
-		perror("getcwd() error");
-	}
+// int main(int ac, char **av)
+// {
+// 	(void)ac;
+// 	(void)av;
+// 	t_shell data;
+// 	// char *args[] = {"/path/to/directory", NULL};
+// 	t_env env1 = {"PWD", ft_strdup("/initial/path"), NULL};
+// 	data.env = &env1;
+// 	// Initialize data and environment variables here
+// 	// For example, you might want to set up the data.env linked list
+// 	char cwd[1024 ];
 
-	ft_cd(av, &data);
+// 	if (getcwd(cwd, sizeof(cwd)) != NULL) {
+// 		printf("Current working dir: %s\n", cwd);
+// 	} else {
+// 		perror("getcwd() error");
+// 	}
 
-	if (getcwd(cwd, sizeof(cwd)) != NULL) {
-		printf("Current working dir: %s\n", cwd);
-	} else {
-		perror("getcwd() error");
-	}
-	return 0;
-}*/
+// 	ft_cd(av, &data);
+
+// 	if (getcwd(cwd, sizeof(cwd)) != NULL) {
+// 		printf("Current working dir: %s\n", cwd);
+// 	} else {
+// 		perror("getcwd() error");
+// 	}
+// 	return 0;
+// }
