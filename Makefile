@@ -3,6 +3,7 @@ NAME = minishell
 SRCS = builtins/echo.c \
 		builtins/exit.c \
 		builtins/pwd.c \
+		builtins/cd.c \
 		utils/error_handling.c
 
 OBJS = $(SRCS:.c=.o)
