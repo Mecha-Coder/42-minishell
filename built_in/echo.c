@@ -30,30 +30,31 @@ int	n_option(char *str)
 	return (0);
 }
 
-void	ft_echo(char **av)
+int	ft_echo(char **args)
 {
 	int	i;
 	int	new_line;
 	
 	i = 1;
 	new_line = 1;
-	while (av[i] != NULL && n_option(av[i]))
+	while (args[i] != NULL && n_option(args[i]))
 	{
 		new_line = 0;
 		i++;
 	}
-	while (av[i])
+	while (args[i])
 	{	
-		printf("%s", av[i]);
-		if (av[i + 1] != NULL)
+		printf("%s", args[i]);
+		if (args[i + 1] != NULL)
 			printf(" ");
 		i++;
 	}
 	if (new_line)
 		printf("\n");
+	return (EXIT_SUCCESS);
 }
-// int main(int ac, char **av)
+// int main(int ac, char **args)
 // {
 // 	(void)ac;
-// 	ft_echo(av);
+// 	ft_echo(args);
 // }

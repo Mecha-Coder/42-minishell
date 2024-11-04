@@ -63,7 +63,7 @@ int main()
 /* unset
 Description: Remove var from env listed-list
 */
-void ft_unset(char **arg, t_shell *data)
+int ft_unset(char **arg, t_shell *data)
 {
     int i;
     t_env *current;
@@ -89,6 +89,7 @@ void ft_unset(char **arg, t_shell *data)
             current = current->next;
         }
     }
+    return (EXIT_SUCCESS);
 }
 
 void free_env_node(t_env *env)

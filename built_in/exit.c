@@ -27,7 +27,7 @@ int	is_numeric(char *str)
 	return (1);
 }
 
-void	ft_exit(char **args, t_shell *data)
+int	ft_exit(char **args, t_shell *data)
 {
 	
 	if (args[1] == NULL)
@@ -48,6 +48,7 @@ void	ft_exit(char **args, t_shell *data)
 	}
 	ft_putstr_fd("exit\n", 2);
 	arg_count(args, "exit");
+	return(EXIT_FAILURE);
 }
 // int main(int ac, char **av)
 // {

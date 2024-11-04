@@ -12,14 +12,15 @@
 
 #include "../include/minishell.h"
 
-void	ft_pwd()
+int	ft_pwd()
 {
 	char	buf[1024];
 	
 	if (getcwd(buf, sizeof(buf)) != NULL)
 		printf("%s\n", buf);
 	else
-		perror("pwd");
+		return(perror("pwd"), EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 // int main()
 // {

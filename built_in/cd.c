@@ -90,7 +90,7 @@ void	cd_home(t_shell *data)
 	update_pwd(data);
 }
 
-void	ft_cd(char **args, t_shell *data)
+int	ft_cd(char **args, t_shell *data)
 {
 	arg_count(args, "cd");
 	if (!args[1] || ft_strcmp(args[1], "~") == 0)
@@ -100,12 +100,12 @@ void	ft_cd(char **args, t_shell *data)
 		update_oldpwd(data);
 		if (chdir(args[1]) == -1)
 		{
-		
 			perror("cd");
-			return;
+			return (EXIT_FAILURE);
 		}
 	}
 	update_pwd(data);
+	return (EXIT_SUCCESS);
 }
 
 // int main(int ac, char **av)

@@ -12,14 +12,14 @@
 
 #include "../include/minishell.h"
 
-void	ft_env(char **args, t_shell *data)
+int	ft_env(char **args, t_shell *data)
 {
 	t_env	*current;
 	
 	if (args[1])
 	{
-		printf("too many\n");
-		return;
+		printf("export: too many argument\n");
+		return (EXIT_FAILURE);
 	}
 	current = data->env;
 	while (current)
@@ -27,8 +27,10 @@ void	ft_env(char **args, t_shell *data)
 		printf("%s=%s\n", current->key, current->val);
 		current = current->next;
 	}
+	return (EXIT_SUCCESS);
 }
 
+/*
 int main(int ac, char **av, char **env)
 {
     t_shell data;
@@ -40,3 +42,4 @@ int main(int ac, char **av, char **env)
     destroy_env(&data);
     return 0;
 }
+*/

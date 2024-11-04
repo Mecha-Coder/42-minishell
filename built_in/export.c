@@ -77,31 +77,34 @@ Description: Update or append variable inside env
         Proceed
             - If key exist in env, amend value
             - Else,  add new variable into the env
-
 Return: None
 */
-void ft_export(char **arg, t_env *env)
+int ft_export(char **arg, t_shell *data)
 {
     int i;
+    int track;
 
-    i = 0;
+    (i = 0, track = 0);
     if (arg[1] == NULL)
     {
-        print_sorted_env(env);
-        return;
+        print_sorted_env(data->env);
+        return (EXIT_SUCCESS);
     }
     while (arg[++i])
     {
-        if (!process_var(arg[i], env))
+        if (!process_var(arg[i], data->env, &track) && ++track)
             printf("export: `%s\': fail to add into env\n", arg[i]);
     }
+    if (track)
+        return (EXIT_FAILURE);
+    return (EXIT_SUCCESS);
 }
 
-int process_var(char *s, t_env *env)
+int process_var(char *s, t_env *env, int *track)
 {
     int i;
     i = 0;
-    if (!is_identifier(s, &i))
+    if (!is_identifier(s, &i) && ++(*track))
         printf("export: `%s\': not a valid identifier\n", s);
     else if (s[i] == '=')
     {
