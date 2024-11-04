@@ -6,16 +6,21 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:12:19 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/02 16:09:48 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/04 17:08:43 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_env(t_shell *data)
+void	ft_env(char **args, t_shell *data)
 {
 	t_env	*current;
 	
+	if (args[1])
+	{
+		printf("too many\n");
+		return;
+	}
 	current = data->env;
 	while (current)
 	{
@@ -24,14 +29,14 @@ void	ft_env(t_shell *data)
 	}
 }
 
-// int main(int ac, char **av, char **env)
-// {
-//     t_shell data;
-//     (void)ac;
-//     (void)av;
+int main(int ac, char **av, char **env)
+{
+    t_shell data;
+    (void)ac;
+    (void)av;
 
-//     create_env(&data, env);
-//     ft_env(&data);
-//     destroy_env(&data);
-//     return 0;
-// }
+    create_env(&data, env);
+    ft_env(av, &data);
+    destroy_env(&data);
+    return 0;
+}
