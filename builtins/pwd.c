@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-void	pwd()
+void	ft_pwd()
 {
 	char	buf[1024];
 	
@@ -23,5 +23,5 @@ void	pwd()
 }
 // int main()
 // {
-// 	builtins_pwd();
+// 	ft_pwd();
 // }

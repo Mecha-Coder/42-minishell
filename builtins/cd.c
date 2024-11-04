@@ -90,7 +90,7 @@ void	cd_home(t_shell *data)
 	update_pwd(data);
 }
 
-void	builtin_cd(char **args, t_shell *data)
+void	ft_cd(char **args, t_shell *data)
 {
 	arg_count(args, "cd");
 	if (!args[1] || ft_strcmp(args[1], "~") == 0)
@@ -100,8 +100,9 @@ void	builtin_cd(char **args, t_shell *data)
 		update_oldpwd(data);
 		if (chdir(args[1]) == -1)
 		{
-		perror("cd");
-		return;
+		
+			perror("cd");
+			return;
 		}
 	}
 	update_pwd(data);
@@ -125,7 +126,7 @@ int main(int ac, char **av)
 		perror("getcwd() error");
 	}
 
-	builtin_cd(av, &data);
+	ft_cd(av, &data);
 
 	if (getcwd(cwd, sizeof(cwd)) != NULL) {
 		printf("Current working dir: %s\n", cwd);

@@ -27,7 +27,7 @@ int	is_numeric(char *str)
 	return (1);
 }
 
-void	builtin_exit(char **av)
+void	ft_exit(char **av)
 {
 	int	exit_status;
 	
@@ -52,5 +52,5 @@ void	builtin_exit(char **av)
 // int main(int ac, char **av)
 // {
 // 	(void)ac;
-// 	builtin_exit(av);
+// 	ft_exit(av);
 // }

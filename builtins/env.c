@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-void	env(t_shell *data)
+void	ft_env(t_shell *data)
 {
 	t_env	*current;
 	
@@ -31,7 +31,7 @@ void	env(t_shell *data)
 //     (void)av;
 
 //     create_env(&data, env);
-//     builtin_env(&data);
+//     ft_env(&data);
 //     destroy_env(&data);
 //     return 0;
 // }

@@ -30,7 +30,7 @@ int	n_option(char *str)
 	return (0);
 }
 
-void	echo(char **av)
+void	ft_echo(char **av)
 {
 	int	i;
 	int	new_line;
@@ -55,5 +55,5 @@ void	echo(char **av)
 // int main(int ac, char **av)
 // {
 // 	(void)ac;
-// 	builtin_echo(av);
+// 	ft_echo(av);
 // }
