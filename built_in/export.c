@@ -52,10 +52,10 @@ int main()
     //     strdup("Hello"), 
     //     NULL};                                                      
     // char *a13[] = {"export", strdup("55@=Time"), NULL};   
-    // char *a14[] = {"export", "", "et", "unset", "", NULL};
-     char *a15[] = {"export", "312=313", "#sddfs", NULL};
+    char *a14[] = {"export", "", "et", "unset", "", NULL};
+    //  char *a15[] = {"export", "312=313", "#sddfs", NULL};
 
-    export(a15, data.env);
+    ft_export(a14, data.env);
     t_env *current = n1;
     printf("\n=================\n");
     while (current)
@@ -65,7 +65,7 @@ int main()
     }
     destroy_env(&data);
 }
- */
+*/
 
 /* export
 Description: Update or append variable inside env 

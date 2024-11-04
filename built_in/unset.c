@@ -38,20 +38,27 @@ int main()
     // char *a1[] = {"unset", "SHELL=", NULL};
     // char *a2[] = {"unset", "3413423", "ewqeeq", NULL};
 
-    //char *a4[] = {"unset", "HOME", NULL};
+    char *a4[] = {"unset", "HOME", "SHELL", "3343242", NULL};
     // char *a5[] = {"unset", "SHELL", NULL};
-    char *a6[] = {"unset", "PWD", NULL};
-
-    unset(a6, &data);
+    //char *a6[] = {"unset", "PWD", NULL};
+    
     t_env *current = data.env;
     while (current)
     {
         printf("%s=%s\n", current->key, current->val);
         current = current->next;
     }
+    printf("\n======================\n");
+    ft_unset(a4, &data);
+    current = data.env;
+    while (current)
+    {
+        printf("%s=%s\n", current->key, current->val);
+        current = current->next;
+    }
     destroy_env(&data);
-}
-*/
+}*/
+
 
 /* unset
 Description: Remove var from env listed-list

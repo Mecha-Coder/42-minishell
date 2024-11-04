@@ -12,4 +12,9 @@ void free_list(char **list);
 char *join_str(char *s1, char *s2);
 char *get_var(char *key, t_env *current);
 int is_identifier(char *s, int *i);
+
+void	error_arg_msg(char *builtin, char *arg, char *msg);
+void	error_msg(char *builtin, char *msg);
+void	arg_count(char **args, char *builtin);
+
 #endif
