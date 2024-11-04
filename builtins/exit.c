@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 16:29:03 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/04 17:09:40 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/04 17:10:58 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ void	ft_exit(char **args, t_shell *data)
 	ft_putstr_fd("exit\n", 2);
 	arg_count(args, "exit");
 }
-int main(int ac, char **av)
-{
-	t_shell data;
+// int main(int ac, char **av)
+// {
+// 	t_shell data;
 	
-	data.exit_cmd_no = 23;
-	(void)ac;
-	ft_exit(av, &data);
-}
+// 	data.exit_cmd_no = 23;
+// 	(void)ac;
+// 	ft_exit(av, &data);
+// }
