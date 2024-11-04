@@ -24,9 +24,9 @@ typedef struct s_tree
     struct s_tree *right;
 
     // During creation memset these values
-    char *cmd[CMD_SIZE];    // NULL
-    int in[OPEN_FD_SIZE];   // Must be > 2
-    int out[OPEN_FD_SIZE]; // Must be > 2
+    char *cmd;    // NULL
+    int in;   // Must be > 2
+    int out; // Must be > 2
     int *pipe_in;
     int *pipe_out;
 } t_tree;
@@ -37,10 +37,10 @@ typedef struct s_shell
 
     // Need to reset
     char *input;
-    char s[BUFFER_SIZE];
+    char s;
     int s_len;
     t_tree *tree;
-    t_token token[CMD_SIZE];
+    t_token token;
     int token_len;
     int exit_cmd_no;
     int exit_status;
