@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:24:56 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/02 19:38:37 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/03 18:13:50 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,24 @@ void	update_pwd(t_shell *data)
 	}
 }
 
-void	cd_previous_dir(t_shell *data)
-{
-	char	*oldpwd;
+// void	cd_previous_dir(t_shell *data)
+// {
+// 	char	*oldpwd;
 	
-	oldpwd = getenv("OLDPWD");
-	if (!oldpwd)
-	{
-		error_msg("cd", "OLDPWD not set");
-		return;
-	}
-	if (chdir(oldpwd) == -1)
-	{
-		perror("cd");
-		return;
-	}
-	printf("%s", oldpwd);
-	update_pwd(data);
-}
+// 	oldpwd = getenv("OLDPWD");
+// 	if (!oldpwd)
+// 	{
+// 		error_msg("cd", "OLDPWD not set");
+// 		return;
+// 	}
+// 	if (chdir(oldpwd) == -1)
+// 	{
+// 		perror("cd");
+// 		return;
+// 	}
+// 	printf("%s", oldpwd);
+// 	update_pwd(data);
+// }
 
 void	cd_home(t_shell *data)
 {
@@ -72,19 +72,37 @@ void	cd_home(t_shell *data)
 	update_pwd(data);
 }
 
-void	builtin_cd(char **av, t_shell *data)
+void	builtin_cd(char **args, t_shell *data)
 {
-	arg_count(av, "cd");
-	if (!av[1])//no argument
+	arg_count(args, "cd");
+	if (!args[1] || ft_strcmp(args[1], "~") == 0)
 		cd_home(data);
-	else
-		cd_relative_and_absolute(data, av[1]);
+	if (chdir(args[1]) == -1)
+	{
+		perror("cd");
+		return;
+	}
+	update_pwd(data);
 }
-
-int	main(int ac, char **av)
+/*
+int main(int argc, char **argv)
 {
-	(void) ac;
-	// builtin_cd(av);
-	// cd_previous();
-	// cd_home();
-}
+	(void)argc;
+	(void)argv;
+	t_shell data;
+	char *args[] = {"/path/to/directory", NULL};
+	t_env env1 = {"PWD", ft_strdup("/initial/path"), NULL};
+	data.env = &env1;
+	// Initialize data and environment variables here
+	// For example, you might want to set up the data.env linked list
+
+	builtin_cd(args, &data);
+	char cwd[1024];
+
+	if (getcwd(cwd, sizeof(cwd)) != NULL) {
+		printf("Current working dir: %s\n", cwd);
+	} else {
+		perror("getcwd() error");
+	}
+	return 0;
+}*/
