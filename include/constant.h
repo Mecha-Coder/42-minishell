@@ -20,9 +20,11 @@
 
 //******************************************************/
 
-#define RESET "\033[0m"
-#define RED "\033[1m\033[31m"
-#define GREEN "\033[1m\033[32m"
+#define RESET  "\033[0m"
+#define RED    "\033[0;31m"
+#define GREEN  "\033[0;32m"
+#define BLUE   "\033[0;36m"
+#define YELLOW "\033[0;33m"
 
 //******************************************************/
 
@@ -56,7 +58,7 @@
 #define FAIL_SWAP "\n\033[1m\033[31mERROR: " \
                     "\033[0mFailed to execute. Can't tranform:\n"
 
-#define PROMPT "\001\e[0m\e[33m\002Minishell> \001\e[0m\002"
+#define PROMPT "\033[0;36m\u25A0[999] \033[0;33mMinishell> \033[0m"
 
 #define SHUTDOWN "\nShuting down\n"
 

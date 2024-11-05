@@ -21,11 +21,31 @@ void reset(t_shell *data)
     free_str_token(data);
 }
 
+void prompt(char *s, int num)
+{
+    int len = 13;
+
+    if (num)
+        s[5] = '1';
+    else
+        s[5] = '6';
+    
+    while (len > 10)
+    {
+        s[len--] = (num % 10) + '0';
+        num /= 10;
+    }
+}
+
 void interective_mode(t_shell *data)
 {
+    char s[40];
+
+    ft_strcpy(s, PROMPT) ;
     while (1)
     {
-        data->input = readline(PROMPT);
+        prompt(s, data->cmd_exit_no);
+        data->input = readline(s);
         if (data->input)
         {
             if (parse(data))  

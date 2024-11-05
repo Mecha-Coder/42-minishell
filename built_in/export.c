@@ -1,6 +1,6 @@
 #include "../include/minishell.h"
 
-static int process_var(char *s, t_env *env);
+static int process_var(char *s, t_env *env, int *track);
 static void print_sorted_env(t_env *env);
 static char **env_key_list(t_env *env);
 static void sort_list(char **list);
@@ -100,7 +100,7 @@ int ft_export(char **arg, t_shell *data)
     return (EXIT_SUCCESS);
 }
 
-int process_var(char *s, t_env *env, int *track)
+static int process_var(char *s, t_env *env, int *track)
 {
     int i;
     i = 0;

@@ -21,7 +21,6 @@
 #include "execute.h"
 #include "parse.h"
 #include "utils.h"
-#include "visual.h"
 
 #include "../lib/libft.h"
 

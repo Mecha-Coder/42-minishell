@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jpaul <jpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 16:29:03 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/04 17:10:58 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/05 11:12:19 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_exit(char **args, t_shell *data)
 	if (args[1] == NULL)
 	{
 		ft_putstr_fd("exit\n", 2);
-		exit(data->exit_cmd_no);
+		exit(data->cmd_exit_no);
 	}
 	if (!is_numeric(args[1]))
 	{

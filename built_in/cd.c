@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jpaul <jpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 14:24:56 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/04 16:03:44 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/05 17:02:07 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	cd_home(t_shell *data)
 {
 	char	*home;
 	
-	home = getenv("HOME");	
+	home = env_val("HOME", data->env);	
 	if (!home)
 	{
 		error_msg("cd", "Home not set");

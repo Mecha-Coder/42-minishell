@@ -1,4 +1,4 @@
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 int descent_tree(t_tree *node, t_shell *data)
 {
