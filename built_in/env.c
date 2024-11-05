@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:12:19 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/04 17:08:43 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/05 15:56:02 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_env(char **args, t_shell *data)
 	
 	if (args[1])
 	{
-		printf("export: too many argument\n");
+		error_msg("env", "too many argument");
 		return (EXIT_FAILURE);
 	}
 	current = data->env;
