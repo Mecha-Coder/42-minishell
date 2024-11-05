@@ -59,7 +59,6 @@ int main()
     destroy_env(&data);
 }*/
 
-
 /* unset
 Description: Remove var from env listed-list
 */

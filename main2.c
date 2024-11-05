@@ -24,12 +24,10 @@ void reset(t_shell *data)
 void prompt(char *s, int num)
 {
     int len = 13;
-
     if (num)
-        s[5] = '1';
+        s[6] = '1';
     else
-        s[5] = '6';
-    
+        s[6] = '6';
     while (len > 10)
     {
         s[len--] = (num % 10) + '0';
@@ -41,7 +39,8 @@ void interective_mode(t_shell *data)
 {
     char s[40];
 
-    ft_strcpy(s, PROMPT) ;
+    ft_strcpy(s, PROMPT);
+    rl_on_new_line();
     while (1)
     {
         prompt(s, data->cmd_exit_no);
@@ -54,6 +53,7 @@ void interective_mode(t_shell *data)
                 reset(data);
             }
             free(data->input);
+            rl_on_new_line();
         }
         else
         {

@@ -13,6 +13,8 @@
 #include <readline/history.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <termios.h>
+#include <sys/ioctl.h>
 
 #include "constant.h"
 #include "struct.h"

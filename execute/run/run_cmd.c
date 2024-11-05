@@ -9,7 +9,8 @@ int run_cmd(t_tree *node, t_shell *data)
     {
         prep_cmd(node);
 
-        if      (!ft_strcmp(node->cmd[0], "pwd"))    status = ft_pwd();  
+        if      (!ft_strcmp(node->cmd[0], "pwd"))    status = ft_pwd();
+        else if (!ft_strcmp(node->cmd[0], "clear"))  status = ft_clear();
         else if (!ft_strcmp(node->cmd[0], "echo"))   status = ft_echo(node->cmd);
         else if (!ft_strcmp(node->cmd[0], "export")) status = ft_export(node->cmd, data);
         else if (!ft_strcmp(node->cmd[0], "unset"))  status = ft_unset(node->cmd, data);
