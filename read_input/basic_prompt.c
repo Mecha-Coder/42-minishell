@@ -23,7 +23,7 @@ int main()
 
     while (1)
     {
-        input = readline(PROMPT);
+        input = readline("\u25A0 Minishell> ");
         if (input)
         {
             if (!strcmp("clear", input))
