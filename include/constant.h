@@ -58,7 +58,7 @@
 #define FAIL_SWAP "\n\033[1m\033[31mERROR: " \
                     "\033[0mFailed to execute. Can't tranform:\n"
 
-#define PROMPT "\001\e[0;36m\002@[999] \001\e[0;33m\002Minishell>\001\e[0m\002 "
+#define PROMPT "\001\e[0;36m\002@[999]\001\e[0;33m\002Minishell>\001\e[0m\002 "
 
 #define SHUTDOWN "\nShuting down\n"
 

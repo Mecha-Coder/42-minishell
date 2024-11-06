@@ -18,7 +18,7 @@ int	ft_env(char **args, t_shell *data)
 	
 	if (args[1])
 	{
-		error_msg("env", "too many argument");
+		err_msg_3("env", "too many arguments");
 		return (EXIT_FAILURE);
 	}
 	current = data->env;

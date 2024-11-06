@@ -93,7 +93,7 @@ int ft_export(char **arg, t_shell *data)
     while (arg[++i])
     {
         if (!process_var(arg[i], data->env, &track) && ++track)
-            printf("export: `%s\': fail to add into env\n", arg[i]);
+            err_msg_1("export", arg[i], "fail to add into env");
     }
     if (track)
         return (EXIT_FAILURE);
@@ -105,7 +105,7 @@ static int process_var(char *s, t_env *env, int *track)
     int i;
     i = 0;
     if (!is_identifier(s, &i) && ++(*track))
-        printf("export: `%s\': not a valid identifier\n", s);
+        err_msg_1("export", s, "not a valid identifier");
     else if (s[i] == '=')
     {
         s[i] = '\0';

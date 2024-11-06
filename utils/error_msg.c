@@ -12,18 +12,22 @@
 
 #include "../include/minishell.h"
 
-// void	error_msg_export(char *builtin, char *arg, char *msg)
-// {
-// 	ft_putstr_fd("minishell: ", 2);
-// 	ft_putstr_fd(builtin, 2);
-// 	ft_putstr_fd(": ", 2);
-// 	ft_putstr_fd("`arg'", 2);
-// 	ft_putstr_fd(": ", 2);
-// 	ft_putstr_fd(msg, 2);
-// 	ft_putstr_fd("\n", 2);
-// }
+// minishell: cd: `Helllo': Invalid path
+void	err_msg_1(char *builtin, char *arg, char *msg)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(builtin, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd("`", 2);
+	ft_putstr_fd(arg, 2);
+	ft_putstr_fd("'", 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd("\n", 2);
+}
 
-void	error_arg_msg(char *builtin, char *arg, char *msg)
+// minishell: cd: Hello: Invalid path
+void	err_msg_2(char *builtin, char *arg, char *msg)
 {
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(builtin, 2);
@@ -34,7 +38,8 @@ void	error_arg_msg(char *builtin, char *arg, char *msg)
 	ft_putstr_fd("\n", 2);
 }
 
-void	error_msg(char *builtin, char *msg)
+// minishell: cd: HOME not set
+void	err_msg_3(char *builtin, char *msg)
 {
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(builtin, 2);
@@ -43,7 +48,8 @@ void	error_msg(char *builtin, char *msg)
 	ft_putstr_fd("\n", 2);
 }
 
-void	arg_count(char **args, char *builtin)
+// Message to JOHN: Revert to me if in doubt
+int	arg_count(char **args, char *builtin)
 {
 	int		count;
 	
@@ -52,7 +58,8 @@ void	arg_count(char **args, char *builtin)
 		count++;
 	if (count > 2)
 	{
-		error_msg(builtin, "too many arguments");
-		return;
+		err_msg_3(builtin, "too many arguments");
+		return(FALSE);
 	}
+	return (TRUE);
 }

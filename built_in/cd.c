@@ -72,35 +72,37 @@ void	update_pwd(t_shell *data)
 // 	update_pwd(data);
 // }
 
-void	cd_home(t_shell *data)
+int	cd_home(t_shell *data)
 {
 	char	*home;
 	
 	home = env_val("HOME", data->env);	
 	if (!home)
 	{
-		error_msg("cd", "Home not set");
-		return;
+		err_msg_3("cd", "HOME not set");
+		return (EXIT_FAILURE);
 	}
 	if (chdir(home) == -1)
 	{
 		perror("cd");
-		return;
+		return (EXIT_FAILURE);
 	}
 	update_pwd(data);
+	return (EXIT_SUCCESS);
 }
 
 int	ft_cd(char **args, t_shell *data)
 {
-	arg_count(args, "cd");
+	if (!arg_count(args, "cd"))
+		return (EXIT_FAILURE);
 	if (!args[1] || ft_strcmp(args[1], "~") == 0)
-		cd_home(data);
+		return (cd_home(data));
 	else
 	{
 		update_oldpwd(data);
 		if (chdir(args[1]) == -1)
 		{
-			perror("cd");
+			err_msg_2("cd", args[1], "No such file or directory");
 			return (EXIT_FAILURE);
 		}
 	}

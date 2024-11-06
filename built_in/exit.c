@@ -16,15 +16,16 @@ int	is_numeric(char *str)
 {
 	int	i;
 	
-	i = -1;
-	if ((str[0] == '-' || str[0] == '+') && (str[1] != '-' && str[1] != '+'))
-		i = 1;
+	i = 0;
+	if (str[i] != '-' && str[i] != '+' && !ft_isdigit(str[i]))
+        return (FALSE);
+
 	while (str[++i])
 	{
 		if (!ft_isdigit(str[i]))
-			return (0);
+			return (FALSE);
 	}
-	return (1);
+	return (TRUE);
 }
 
 int	ft_exit(char **args, t_shell *data)
@@ -38,7 +39,7 @@ int	ft_exit(char **args, t_shell *data)
 	if (!is_numeric(args[1]))
 	{
 		ft_putstr_fd("exit\n", 2);
-		error_arg_msg("exit", args[1], "numeric argument required");
+		err_msg_2("exit", args[1], "numeric argument required");
 		exit(2);
 	}
 	if (args[2] == NULL)
