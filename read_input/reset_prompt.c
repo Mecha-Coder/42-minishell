@@ -4,12 +4,13 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+#define CYELLOW "\001\e[0;31m\002"
+#define RESET   "\001\e[0m\002"
+
 void reset_prompt() 
 {
     write(1, "\n", 1);
     rl_on_new_line();// Inform Readline that we are on a new line
-	//rl_replace_line("", 0);  // Replace the current line with new_text
-	//rl_redisplay();// Redisplay the updated line
 }
 
 void print_str(char *s)
@@ -22,7 +23,8 @@ int main()
 {
     char *input;
 
-    while ((input = readline("Enter text: ")) != NULL)
+    rl_on_new_line();
+    while ((input = readline(CYELLOW "prompt> " RESET)) != NULL)
     {
         if (*input)
         {
