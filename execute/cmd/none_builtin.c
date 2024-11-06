@@ -39,5 +39,4 @@ void	child(char **cmd, t_env *list)
         printf("Fail execution");
 	    exit(EXIT_FAILURE);
     }
-	
 }

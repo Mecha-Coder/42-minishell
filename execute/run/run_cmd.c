@@ -8,7 +8,6 @@ int run_cmd(t_tree *node, t_shell *data)
     if (polish_str_token(node->token, data))
     {
         prep_cmd(node);
-
         if      (!ft_strcmp(node->cmd[0], "pwd"))    status = ft_pwd();
         else if (!ft_strcmp(node->cmd[0], "clear"))  status = ft_clear();
         else if (!ft_strcmp(node->cmd[0], "echo"))   status = ft_echo(node->cmd);
@@ -19,7 +18,5 @@ int run_cmd(t_tree *node, t_shell *data)
         else if (!ft_strcmp(node->cmd[0], "exit"))   status = ft_exit(node->cmd, data);
         else                                         status = none_builtin(node->cmd, data->env);
     }
-    if (node->pipe)
-        exit(status);
     return (status);
 }
