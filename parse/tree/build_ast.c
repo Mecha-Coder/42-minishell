@@ -57,7 +57,12 @@ int build_tree(t_tree *node)
             || !build_tree(node->right))
             return (FALSE);
     }
-    else if (!scan_bracket(node))
+    else if (scan_bracket(node))
+    {
+        if (!build_tree(node->left))
+            return (FALSE);
+    }
+    else    
         node->type = CMD;
     return (TRUE);
 }

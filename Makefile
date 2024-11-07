@@ -25,6 +25,7 @@ SRCS =	$(wildcard ./utils/*.c) \
 		$(wildcard ./env/*.c) \
 		$(wildcard ./built_in/*.c) \
 		$(wildcard ./utils/*.c) \
+		$(wildcard ./visual/*.c) \
 		main2.c
 
 OBJS = $(SRCS:.c=.o)
