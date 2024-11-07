@@ -23,6 +23,6 @@ void parse_path(char *s, char **path);
 
 //CMD
 void prep_cmd(t_tree *node);
-//void none_builtin(char **cmd, t_env *list);
+int none_builtin(char **cmd, t_env *list);
 
 #endif

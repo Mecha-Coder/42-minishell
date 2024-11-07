@@ -29,8 +29,7 @@ typedef struct s_tree
     char *cmd[CMD_SIZE];    // NULL
     int in[OPEN_FD_SIZE];   // Must be > 2
     int out[OPEN_FD_SIZE]; // Must be > 2
-    int *pipe_in;
-    int *pipe_out;
+    int *pipe;
 } t_tree;
 
 typedef struct s_shell

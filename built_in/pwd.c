@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpaul <jpaul@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 15:03:54 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/04 15:04:22 by jpaul            ###   ########.fr       */
+/*   Created: 2024/09/27 18:36:36 by jetan             #+#    #+#             */
+/*   Updated: 2024/11/02 16:10:16 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/minishell.h"
 
-int ft_strcmp(char *s1, char *s2)
+int	ft_pwd()
 {
-	int i = 0;
-
-	while((s1[i] == s2[i]) && s1[i] && s2[i])
-		i++;
-	return (s1[i]-s2[i]);
+	char	buf[1024];
+	
+	if (getcwd(buf, sizeof(buf)) != NULL)
+		printf("%s\n", buf);
+	else
+		return(perror("pwd"), EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
+// int main()
+// {
+// 	ft_pwd();
+// }

@@ -1,12 +1,16 @@
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 int descent_tree(t_tree *node, t_shell *data)
 {
+    int status;
+
     if (node->type == CMD)
-        return (run_cmd(node, data));
+        status = run_cmd(node, data);
     if (node->type == PIPE)
-        return (run_pipe(node, data));
-    return (FALSE);
+        status = run_pipe(node, data);
+    if (node->pipe)
+        exit(status);
+    return (status);
 }
 
 void run_ast(t_shell *data)
