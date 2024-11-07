@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:29:23 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/07 14:52:40 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/07 15:26:37 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,10 @@ void	sigint_handler(int signo)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
+}
+
+void	sigquit_handler(int signo)
+{
+	(void)signo;
+	printf("Quit\n");
 }
