@@ -6,11 +6,13 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:29:23 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/07 16:03:56 by jetan            ###   ########.fr       */
+/*   Updated: 2024/11/07 18:29:28 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+int	g_signal = 0;
 
 void	sigint_handler(int signo)
 {
