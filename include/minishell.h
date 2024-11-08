@@ -23,6 +23,7 @@
 #include "execute.h"
 #include "parse.h"
 #include "utils.h"
+#include "signal.h"
 
 #include "../lib/libft.h"
 
