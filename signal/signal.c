@@ -17,6 +17,7 @@ int	g_signal = 0;
 void	sigint_handler(int signo)
 {
 	(void)signo;
+  g_signal = 130;
 	printf("\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);
@@ -26,5 +27,6 @@ void	sigint_handler(int signo)
 void	sigquit_handler(int signo)
 {
 	(void)signo;
+  g_signal = 131;
 	printf("Quit\n");
 }
