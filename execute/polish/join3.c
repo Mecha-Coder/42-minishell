@@ -53,6 +53,6 @@ char *join3(char *s1, char *s2, char *s3)
 int get_len(char *s)
 {
     if (s)
-        return (strlen(s));
+        return (ft_strlen(s));
     return (0);
 }

@@ -12,16 +12,19 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <sys/types.h>
-//#include <sys/wait.h>
+#include <sys/wait.h>
+#include <termios.h>
+#include <sys/ioctl.h>
 
 #include "constant.h"
 #include "struct.h"
+#include "built_in.h"
+#include "env.h"
+#include "execute.h"
+#include "parse.h"
+#include "utils.h"
+#include "visual.h"
 
-#include "./prototype/built_in.h"
-#include "./prototype/env.h"
-#include "./prototype/execute.h"
-#include "./prototype/parse.h"
-#include "./prototype/utils.h"
-#include "./prototype/visual.h"
+#include "../lib/libft.h"
 
 #endif

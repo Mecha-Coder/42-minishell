@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jpaul <jpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/27 18:36:36 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/02 16:10:16 by jetan            ###   ########.fr       */
+/*   Created: 2023/10/30 16:06:36 by jetan             #+#    #+#             */
+/*   Updated: 2024/11/05 11:36:11 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../libft.h"
 
-int	ft_pwd()
+void	ft_putendl_fd(char *s, int fd)
 {
-	char	buf[1024];
-	
-	if (getcwd(buf, sizeof(buf)) != NULL)
-		printf("%s\n", buf);
-	else
-		return(perror("pwd"), EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	int	i;
+
+	i = 0;
+	if (s)
+	{
+		while (s[i])
+		{
+			ft_putchar_fd(s[i], fd);
+			i++;
+		}
+		ft_putchar_fd('\n', fd);
+	}
 }
-// int main()
-// {
-// 	ft_pwd();
-// }

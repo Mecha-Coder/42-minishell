@@ -33,7 +33,7 @@ int main(int ac, char **av, char **env)
 int start(t_shell *data, char **env)
 {
     memset(data, 0, sizeof(t_shell));
-    data->exit_code = 1;
+    data->cmd_exit_no = 1;
     return (setup_env(data, env));
 }
 
@@ -54,9 +54,9 @@ int parse(t_shell *data, int ac, char **av)
 
 void execute(t_shell *data)
 {
-    //printf("\n%s\n", data->input);
-    run_ast(data);
-    //show_ast(data);
+    printf("\n%s\n", data->input);
+    //run_ast(data);
+    show_ast(data);
 }
 
 void end(t_shell *data)

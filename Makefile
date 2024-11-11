@@ -1,8 +1,58 @@
-/* Execute
-gcc -Wall -Werror -Wextra  ./env/*.c ./execute/run_ast.c  ./execute/run_cmd.c  ./execute/run_pipe.c ./execute/polish/*.c  ./execute/path/*.c ./execute/cmd/*.c ./parse/syntax/before/*.c  ./parse/syntax/after/*.c  ./parse/token/*.c  ./parse/tree/*.c  ./utils/*.c   ./visual/*.c  main.c ./built_in/*.c
+#==============================================================
+# DECLARATION
+#==============================================================
 
+NAME = minishell
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+FSANTIZE = -fsanitize=address -g3
 
+LIBFT = ./lib/libft.a
 
-gcc -Wall -Werror -Wextra  ./env/*.c ./execute/run_ast.c  ./execute/run_cmd.c  ./execute/run_pipe.c ./execute/polish/*.c  ./execute/path/*.c ./execute/cmd/*.c ./parse/syntax/before/*.c  ./parse/syntax/after/*.c  ./parse/token/*.c  ./parse/tree/*.c  ./utils/*.c   ./visual/*.c  main2.c ./built_in/*.c -lreadline
+#==============================================================
+# FILES
+#==============================================================
 
-*/
+SRCS =	$(wildcard ./utils/*.c) \
+		$(wildcard ./parse/syntax/before/*.c) \
+		$(wildcard ./parse/syntax/after/*.c) \
+		$(wildcard ./parse/token/*.c) \
+		$(wildcard ./parse/tree/*.c) \
+		$(wildcard ./execute/cmd/*.c) \
+		$(wildcard ./execute/path/*.c) \
+		$(wildcard ./execute/polish/*.c) \
+		$(wildcard ./execute/run/*.c) \
+		$(wildcard ./env/*.c) \
+		$(wildcard ./built_in/*.c) \
+		$(wildcard ./utils/*.c) \
+		$(wildcard ./visual/*.c) \
+		main2.c
+
+OBJS = $(SRCS:.c=.o)
+
+#==============================================================
+# BUILD COMMAND
+#==============================================================
+
+all: lib $(NAME)
+
+$(NAME): $(OBJS) 
+	$(CC) $(CFLAGS) -o $@ $^ -lreadline $(LIBFT)
+	
+%.o: src/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+lib:
+	make -C lib
+
+clean:
+	rm -f $(OBJS) 
+	make -C lib clean
+
+fclean: clean
+	rm -f $(NAME) 
+	make -C lib fclean
+
+re: fclean all
+
+.PHONY: all bonus lib clean fclean re

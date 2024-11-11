@@ -1,4 +1,4 @@
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
 int append_env(char *key, char *val, t_env *env)
 {
@@ -8,8 +8,8 @@ int append_env(char *key, char *val, t_env *env)
     if (!new)
         return (FALSE);
 
-    new->key = strdup(key);
-    new->val = strdup(val);
+    new->key = ft_strdup(key);
+    new->val = ft_strdup(val);
     new->next = NULL;
     if (!new->key || !new->val)
     {

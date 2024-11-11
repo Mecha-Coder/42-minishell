@@ -18,7 +18,7 @@ Purpose: Check bracket pairs follow below rule. (start with outmost)
     After done, move forward and validate other bracket groups/pairs.
 
 Outside
-<START><AND><OR> (    ) <AND><OR><END> 
+<START><AND><OR><PIPE> (    ) <AND><OR><PIPE><END> 
 
 Inside
 ( <STR> )  OR 
@@ -95,13 +95,15 @@ static int check_rule(t_token *token, int *bracket, int  start, int end)
     
     if (bracket[OB_LEFT] != 0 
         && bracket[OB_LEFT] != OR 
-        && bracket[OB_LEFT] != AND)
+        && bracket[OB_LEFT] != AND
+        && bracket[OB_LEFT] != PIPE)
     {
         return (bracket[OB_INDEX]);
     }
     if (bracket[CB_RIGHT] != 0
         &&  bracket[CB_RIGHT] != OR 
-        &&  bracket[CB_RIGHT] != AND)
+        &&  bracket[CB_RIGHT] != AND
+        && bracket[CB_RIGHT] != PIPE)
     {
         return (bracket[CB_INDEX]);
     }

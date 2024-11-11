@@ -79,7 +79,7 @@ static char *extract_val(char *s, int i)
     char *val;
 
     s = s + i;
-    i = strlen(s);
+    i = ft_strlen(s);
     val = (char *)malloc(i + 1);
     if (val)
     {

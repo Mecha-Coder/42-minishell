@@ -18,8 +18,8 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
-# include "ft_printf/ft_printf.h"
-# include "get_next_line/get_next_line.h"
+//# include "ft_printf/ft_printf.h"
+//# include "get_next_line/get_next_line.h"
 
 # define TRUE 1
 # define FALSE 0
@@ -52,11 +52,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 
 // compare str
+int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 
 //copying str
+char *ft_strcpy(char *dest, char *src);
+char *ft_strcat(char *dest, char *src);
+char	*ft_strncpy(char *dest, char *src, unsigned int n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 
@@ -69,6 +73,12 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t n);
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strnstr(const char *haystack, const char *needle, size_t n);
+
+// printf string to stdout
+void	ft_putchar_fd(char c, int fd);
+void	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
+void	ft_putstr_fd(char *s, int fd);
 
 /*____________MEMORY___________*/
 

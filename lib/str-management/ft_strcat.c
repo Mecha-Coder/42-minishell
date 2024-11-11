@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jpaul <jpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/27 18:36:36 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/02 16:10:16 by jetan            ###   ########.fr       */
+/*   Created: 2024/11/04 15:12:19 by jpaul             #+#    #+#             */
+/*   Updated: 2024/11/04 15:12:42 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../libft.h"
 
-int	ft_pwd()
+char *ft_strcat(char *dest, char *src)
 {
-	char	buf[1024];
-	
-	if (getcwd(buf, sizeof(buf)) != NULL)
-		printf("%s\n", buf);
-	else
-		return(perror("pwd"), EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	int i;
+	int j;
+
+	i = 0;
+	while (dest[i] != '\0')
+		i++;
+	j = 0;
+	while (src[j] != '\0')
+	{
+		dest[i + j] = src[j];
+		j++;
+	}
+	dest[i + j] = '\0';
+	return (dest);
 }
-// int main()
-// {
-// 	ft_pwd();
-// }

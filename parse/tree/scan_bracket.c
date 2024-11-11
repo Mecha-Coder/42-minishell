@@ -18,8 +18,12 @@ int  scan_bracket(t_tree *node)
             bracket--;
         if (!bracket && node->token[i].type == OB)
         {
-            node->token = &node->token[i + 1];
+            node->token[i].type = 0;
+
             node->type = SUB;
+            node->left = create_node();
+            if (node->left)
+                node->left->token = &node->token[i + 1];
             return (TRUE);
         }
     }

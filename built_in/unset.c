@@ -38,25 +38,31 @@ int main()
     // char *a1[] = {"unset", "SHELL=", NULL};
     // char *a2[] = {"unset", "3413423", "ewqeeq", NULL};
 
-    //char *a4[] = {"unset", "HOME", NULL};
+    char *a4[] = {"unset", "HOME", "SHELL", "3343242", NULL};
     // char *a5[] = {"unset", "SHELL", NULL};
-    char *a6[] = {"unset", "PWD", NULL};
-
-    unset(a6, &data);
+    //char *a6[] = {"unset", "PWD", NULL};
+    
     t_env *current = data.env;
     while (current)
     {
         printf("%s=%s\n", current->key, current->val);
         current = current->next;
     }
+    printf("\n======================\n");
+    ft_unset(a4, &data);
+    current = data.env;
+    while (current)
+    {
+        printf("%s=%s\n", current->key, current->val);
+        current = current->next;
+    }
     destroy_env(&data);
-}
-*/
+}*/
 
 /* unset
 Description: Remove var from env listed-list
 */
-void builtin_unset(char **arg, t_shell *data)
+int ft_unset(char **arg, t_shell *data)
 {
     int i;
     t_env *current;
@@ -69,7 +75,7 @@ void builtin_unset(char **arg, t_shell *data)
         previous = NULL;
         while (current)
         {
-            if (!strcmp(arg[i], current->key))
+            if (!ft_strcmp(arg[i], current->key))
             { 
                 if (previous)
                     previous->next = current->next;
@@ -82,6 +88,7 @@ void builtin_unset(char **arg, t_shell *data)
             current = current->next;
         }
     }
+    return (EXIT_SUCCESS);
 }
 
 void free_env_node(t_env *env)

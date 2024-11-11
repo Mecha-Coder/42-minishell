@@ -61,7 +61,7 @@ char *swap_var(char *s, t_shell *data)
             if (s[i + 1] == '?')
             {
                 len = 1;
-                temp = insert_exit_code(s, i, &len, data->exit_code);
+                temp = insert_exit_code(s, i, &len, data->cmd_exit_no);
             }
                 
             
@@ -84,7 +84,7 @@ char *insert_var(char *s, int i, int *len, t_env *list)
     var_value = get_value(&s[i + 1], *len, list);
     result = join3(s, var_value, &s[i + *len + 1]);
     if (var_value)
-        *len = strlen(var_value);
+        *len = ft_strlen(var_value);
     else
         *len = 0;
     return (result);
@@ -98,7 +98,7 @@ char *insert_exit_code(char *s, int i, int *len, int code)
     s[i] = '\0';
     convert_num(str, code);
     result = join3(s, str, &s[i + *len + 1]);
-    *len = strlen(str);
+    *len = ft_strlen(str);
     return (result);
 }
 

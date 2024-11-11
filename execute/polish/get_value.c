@@ -26,11 +26,11 @@ char *get_value(char *s, int size, t_env *head)
     char key[BUFFER_SIZE];
 
     current = head;
-    memset(&key, 0, sizeof(key));
-    strncpy(key, s, size);
+    ft_memset(&key, 0, sizeof(key));
+    ft_strncpy(key, s, size);
     while (current)
     {
-        if (!strcmp(current->key, key))
+        if (!ft_strcmp(current->key, key))
             return (current->val);
         current = current->next;
     }
