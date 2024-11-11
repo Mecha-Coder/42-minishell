@@ -30,6 +30,7 @@ typedef struct s_tree
     int in[OPEN_FD_SIZE];   // Must be > 2
     int out[OPEN_FD_SIZE]; // Must be > 2
     int *pipe;
+    int terminate;
 } t_tree;
 
 typedef struct s_shell

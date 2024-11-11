@@ -7,6 +7,9 @@
 void run_ast(t_shell *data);
 int run_cmd(t_tree *node, t_shell *data);
 int run_pipe(t_tree *node, t_shell *data);
+int run_and(t_tree *node, t_shell *data);
+int run_or(t_tree *node, t_shell *data);
+int run_subshell(t_tree *node, t_shell *data);
 int descent_tree(t_tree *node, t_shell *data);
 
 //POLISH

@@ -13,7 +13,8 @@ int run_pipe(t_tree *node, t_shell *data)
     if (pipe(fd) < 0) 
         return (perror("pipe failed"), EXIT_FAILURE);
     node->left->pipe = fd;
-    node->right->pipe = fd;
+    node->left->terminate = TRUE;
+    node->right->terminate = TRUE;
 
     id_1 = fork();
     if (!id_1)
@@ -32,7 +33,8 @@ int run_pipe(t_tree *node, t_shell *data)
 
 static void left(int *fd, t_tree *node, t_shell *data)
 {
-    if (node->left->type == CMD)
+    if (node->left->type == CMD ||
+        node->left->type == SUB)
     {
         close(fd[0]);
         dup2(fd[1], STDOUT_FILENO);
