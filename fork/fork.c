@@ -6,21 +6,31 @@
 
 int run_cmd(int flag)
 {
+    int status;
+
     if (flag)
         exit (255);
-    return (255);
+    return (status);
 } 
+
 
 int main()
 {
     int status;
     pid_t child;
 
+    status = 43523;
     child = fork();
     if (child == 0)
-        run_cmd(1);
-
-    waitpid(child ,&status, 0);
-    printf("Exit_code: %d\n", WEXITSTATUS(status));
-
+    {
+        run_cmd(0);
+        printf("Child: %d\n", WEXITSTATUS(status));
+    }
+        
+    else
+    {
+        waitpid(child ,&status, 0);
+        printf("Parent: %d\n", WEXITSTATUS(status));
+    }
+        
 }
