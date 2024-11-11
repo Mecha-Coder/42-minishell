@@ -44,7 +44,7 @@ void interective_mode(t_shell *data)
     while (1)
     {
         signal(SIGINT, sigint_handler);
-        signal(SIGINT, sigquit_handler);
+        signal(SIGQUIT, sigquit_handler);
         prompt(s, data->cmd_exit_no);
         data->input = readline(s);
         if (data->input)
