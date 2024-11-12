@@ -57,7 +57,6 @@ int main()
     printf("Testing\n");
     heredoc(fd, "DONE");
 
-    
     id = fork();
     if (!id)
     {
