@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unset.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/13 17:46:56 by jetan             #+#    #+#             */
+/*   Updated: 2024/11/13 17:46:56 by jetan            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 void free_env_node(t_env *env);
@@ -65,8 +77,8 @@ Description: Remove var from env listed-list
 int ft_unset(char **arg, t_shell *data)
 {
     int i;
-    t_env *current;
-    t_env *previous;
+    t_env   *current;
+    t_env   *previous;
 
     i = 0;
     while (arg[++i])
@@ -84,7 +96,7 @@ int ft_unset(char **arg, t_shell *data)
                 free_env_node(current);
                 break;
             }
-            previous = current;    
+            previous = current;
             current = current->next;
         }
     }

@@ -15,11 +15,10 @@
 int	is_numeric(char *str)
 {
 	int	i;
-	
+
 	i = 0;
 	if (str[i] != '-' && str[i] != '+' && !ft_isdigit(str[i]))
-        return (FALSE);
-
+		return (FALSE);
 	while (str[++i])
 	{
 		if (!ft_isdigit(str[i]))
@@ -30,7 +29,6 @@ int	is_numeric(char *str)
 
 int	ft_exit(char **args, t_shell *data)
 {
-	
 	if (args[1] == NULL)
 	{
 		ft_putstr_fd("exit\n", 2);
@@ -49,12 +47,12 @@ int	ft_exit(char **args, t_shell *data)
 	}
 	ft_putstr_fd("exit\n", 2);
 	arg_count(args, "exit");
-	return(EXIT_FAILURE);
+	return (EXIT_FAILURE);
 }
 // int main(int ac, char **av)
 // {
 // 	t_shell data;
-	
+//
 // 	data.exit_cmd_no = 23;
 // 	(void)ac;
 // 	ft_exit(av, &data);

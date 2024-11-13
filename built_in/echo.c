@@ -15,7 +15,7 @@
 int	n_option(char *str)
 {
 	int	i;
-	
+
 	if (str[0] == '-' && str[1] == 'n')
 	{
 		i = 2;
@@ -34,7 +34,7 @@ int	ft_echo(char **args)
 {
 	int	i;
 	int	new_line;
-	
+
 	i = 1;
 	new_line = 1;
 	while (args[i] != NULL && n_option(args[i]))

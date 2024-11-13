@@ -24,7 +24,7 @@ void	update_oldpwd(t_shell *data)
 		{
 			free(current->val);
 			current->val = ft_strdup(cwd);
-			return;
+			return ;
 		}
 		current = current->next;
 	}
@@ -34,20 +34,20 @@ void	update_pwd(t_shell *data)
 {
 	char	cwd[1024];
 	t_env	*current;
-	
+
 	current = data->env;
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
 	{
 		perror("getcwd error");
-		return;
+		return ;
 	}
 	while (current)
 	{
-		if (ft_strcmp(current->key ,"PWD") == 0)
+		if (ft_strcmp(current->key, "PWD") == 0)
 		{
 			free(current->val);
 			current->val = ft_strdup(cwd);
-			return;
+			return ;
 		}
 		current = current->next;
 	}
@@ -56,7 +56,7 @@ void	update_pwd(t_shell *data)
 // void	cd_previous_dir(t_shell *data)
 // {
 // 	char	*oldpwd;
-	
+//	
 // 	oldpwd = getenv("OLDPWD");
 // 	if (!oldpwd)
 // 	{
@@ -75,8 +75,8 @@ void	update_pwd(t_shell *data)
 int	cd_home(t_shell *data)
 {
 	char	*home;
-	
-	home = env_val("HOME", data->env);	
+
+	home = env_val("HOME", data->env);
 	if (!home)
 	{
 		err_msg_3("cd", "HOME not set");
