@@ -23,8 +23,7 @@ static void show_info(t_tree *node)
         printf("AND");
     else if (node->type == CMD)
     {
-        printf("CMD: ");
-        show_token_2(node->cmd);
+        printf("CMD");
         printf("\nIN: ");
         show_token_2(node->in);
         printf("\nOUT: ");

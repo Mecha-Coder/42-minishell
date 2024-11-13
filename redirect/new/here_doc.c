@@ -1,6 +1,6 @@
 #include "header.h"
 
-void prompt_heredoc(int fd, char *delimiter);
+static void prompt_heredoc(int fd, char *delimiter);
 
 /*
 Handle heredoc prompt
@@ -16,7 +16,7 @@ void heredoc(int *fd, char *delimiter)
 }
 
 
-void prompt_heredoc(int fd, char *delimiter)
+static void prompt_heredoc(int fd, char *delimiter)
 {
     char *input;
 
