@@ -11,12 +11,16 @@ int none_builtin(char **cmd, t_env *list)
     pid_t id;
     int status;
 
+    signal(SIGINT, sigint_handler_child);
+    signal(SIGQUIT, sigquit_handler_child);
     id = fork();
     if (id < 0) {perror("fork failed"); exit(EXIT_FAILURE);}
     else if (!id)
         child(cmd, list);
     else
         waitpid(id, &status, 0);
+    signal(SIGINT, sigint_handler);
+    signal(SIGQUIT, SIG_IGN);
     return (WEXITSTATUS(status));
 }
 
