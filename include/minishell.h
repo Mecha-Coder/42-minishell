@@ -15,6 +15,7 @@
 #include <sys/wait.h>
 #include <termios.h>
 #include <sys/ioctl.h>
+#include <signal.h>
 
 #include "constant.h"
 #include "struct.h"
