@@ -41,10 +41,10 @@ void interective_mode(t_shell *data)
 
     ft_strcpy(s, PROMPT);
     rl_on_new_line();
+    signal(SIGINT, sigint_handler);
+    signal(SIGQUIT, SIG_IGN);
     while (1)
     {
-        signal(SIGINT, sigint_handler);
-        signal(SIGQUIT, sigquit_handler);
         prompt(s, data->cmd_exit_no);
         data->input = readline(s);
         if (data->input)
