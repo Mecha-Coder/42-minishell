@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_len.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/14 14:40:08 by jetan             #+#    #+#             */
+/*   Updated: 2024/11/14 14:40:08 by jetan            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
-int env_len(t_env *env)
+int	env_len(t_env *env)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (env && ++i)
-        env = env->next;
-    return (i);
+	i = 0;
+	while (env && ++i)
+		env = env->next;
+	return (i);
 }
