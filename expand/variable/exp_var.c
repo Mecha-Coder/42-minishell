@@ -10,25 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../include/minishell.h"
+
 #define S_QUOTE 1
 #define D_QUOTE 2
-
-#include "../../include/minishell.h"
 
 void del_quote(char *s, int type);
 
 /* >>> exp_var
 Purpose
+- Remove quotes
 - Scan for variable ($_ _ _) in string 
 - Then swap/insert it coresponding value
-=============================================================================
-Rule
-- $?            : expand to cmd_exit_no
-- $[digit: 1-9] : blank
-- $[identifier] : check key=identifier in env, expand to that
-                : else blank
-
-Note: If not meeting rule, don't expand, leave it
 =============================================================================
 Example
 - Input  : "This is $USER's pc named '$1$?$h'"
@@ -48,29 +41,15 @@ char *exp_var(char *s, t_shell *data)
 
     sub_squote(s, TRUE);
     del_quote(s, D_QUOTE);
-    if (contain_var(s))
+    new = insert_var(s, data);
+    if (new)
     {
-        new = insert_var(s, data);
         free(s);
         s = new;
     }
     del_quote(s, S_QUOTE);
     sub_squote(s, FALSE);
     return (s);
-}
-
-int contain_var(char *s)
-{
-    int i;
-    int detect;
-
-    while (s && s[++i])
-    {
-        detection(s[i], &detect);
-        if (detect != SQ_OFF && s[i] == '$')
-            return (TRUE);
-    }
-    return (FALSE);
 }
 
 void del_quote(char *s, int type)
