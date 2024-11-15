@@ -18,9 +18,13 @@ int none_builtin(char **cmd, t_env *list)
     else if (!id)
         child(cmd, list);
     else
+    {
         waitpid(id, &status, 0);
-    signal(SIGINT, sigint_handler);
-    signal(SIGQUIT, SIG_IGN);
+        signal(SIGINT, sigint_handler);
+        signal(SIGQUIT, SIG_IGN);
+        if (WIFSIGNALED(status))
+            return (128 + WTERMSIG(status));
+    }
     return (WEXITSTATUS(status));
 }
 
