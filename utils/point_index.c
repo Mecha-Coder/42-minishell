@@ -7,5 +7,5 @@ void point_index(int index)
 	i = 0;
 	while(i++ < index)
 		printf(" ");
-	printf("↑\n");
+	printf("↓\n");
 }

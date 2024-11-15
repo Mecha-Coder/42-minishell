@@ -3,9 +3,9 @@
 
 // Mute this headers after finalize
 #include <string.h>
-#include <stdio.h>
 #include <ctype.h>
 
+#include <stdio.h>
 #include <stddef.h>
 #include <unistd.h>
 #include <stdlib.h>

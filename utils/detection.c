@@ -7,8 +7,8 @@ Param:
 	state : reference pointer to &state from parent function
 Return:
 	0 : Not a quotes
-	1 : Double quote detected, ignore YES
-	2 : Single quote detected, ignore YES
+	1 : Double quote detected, detection OFF
+	2 : Single quote detected, detection OFF
 	3 : Double quote detected, detection ON
 	4 : Single quote detected, detection ON
 */

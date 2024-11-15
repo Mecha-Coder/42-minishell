@@ -31,7 +31,7 @@
 #define LONG_INPUT "\n\033[1m\033[31mERROR: " \
                     "\033[0mInput command too long\n"
 
-#define B_SYN_QUOTE "\n\033[1m\033[31mSYNTAX ISSUE: " \
+#define B_SYN_QUOTE "\033[1m\033[31mSYNTAX ERROR: " \
                     "\033[0mQuote must be in pair\n"
 
 #define B_SYN_BRACKET "\n\033[1m\033[31mSYNTAX ISSUE: " \

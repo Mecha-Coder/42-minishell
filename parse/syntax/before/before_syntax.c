@@ -48,8 +48,8 @@ int check_syntax_before(t_shell *data)
 
 static void show_error(t_shell *data, int index, int trigger)
 {
-    printf("\n\n%s\n", data->input);
     point_index(index);
+    printf("%s\n", data->input);
 
     if (trigger == 1)       printf(B_SYN_QUOTE);
     else if (trigger == 2)  printf(B_SYN_BRACKET);
