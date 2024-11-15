@@ -1,6 +1,7 @@
 #ifndef DEFINES_H
 # define DEFINES_H
 
+
 typedef struct s_env
 {
     char *key;
@@ -44,5 +45,7 @@ typedef struct s_shell
     int cmd_exit_no;
     int exit_status;
 } t_shell;
+
+extern int g_sig;
 
 #endif
