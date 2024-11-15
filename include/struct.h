@@ -1,0 +1,41 @@
+#ifndef STRUCT_H
+#define STRUCT_H
+
+typedef struct s_env
+{
+    char *key;
+    char *val;
+    struct s_env *next;
+} t_env;
+
+typedef struct s_token
+{
+    int  type;
+    int  index;
+    int  herefd[2];
+    char *content;
+    struct s_token *next;
+    struct s_token *prev;
+} t_token;
+
+typedef struct s_tree
+{
+    int type;
+    int *pipe;
+    int terminate;
+    t_token *head;
+    struct s_tree *left;
+    struct s_tree *right;
+} t_tree;
+
+typedef struct s_shell
+{
+    char *input;
+    t_env *list;
+    t_token *head;
+    t_tree *root;
+    int oriterm_fd[2];
+    int cmd_exit_no;
+} t_shell;
+
+#endif
