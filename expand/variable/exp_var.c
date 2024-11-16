@@ -6,16 +6,11 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:22:55 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/15 16:04:30 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/16 09:09:49 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-#define S_QUOTE 1
-#define D_QUOTE 2
-
-void del_quote(char *s, int type);
 
 /* >>> exp_var
 Purpose
@@ -50,32 +45,4 @@ char *exp_var(char *s, t_shell *data)
     del_quote(s, S_QUOTE);
     sub_squote(s, FALSE);
     return (s);
-}
-
-void del_quote(char *s, int type)
-{
-    int i;
-    int j;
-    int num;
-    int detect;
-    char *temp;
-
-    (i = -1, j = 0, detect = ON);
-    temp = (char *)malloc(ft_strlen(s) + 1);
-    if (!temp)
-    {
-        perror("Malloc fail");
-        exit(EXIT_FAILURE);
-    }
-    while (s && s[++i])
-    {
-        num = detection(s[i], &detect);
-        if (type == D_QUOTE && num != 1 && num != 3)
-            temp[j++] = s[i];
-        if (type == S_QUOTE && num != 2 && num != 4)
-            temp[j++] = s[i];
-    }
-    temp[j] = '\0';
-    ft_strcpy(s, temp);
-    free(temp);
 }

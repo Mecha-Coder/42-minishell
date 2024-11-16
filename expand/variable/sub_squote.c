@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:56:23 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/15 15:39:53 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/16 09:05:45 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,24 @@ void sub_squote(char *s, int sub)
     while (!sub && s[++i])
     {
         if (s[i] == (char)26)
-            s[i] == '\'';
+            s[i] = '\'';
     }
 }
+
+/* Test
+
+int main()
+{
+    char s1[] = "This 'is'";
+    char s2[] = "\"Awesome\"";
+    char s3[] = "\"It's\" a fantastic day to \"'skate'\"";
+    sub_squote(s1, TRUE);
+    sub_squote(s2, TRUE);
+    sub_squote(s3, TRUE);
+    printf("%s\n%s\n%s", s1, s2, s3);
+    sub_squote(s1, FALSE);
+    sub_squote(s2, FALSE);
+    sub_squote(s3, FALSE);
+    printf("\n\n%s\n%s\n%s\n", s1, s2, s3);
+}
+*/
