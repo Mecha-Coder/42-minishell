@@ -15,5 +15,8 @@ int descent_tree(t_tree *node, t_shell *data)
 
 void run_ast(t_shell *data)
 {
+    
+    signal(SIGINT, sigint_handler_child);
+    signal(SIGQUIT, sigquit_handler_child);
     data->cmd_exit_no = descent_tree(data->tree, data);
 }

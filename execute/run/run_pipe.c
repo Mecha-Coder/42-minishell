@@ -32,6 +32,8 @@ int run_pipe(t_tree *node, t_shell *data)
 
 static void left(int *fd, t_tree *node, t_shell *data)
 {
+    // signal(SIGINT, SIG_DFL);
+    // signal(SIGQUIT, SIG_DFL);
     if (node->left->type == CMD)
     {
         close(fd[0]);
@@ -42,6 +44,8 @@ static void left(int *fd, t_tree *node, t_shell *data)
 
 static void right(int *fd, t_tree *node, t_shell *data)
 {
+    signal(SIGINT, SIG_DFL);
+    signal(SIGQUIT, SIG_DFL);
     close(fd[1]);
     dup2(fd[0], STDIN_FILENO);
     if (node->pipe)

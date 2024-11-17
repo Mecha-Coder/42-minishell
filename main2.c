@@ -62,6 +62,8 @@ void interective_mode(t_shell *data)
             printf(SHUTDOWN);
             break;
         }
+        signal(SIGINT, sigint_handler);
+        signal(SIGQUIT, SIG_IGN);
     }
 }
 
