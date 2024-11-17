@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:22:55 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/16 09:09:49 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/17 15:33:42 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,7 @@ char *exp_var(char *s, t_shell *data)
 
     sub_squote(s, TRUE);
     del_quote(s, D_QUOTE);
-    new = insert_var(s, data);
-    if (new)
-    {
-        free(s);
-        s = new;
-    }
+    s = insert_var(s, data);
     del_quote(s, S_QUOTE);
     sub_squote(s, FALSE);
     return (s);

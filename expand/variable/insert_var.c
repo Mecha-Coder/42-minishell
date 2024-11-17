@@ -6,15 +6,14 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 20:42:09 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/16 14:57:38 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/17 15:34:44 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
 char *insert_blank(char *s, int i);
-char *insert_exit(char *s, int *i, int code);
-char *insert_identifier(char *s, int *i, int len, t_env *env);
+char *insert_route(char *s, int *i, t_shell *data);
 
 /* >>> insert_var
 Purpose
@@ -50,27 +49,35 @@ Return
 char *insert_var(char *s, t_shell *data)
 {
     int i;
-    int len;
     int detect;
     char *temp;
-    char *new;
 
-    (i = 0, detect = ON, temp = NULL, new = NULL);
+    (i = 0, detect = ON);
     while (s && s[i])
     {
-       if (!detection(s[i], &detect) && detect != SQ_OFF && s[i] == '$')
-       {
-            if (s[i + 1] >= '1' && s[i + 1] <= '9')   temp = insert_blank(s, i);
-            else if (s[i + 1] == '?')                 temp = insert_exit(s, &i, data->cmd_exit_no);
-            else if (is_identifier(&s[i + 1], &len))   temp = insert_identifier(s, &i, len, data->env);
-            if (new)
-                free (new);
-            new = temp;
-       }
-        else
-            i++;
+        if (!detection(s[i], &detect) && detect != SQ_OFF && s[i] == '$')
+        {
+            temp = insert_route(s, &i, data);
+            if (temp)
+            {
+                free (s);
+                s = temp;
+                continue;
+            }
+        }
+        i++;
     }
-    return (new);
+    return (s);
+}
+
+char *insert_route(char *s, int *i, t_shell *data)
+{
+    int len;
+
+    if (s[*i + 1] >= '1' && s[*i + 1] <= '9')     return (insert_blank(s, *i));
+    else if (s[*i + 1] == '?')                    return (insert_exit(s, i, data->cmd_exit_no));
+    else if (is_identifier(&s[*i + 1], &len))     return (insert_identifier(s, i, len, data->env));
+    return (NULL);
 }
 
 char *insert_blank(char *s, int i)
@@ -79,48 +86,22 @@ char *insert_blank(char *s, int i)
     return (join3(s, NULL, &s[i + 2]));
 }
 
-char *insert_exit(char *s, int *i, int code)
-{
-    char buffer[3];
-    char *result;
-    
-    s[*i] = '\0';
-    exit_2_str(buffer, code);
-    result = join3(s, buffer, &s[*i + 2]);
-    *i += ft_strlen(buffer);
-    return (result);
-    
-}
 
-char *insert_identifier(char *s, int *i, int len, t_env *env)
-{
-    char *key;
-    char *value;
-    char *result;
-
-    s[*i] = '\0';
-    key = (char *)malloc(len + 1);
-    if (!key)
-    {
-        perror("Malloc fail");
-        exit (EXIT_FAILURE);
-    }
-    ft_strncpy(key, &s[*i + 1], len);
-    value = env_val(key, env);
-    result = join3(s, value, &s[*i + len + 1]);
-    *i += ft_strlen(value);
-    free(key);
-    return (result);
-}
-
-/* Test */
+/* Test
 
 void answer(char *s, t_shell *data)
 {
-    printf("Input: %s", s);
-    insert_var(s, data);
-    printf("Output: %s", s);
+    char *input;
+    char *output;
+
+    input = (char *)malloc(ft_strlen(s) + 1);
+    ft_strcpy(input, s);
+    
+    printf("Input : %s\n", input);
+    output = insert_var(input, data);
+    printf("Output: %s\n", output);
     printf("\n----------------------------\n\n");
+    free(output);
 }
 
 int main()
@@ -150,3 +131,4 @@ int main()
     answer(s5, &data);
     answer(s6, &data);
 }
+*/

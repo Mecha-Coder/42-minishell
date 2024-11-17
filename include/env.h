@@ -1,8 +1,6 @@
 #ifndef ENV_H
 #define ENV_H
 
-#include "struct.h"
-
 int append_env(char *key, char *val, t_env *env);
 void destroy_env(t_shell *data);
 int env_len(t_env *env);
