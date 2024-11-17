@@ -14,6 +14,8 @@
 #include "constant.h"
 #include "utils.h"
 #include "expand.h"
+#include "built_in.h"
+#include "env.h"
 
 #include "../lib/libft.h"
 

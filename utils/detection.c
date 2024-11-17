@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 10:38:04 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/15 11:16:13 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/16 08:54:00 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,25 @@ Side effect
 
 int detection(char c, int *state)
 {
-    if (c == '\"' && *state == ON)     {*state = DQ_OFF; return (1);}
-	if (c == '\'' && *state == ON)     {*state = SQ_OFF; return (2);}
-	if (c == '\"' && *state == DQ_OFF) {*state = ON; return (3);}
-	if (c == '\'' && *state == SQ_OFF) {*state = ON; return (4);}
+    if (c == '\"' && *state == ON)
+	{
+		*state = DQ_OFF; 
+		return (1);
+	}
+	if (c == '\'' && *state == ON)     
+	{
+		*state = SQ_OFF; 
+		return (2);
+	}
+	if (c == '\"' && *state == DQ_OFF)
+	{
+		*state = ON;
+		return (3);
+	}
+	if (c == '\'' && *state == SQ_OFF)
+	{
+		*state = ON;
+		return (4);
+	}
 	return (0);
 }

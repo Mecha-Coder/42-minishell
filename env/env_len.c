@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   env_len.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 16:05:26 by jpaul             #+#    #+#             */
-/*   Updated: 2024/10/08 16:05:26 by jpaul            ###   ########.fr       */
+/*   Created: 2024/11/14 14:40:08 by jetan             #+#    #+#             */
+/*   Updated: 2024/11/14 14:40:08 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/minishell.h"
 
-int	ft_isalnum(int c)
+int	env_len(t_env *env)
 {
-	if ((c >= 'A' && c <= 'Z') 
-		|| (c >= 'a' && c <= 'z') 
-		|| (c >= '0' && c <= '9'))
-		return (1);
-	return (0);
+	int	i;
+
+	i = 0;
+	while (env && ++i)
+		env = env->next;
+	return (i);
 }

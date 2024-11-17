@@ -23,7 +23,7 @@ typedef struct s_tree
     int type;
     int *pipe;
     int terminate;
-    t_token *head;
+    t_token *token;
     struct s_tree *left;
     struct s_tree *right;
 } t_tree;
@@ -31,9 +31,9 @@ typedef struct s_tree
 typedef struct s_shell
 {
     char *input;
-    t_env *list;
-    t_token *head;
-    t_tree *root;
+    t_env *env;
+    t_token *token;
+    t_tree *tree;
     int oriterm_fd[2];
     int cmd_exit_no;
 } t_shell;

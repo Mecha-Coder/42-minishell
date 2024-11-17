@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 16:05:26 by jpaul             #+#    #+#             */
-/*   Updated: 2024/10/08 16:05:26 by jpaul            ###   ########.fr       */
+/*   Created: 2024/09/27 18:36:36 by jetan             #+#    #+#             */
+/*   Updated: 2024/11/02 16:10:16 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/minishell.h"
 
-int	ft_isalnum(int c)
+int	ft_pwd(void)
 {
-	if ((c >= 'A' && c <= 'Z') 
-		|| (c >= 'a' && c <= 'z') 
-		|| (c >= '0' && c <= '9'))
-		return (1);
-	return (0);
+	char	buf[1024];
+
+	if (getcwd(buf, sizeof(buf)) != NULL)
+		printf("%s\n", buf);
+	else
+		return (perror("pwd"), EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
+// int main()
+// {
+// 	ft_pwd();
+// }
