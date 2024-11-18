@@ -14,6 +14,44 @@
 
 void	free_env_node(t_env *env);
 
+/* >>> unset
+Description: Remove var from env listed-list
+*/
+int	ft_unset(char **arg, t_shell *data)
+{
+	int		i;
+	t_env	*current;
+	t_env	*previous;
+
+	i = 0;
+	while (arg[++i])
+	{
+		current = data->env;
+		previous = NULL;
+		while (current)
+		{
+			if (!ft_strcmp(arg[i], current->key))
+			{
+				if (previous)
+					previous->next = current->next;
+				else
+					data->env = current->next;
+				free_env_node(current);
+				break ;
+			}
+			previous = current;
+			current = current->next;
+		}
+	}
+	return (EXIT_SUCCESS);
+}
+
+void	free_env_node(t_env *env)
+{
+	free(env->key);
+	free(env->val);
+	free(env);
+}
 /* Test
 int main()
 {
@@ -70,42 +108,3 @@ int main()
 	}
 	destroy_env(&data);
 }*/
-
-/* unset
-Description: Remove var from env listed-list
-*/
-int	ft_unset(char **arg, t_shell *data)
-{
-	int		i;
-	t_env	*current;
-	t_env	*previous;
-
-	i = 0;
-	while (arg[++i])
-	{
-		current = data->env;
-		previous = NULL;
-		while (current)
-		{
-			if (!ft_strcmp(arg[i], current->key))
-			{
-				if (previous)
-					previous->next = current->next;
-				else
-					data->env = current->next;
-				free_env_node(current);
-				break ;
-			}
-			previous = current;
-			current = current->next;
-		}
-	}
-	return (EXIT_SUCCESS);
-}
-
-void	free_env_node(t_env *env)
-{
-	free(env->key);
-	free(env->val);
-	free(env);
-}

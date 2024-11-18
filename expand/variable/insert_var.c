@@ -13,7 +13,7 @@
 #include "../../include/minishell.h"
 
 char *insert_blank(char *s, int i);
-char *insert_route(char *s, int *i, t_shell *data);
+char *do_insertion(char *s, int *i, t_shell *data);
 
 /* >>> insert_var
 Purpose
@@ -57,7 +57,7 @@ char *insert_var(char *s, t_shell *data)
     {
         if (!detection(s[i], &detect) && detect != SQ_OFF && s[i] == '$')
         {
-            temp = insert_route(s, &i, data);
+            temp = do_insertion(s, &i, data);
             if (temp)
             {
                 free (s);
@@ -70,13 +70,13 @@ char *insert_var(char *s, t_shell *data)
     return (s);
 }
 
-char *insert_route(char *s, int *i, t_shell *data)
+char *do_insertion(char *s, int *i, t_shell *data)
 {
     int len;
 
     if (s[*i + 1] >= '1' && s[*i + 1] <= '9')     return (insert_blank(s, *i));
     else if (s[*i + 1] == '?')                    return (insert_exit(s, i, data->cmd_exit_no));
-    else if (is_identifier(&s[*i + 1], &len))     return (insert_identifier(s, i, len, data->env));
+    else if (is_identifier(&s[*i + 1], &len))     return (insert_value(s, i, len, data->env));
     return (NULL);
 }
 

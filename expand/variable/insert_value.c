@@ -12,7 +12,7 @@
 
 #include "../../include/minishell.h"
 
-char *insert_identifier(char *s, int *i, int len, t_env *env)
+char *insert_value(char *s, int *i, int len, t_env *env)
 {
     char *key;
     char *value;
@@ -33,7 +33,7 @@ char *insert_identifier(char *s, int *i, int len, t_env *env)
     return (result);
 }
 
-/*
+/* Test
 int main()
 {
     int i = 0;

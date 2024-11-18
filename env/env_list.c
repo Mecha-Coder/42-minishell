@@ -14,6 +14,53 @@
 
 static char	*concat_key_val(char *s, t_env *env);
 
+/* >>> env_array
+Description: Convert env(linked-list) to 2D array
+=====================================================================
+Param: Pointer to env linked-list head
+	key: USER
+	val: jpaul
+=====================================================================
+Return: 2D array version of the env
+	* array = {"USER=jpaul", NULL}
+	* NULL if malloc fail
+*/
+
+char	**env_list(t_env *env)
+{
+	int		i;
+	int		total;
+	char	*s;
+	char	**list;
+
+	i = 0;
+	list = (char **)malloc(sizeof(char *) * (env_len(env) + 1));
+	if (!list)
+	{
+		perror("Malloc fail");
+		exit(EXIT_FAILURE);
+	}
+	while (env)
+	{
+		total = ft_strlen(env->key) + ft_strlen(env->val) + 2;
+		s = (char *)malloc(total);
+		if (!s)
+			return (free_list(list), NULL);
+		list[i++] = concat_key_val(s, env);
+		env = env->next;
+	}
+	list[i] = NULL;
+	return (list);
+}
+
+static char	*concat_key_val(char *s, t_env *env)
+{
+	ft_strcpy(s, env->key);
+	ft_strcat(s, "=");
+	ft_strcat(s, env->val);
+	return (s);
+}
+
 /* Test
 int main()
 {
@@ -42,46 +89,3 @@ int main()
 	free_list(list);
 }
 */
-
-/* env_array
-Description: Convert env in struct to 2D array
-
-Input: Pointer to env linked-list head
-	key: USER
-	val: jpaul
-
-Output: 2D array version of the env
-	* array = {"USER=jpaul", NULL}
-	* NULL if malloc fail
-*/
-char	**env_list(t_env *env)
-{
-	int		i;
-	int		total;
-	char	*s;
-	char	**list;
-
-	i = 0;
-	list = (char **)malloc(sizeof(char *) * (env_len(env) + 1));
-	if (!list)
-		return (NULL);
-	while (env)
-	{
-		total = ft_strlen(env->key) + ft_strlen(env->val) + 2;
-		s = (char *)malloc(total);
-		if (!s)
-			return (free_list(list), NULL);
-		list[i++] = concat_key_val(s, env);
-		env = env->next;
-	}
-	list[i] = NULL;
-	return (list);
-}
-
-static char	*concat_key_val(char *s, t_env *env)
-{
-	ft_strcpy(s, env->key);
-	ft_strcat(s, "=");
-	ft_strcat(s, env->val);
-	return (s);
-}

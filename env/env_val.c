@@ -15,11 +15,14 @@
 /* eval_val
 Description: Search env for that variable(key) and
 	return corresponding value
-
-	 USER -> jpaul
-
-Input : Variable name(key) & env linked list 
-Output: Value of that variable
+===================================================================
+Example	
+	USER -> jpaul
+    (key)  (value)
+===================================================================
+Param : Variable name(key) & env linked list 
+===================================================================
+Return : Value of that variable
 	Found     = corresponding value
 	Not found = NULL
 	NULL key  = NULL

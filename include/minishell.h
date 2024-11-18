@@ -9,6 +9,7 @@
 #include <readline/history.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <dirent.h>
 
 #include "struct.h"
 #include "constant.h"
@@ -16,6 +17,8 @@
 #include "expand.h"
 #include "built_in.h"
 #include "env.h"
+#include "token.h"
+#include "shell.h"
 
 #include "../lib/libft.h"
 
