@@ -27,6 +27,8 @@ int run_pipe(t_tree *node, t_shell *data)
     close(fd[1]);
     waitpid(id_1, &status, 0);
     waitpid(id_2, &status, 0);
+    if (WIFSIGNALED(status))
+            return (128 + WTERMSIG(status));
     return (WEXITSTATUS(status));
 }
 

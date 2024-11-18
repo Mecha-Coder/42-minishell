@@ -20,9 +20,9 @@ int none_builtin(char **cmd, t_env *list)
         waitpid(id, &status, 0);
         signal(SIGINT, sigint_handler);
         signal(SIGQUIT, SIG_IGN);
-        if (WIFSIGNALED(status))
-            return (128 + WTERMSIG(status));
     }
+    if (WIFSIGNALED(status))
+        return (128 + WTERMSIG(status));
     return (WEXITSTATUS(status));
 }
 
