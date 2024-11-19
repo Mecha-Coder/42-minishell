@@ -22,4 +22,6 @@
 
 #include "../lib/libft.h"
 
+#include "visual.h" // Remove this
+
 #endif

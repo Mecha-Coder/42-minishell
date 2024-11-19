@@ -1,7 +1,8 @@
 #ifndef TOKEN_H
 #define TOKEN_H
 
-t_token *create_token(void);
 void destroy_token(t_token *token);
+t_token *create_token(int type, char *content, int index, t_token *prev_token);
+t_token *token_jumpback(t_token *current);
 
 #endif

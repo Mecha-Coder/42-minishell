@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 14:24:05 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/18 14:24:05 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/19 11:08:32 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,13 @@ void destroy_token(t_token *token)
     
     while (token)
     {
-        free(token->content);
+        if (token->content)
+            free(token->content);
+        if (token->herefd[0] > 2 && token->herefd[1] > 2)
+        {
+            close(token->herefd[0]);
+            close(token->herefd[1]);
+        }
         temp = token->next;
         free(token);
         token = temp;

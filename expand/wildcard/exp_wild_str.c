@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exp_wild.c                                         :+:      :+:    :+:   */
+/*   exp_wild_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:28:59 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/18 10:28:59 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/19 14:00:20 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-t_token *create_str_token(char *s, t_token *prev);
 
 /* >>> exp_wild
 Purpose: 
@@ -54,32 +52,22 @@ t_token *exp_wild_str(char *pattern)
     while (entry)
     {
         if (wildcard_match(entry->d_name, pattern))
-            current = create_str_token(entry->d_name, current);
+            current = create_token(STR, 
+                ft_strdup(entry->d_name), 
+                0, 
+                current);
         entry = readdir(dir);
     }
     closedir(dir);
-    while (current && current->prev)
-        current = current->prev;
+    current = token_jumpback(current);
     return (current);
 }
 
-t_token *create_str_token(char *s, t_token *prev_token)
-{
-    t_token *new;
-    
-    new = create_token();
-    new->type = STR;
-    new->content = ft_strdup(s);
-    new->prev = prev_token;
-    if (prev_token)
-        prev_token->next = new;
-    return (new);
-}
 
 /* Test
 void answer(char *pattern)
 {
-    t_token *token = exp_wild(pattern);
+    t_token *token = exp_wild_str(pattern);
     t_token *current = token;
     printf("\npattern: %s\n\n", pattern);
     if (!current)

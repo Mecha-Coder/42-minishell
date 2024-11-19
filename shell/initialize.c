@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:54:08 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/18 15:54:08 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/19 13:25:16 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void initialize(t_shell *data, char **env)
     data->tree = NULL;
 }
 
-/*
+
 int main(int ac, char **av, char **env)
 {
     t_shell data;
@@ -62,4 +62,3 @@ int main(int ac, char **av, char **env)
     }
     destroy_env(&data);
 }
-*/
