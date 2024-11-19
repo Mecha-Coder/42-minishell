@@ -15,7 +15,7 @@
 /* >>> token_jumpback
 Purpose: 
 - Doesn't matter at which node, 
-- jumpack will reset to point to token 'head' node
+- This function will reset to point to token 'head' node
 ======================================================================                          
 Illustration
 -                               ↓ --< CURRENT >  

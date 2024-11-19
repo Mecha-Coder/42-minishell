@@ -1,6 +1,6 @@
 #ifndef VISUAL_H
 #define VISUAL_H
 
-void show_token(t_token *current);
+void show_token(t_token *current, char c);
 
 #endif
