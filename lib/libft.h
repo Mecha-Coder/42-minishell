@@ -48,6 +48,7 @@ int		ft_isprint(int c);
 // most common
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *src);
+char	*ft_strndup(const char *s, size_t len);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 
@@ -58,8 +59,8 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 
 //copying str
-char *ft_strcpy(char *dest, char *src);
-char *ft_strcat(char *dest, char *src);
+char	*ft_strcpy(char *dest, char *src);
+char	*ft_strcat(char *dest, char *src);
 char	*ft_strncpy(char *dest, char *src, unsigned int n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);

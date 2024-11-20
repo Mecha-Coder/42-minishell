@@ -7,7 +7,7 @@
 
 void print_type(int i, char c)
 {
-    if (c == 'I' || c == 'I')
+    if (c == 'V' || c == 'I')
     {
         if (i == 1)      printf("%-7s", "<AND>");
         else if (i == 2) printf("%-7s","<OR>");
@@ -18,6 +18,7 @@ void print_type(int i, char c)
         else if (i == 7) printf("%-7s","<WR>");
         else if (i == 8) printf("%-7s","<OB>");
         else if (i == 9) printf("%-7s","<CB>");
+        else if (i == 10) printf("%-7s","<STR>");
     }
     else
     {
@@ -30,6 +31,7 @@ void print_type(int i, char c)
         else if (i == 7) printf("<WR>");
         else if (i == 8) printf("<OB>");
         else if (i == 9) printf("<CB>");
+         else if (i == 10) printf("<STR>");
     }
 }
 
@@ -42,13 +44,26 @@ void show_token(t_token *current, char c)
 {
     while (current)
     {
-        print_type(current->type, c);
-        if (c == 'V' && current->type == STR)
-            printf(" %s", current->content);
-        if (c == 'I')
-            printf("%7d", current->index);
-        if (c == 'V' || c == 'I')
-            printf("\n");
+        if (c == 'D')
+        {
+            printf("%p\n", current);
+            printf("type   : "); print_type(current->type, c);
+            printf("\ncontent: [%s]\n", current->content);
+            printf("index  : %d\n", current->index);
+            printf("prev   : %p\n", current->prev);
+            printf("next   : %p\n", current->next);
+            printf("\n-------------------------------------\n\n");
+        }
+        else
+        {
+            print_type(current->type, c);
+            if (c == 'V' && current->type == STR)
+                printf(" %s", current->content);
+            if (c == 'I')
+                printf("%7d", current->index);
+            if (c == 'V' || c == 'I')
+                printf("\n");
+        }
         current = current->next;
     }
     printf("\n");

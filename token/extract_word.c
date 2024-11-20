@@ -12,13 +12,16 @@
 
 #include "../include/minishell.h"
 
+int is_word(char c, int *detect);
+int delimiter(char c);
+
 /* >>> extract_word
 Purpose:
 - Take processed input after extract_token
 - Split word by "space" delimiter and create token
 ==============================================================
 Example
--           |    ON      |    OFF      | ON 
+-                ON      |    OFF      | ON 
     Input:  Month   of   "November 2024"\0
           0011111000110001111111111111110
 -           ^    ^  ^ ^  ^              ^
@@ -26,28 +29,55 @@ Example
 ==============================================================
 Return 
 - token *operator
-- NULL, if not found any operator
+- NULL, if no word found
 */
 
 t_token *extract_word(char *s)
 {
-    int is_word;
-    
-    while (s && *s)
-    {
-        detection
-        if (delimiter)
-        {
-            if (is_word)
+    int i;
+    int j;
+    int detect;
+    int prev;
+    int now;
+    t_token *word;
 
-            is_word = FALSE;
-        }
-        else
-            is_word = TRUE;
+    (i = 0, detect = ON, word = NULL, prev = FALSE);
+    while (1)
+    {
+        now = is_word(s[i], &detect);
+        if (now && !prev)
+            j = i;
+        if (!now && prev)
+            word = create_token(STR, ft_strndup(&s[j], i - j), j, word);
+        prev = now;
+        if (s[i] == '\0')
+            break;
+        i++;
     }
+    return (token_jumpback(word));
+}
+
+int is_word(char c, int *detect)
+{
+    detection(c, detect);
+    if (*detect == ON && delimiter(c))
+        return (FALSE);
+    else
+        return (TRUE);
 }
 
 int delimiter(char c)
 {
     return(c == ' ' || c == '\0');
 }
+
+/* Test
+int main()
+{
+    t_token *new;
+    char s[] =  "out1.txt echo \">>>>> && out.txt\"   in.txt '|'";
+    new = extract_word(s);
+    show_token(new, 'V');
+    destroy_token(new);
+}
+*/

@@ -12,6 +12,8 @@
 
 #include "../include/minishell.h"
 
+t_token *join_token(t_token *t1, t_token *t2);
+
 /* >>> tokenize
 Purpose: Create a token representation of the input
 ==================================================================
@@ -38,10 +40,15 @@ Stage2: Extract word with space as delimiter
 
 Stage3: Sort index
 ==================================================================
+Caution
+- Output for these 2 can be NULL
+    operator = extract_operator(s);
+    word = extract_word(s);
+Make sure join_token can handle NULL token 
+==================================================================
 Param 
-    t_data
+- t_shell data
 */
-
 void tokenize(t_shell *data)
 {
     char *s;
@@ -54,3 +61,45 @@ void tokenize(t_shell *data)
     data->token = join_token(operator, word);
     free(s);
 }
+
+t_token *join_token(t_token *t1, t_token *t2)
+{
+    while (t1 && t1->next)
+        t1 = t1->next;
+    if (t1)
+        t1->next = t2;
+    if (t2)
+        t2->prev = t1;
+    return (sort_token(t2));
+}
+
+/*
+void answer(char *s)
+{
+    t_shell data;
+
+    data.input = s;
+    tokenize(&data);
+    show_token(data.token, 'V');
+    printf("-------------------\n");
+    destroy_token(data.token);
+}
+
+int main()
+{
+    char s1[] = "(echo hI && echo done) | tr a-z A-Z | wc -l";
+    char s2[] = "echo hello";
+    char s3[] = "";
+    char s4[] = "(echo \"World\" && (echo \"Hello\"))";
+    char s5[] = "grep \"pattern\" file.txt || echo \"Not found\"";
+    char s6[] = "> out1.txt echo \">>>>> out.txt\" < in.txt";
+
+    answer(s1);
+    answer(s2);
+    answer(s3);
+    answer(s4);
+    answer(s5);
+    answer(s6);
+}
+*/
+

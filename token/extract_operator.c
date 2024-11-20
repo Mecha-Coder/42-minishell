@@ -22,7 +22,7 @@ Purpose:
 ==============================================================
 Return 
 - token *operator
-- NULL, if not found any operator
+- NULL, if no operator found
 */
 
 t_token *extract_operator(char *s)
@@ -45,8 +45,7 @@ t_token *extract_operator(char *s)
         else
             i++;
     }
-    operator = sort_token(operator);
-    return (operator);
+    return (token_jumpback(operator));
 }
 
 void initialize_words(char words[][3])
@@ -74,7 +73,7 @@ void sub_to_space(char *s, int i, int size)
 void answer(char *s)
 {
     t_token *operator = extract_operator(s);
-    show_token(operator, 'H');
+    show_token(operator, 'D');
     printf("[%s]\n", s);
     destroy_token(operator);
     printf("\n--------------------------\n");
@@ -98,5 +97,8 @@ int main()
     answer(s7);
     char s8[] = "> out1.txt echo \">>>>> && out.txt\" < in.txt '|'";
     answer(s8);
+    char s9[] = ">";
+    answer(s9);
 }
 */
+
