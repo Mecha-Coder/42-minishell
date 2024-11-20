@@ -36,6 +36,9 @@ static void left(int *fd, t_tree *node, t_shell *data)
 {
     // signal(SIGINT, SIG_DFL);
     // signal(SIGQUIT, SIG_DFL);
+	close(fd[0]);
+	dup2(fd[1], STDOUT_FILENO);
+	close(fd[1]);
     if (node->left->type == CMD)
     {
         close(fd[0]);
