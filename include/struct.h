@@ -38,4 +38,9 @@ typedef struct s_shell
     int cmd_exit_no;
 } t_shell;
 
+typedef struct s_sub
+{
+    int type;
+    int input_index;
+} t_sub;
 #endif

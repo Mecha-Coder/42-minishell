@@ -38,21 +38,33 @@ int check_redirect(t_shell *data)
                 , current->next->index);
             return (FALSE);
         }
+        current = current->next;
     }
     return (TRUE);
 }
-
-int answer(char *s)
+/*
+void answer(char *s)
 {
     t_shell data;
 
     data.input = s;
-
-    
+    tokenize(&data);
+    if (check_redirect(&data))
+        printf("%s\nOK\n",data.input);
+    printf("\n---------------------------\n");
+    destroy_token(data.token);
 }
 
 int main()
 {
-    char s1[] = "cat < in.txt && ls"
+    char s1[] = "cat < in.txt && ls";
+    answer(s1);
+    char s2[] = "echo bonjour > > out";
+    answer(s2);
+    char s3[] = "> out1.txt cat > out.txt < in.txt";
+    answer(s3);
+    char s4[] = ">> out1.txt cat > && < in.txt";
+    answer(s4);
 }
+*/
 
