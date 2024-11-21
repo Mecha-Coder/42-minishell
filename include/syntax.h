@@ -10,11 +10,7 @@ int check_quote(char *s);
 int check_combine(t_shell *data);
 int check_redirect(t_shell *data);
 int check_subshell(t_shell *data);
-
-// Additional check_subshell
-t_pair *create_pair(t_token *ob, t_pair *prev);
-t_pair *pair_jumpforward(t_pair *current);
-void destroy_pair(t_pair *current);
+int check_pair(t_pair *pair, char *input);
 
 #endif
 

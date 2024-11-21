@@ -22,9 +22,6 @@ typedef struct s_pair
 {
     t_token *ob;
     t_token *cb;
-
-    struct s_pair *next;
-    struct s_pair *prev;
 } t_pair;
 
 typedef struct s_tree

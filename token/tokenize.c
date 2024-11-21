@@ -73,7 +73,7 @@ t_token *join_token(t_token *t1, t_token *t2)
     return (sort_token(t2));
 }
 
-/*
+/* Test 
 void answer(char *s)
 {
     t_shell data;
@@ -102,4 +102,5 @@ int main()
     answer(s6);
 }
 */
+
 
