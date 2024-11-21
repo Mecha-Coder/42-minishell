@@ -19,12 +19,12 @@ void sub_to_space(char *s, int i, int size);
 Purpose: 
 - Find operator in input and create token
 - Then, replace operator found with "space" character
+
 ==============================================================
 Return 
 - token *operator
 - NULL, if no operator found
 */
-
 t_token *extract_operator(char *s)
 {
     int i;

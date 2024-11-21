@@ -23,6 +23,9 @@
 #define S_QUOTE 1
 #define D_QUOTE 2
 
+#define O_BRACKET 0
+#define C_BRACKET 1
+
 //===========================================================================
 //Type classification
 

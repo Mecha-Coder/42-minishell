@@ -19,6 +19,7 @@
 #include "env.h"
 #include "token.h"
 #include "shell.h"
+#include "syntax.h"
 
 #include "../lib/libft.h"
 

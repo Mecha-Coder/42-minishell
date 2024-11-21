@@ -18,6 +18,15 @@ typedef struct s_token
     struct s_token *prev;
 } t_token;
 
+typedef struct s_pair
+{
+    t_token *ob;
+    t_token *cb;
+
+    struct s_pair *next;
+    struct s_pair *prev;
+} t_pair;
+
 typedef struct s_tree
 {
     int type;
@@ -37,10 +46,4 @@ typedef struct s_shell
     int oriterm_fd[2];
     int cmd_exit_no;
 } t_shell;
-
-typedef struct s_sub
-{
-    int type;
-    int input_index;
-} t_sub;
 #endif
