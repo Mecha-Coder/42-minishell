@@ -2,12 +2,6 @@
 
 
 
-t_pair create_pair()
-
-t_pair *get_pair(t_token *current)
-{
-
-}
 
 int main()
 {
@@ -15,5 +9,18 @@ int main()
 
     data.input = "echo lo && (echo nice && (ls)) && ((echo hi) && (ls) && (ls)) && (ls && (ls && (ls)))";
     tokenize(&data);
-    t_pair = get_pair(data.token);
+    t_pair *list = get_pair(data.token);
+
+
+
+    destroy_pair(list);
+    destroy_token(data.token);
+}
+
+
+void point_index(int index)
+{
+    while(i++ < index)
+		printf(" ");
+	printf("↓\n");
 }

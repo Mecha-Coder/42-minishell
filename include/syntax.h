@@ -12,9 +12,9 @@ int check_redirect(t_shell *data);
 int check_subshell(t_shell *data);
 
 // Additional check_subshell
-t_sub *token_array(t_token *current);
-int find_pair(t_sub *sub, int *ob, int *cb);
-int check_pair(t_sub *sub, int ob, int cb, char *input);
+t_pair *create_pair(t_token *ob, t_pair *prev);
+t_pair *pair_jumpforward(t_pair *current);
+void destroy_pair(t_pair *current);
 
 #endif
 
