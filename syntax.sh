@@ -350,7 +350,7 @@ run_ok() {
     run_command "echo du*txt"
     run_command "echo du*m*txt"
     run_command "export VAR=\"ho *\" && ec\$VAR"
-    run_command "export VAR=\"ho   space         la\" && ec\$VAR"
+    run_command "export VAR=\"ho   space         la\" && ec\$VAR \"-Nice        day\""
     run_command "echo \"cat lol.c | cat > lol.c\""
     run_command "ls | grep \"pattern\" > result.txt"
     run_command "cat < file.txt | wc -l"
@@ -389,6 +389,7 @@ run_ok() {
     run_command "(cat | tr a-z A-Z) << EOF > out1 > out2"
     run_command "(echo hi) >> out1"
     run_command "(echo hi > out1) > out2"
+    run_command "(echo hi > out1)  >> out2 >> out3 "
 }
 # Run the tests
 #run_error
