@@ -71,7 +71,7 @@ int delimiter(char c)
     return(c == ' ' || c == '\0');
 }
 
-/* Test
+/* Test 
 int main()
 {
     t_token *new;

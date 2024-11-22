@@ -44,21 +44,3 @@ void initialize(t_shell *data, char **env)
     data->tree = NULL;
 }
 
-
-int main(int ac, char **av, char **env)
-{
-    t_shell data;
-    t_env *current;
-
-    (void)ac;
-    (void)av;
-
-    initialize(&data, env);
-    current = data.env;
-    while(current)
-    {
-        printf("%s=%s\n", current->key, current->val);
-        current = current->next;
-    }
-    destroy_env(&data);
-}

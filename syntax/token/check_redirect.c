@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 11:48:42 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/20 12:31:03 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/22 12:22:24 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,21 @@ int check_redirect(t_shell *data)
     while (current)
     {
         if (current->type >= 4 && current->type <= 7
-            && current->next->type != STR)
+            && (!current->next || current->next->type != STR))
         {
-            err_msg_syntax(data->input, "after redirect must be a word"
-                , current->next->index);
+            if (current->next)
+                err_msg_syntax(data->input, "after redirect must be a word"
+                    , current->next->index);
+            else
+                err_msg_syntax(data->input, "after redirect must be a word"
+                    , current->index);
             return (FALSE);
         }
         current = current->next;
     }
     return (TRUE);
 }
-/*
+/* Test
 void answer(char *s)
 {
     t_shell data;
@@ -65,6 +69,11 @@ int main()
     answer(s3);
     char s4[] = ">> out1.txt cat > && < in.txt";
     answer(s4);
+    char s5[] = "ls out.txt >";
+    answer(s5);
+    char s6[] = "<<";
+    answer(s6);
 }
 */
+
 

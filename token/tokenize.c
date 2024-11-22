@@ -62,14 +62,16 @@ void tokenize(t_shell *data)
     free(s);
 }
 
+// Note: Either one can be null but not both
 t_token *join_token(t_token *t1, t_token *t2)
 {
-    while (t1 && t1->next)
-        t1 = t1->next;
+    t1 = token_jumpfront(t1);
     if (t1)
         t1->next = t2;
     if (t2)
         t2->prev = t1;
+    if (t1)
+        return (sort_token(t1));
     return (sort_token(t2));
 }
 

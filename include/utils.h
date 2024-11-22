@@ -8,6 +8,7 @@ char *join3(char *s1, char *s2, char *s3);
 int is_identifier(char *s, int *i);
 void free_list(char **list);
 int find_word(char *s, char *word);
+int is_empty(char *s);
 
 void	err_msg_1(char *builtin, char *arg, char *msg);
 void	err_msg_2(char *builtin, char *arg, char *msg);
