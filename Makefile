@@ -18,6 +18,7 @@ SRCS =	$(wildcard ./built_in/*.c) \
 		$(wildcard ./shell/*.c) \
 		$(wildcard ./syntax/input/*.c) \
 		$(wildcard ./syntax/token/*.c) \
+		$(wildcard ./tree/*.c) \
 		$(wildcard ./token/*.c) \
 		$(wildcard ./utils/*.c) \
 		$(wildcard ./visual/*.c) \

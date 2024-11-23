@@ -11,15 +11,16 @@ int main(int ac, char **av, char **env)
     if (ac == 2 && !is_empty(av[1]))
     {
         data.input = av[1];
-        if (check_input_syntax(&data))
-        {
-            tokenize(&data);
-            if (check_token_syntax(&data))
-            {
-                printf("%s\n" GREEN "OK\n" RESET,data.input);
-                destroy_token(data.token);
-            }
-        }    
+        if (!check_input_syntax(&data))
+            return (destroy_env(&data), 0);
+        tokenize(&data);
+        if (!check_token_syntax(&data))
+            return (destroy_env(&data), 0);
+        build_ast(&data);
+        printf("\n%s\n\n",data.input);
+        show_tree(data.tree, 0);
+        printf("\n");
+        destroy_tree(data.tree);
     }
     destroy_env(&data);
 }

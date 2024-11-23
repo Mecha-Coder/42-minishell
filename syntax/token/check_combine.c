@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:11:41 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/20 16:11:41 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/23 18:32:33 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Rule
 -   (echo Hello || ls) && echo there  
 
 Left side : <CB>, <STR>
-Right side: <OB>, <STR>
+Right side: <OB>, <STR>, <REDIRECT>
 ====================================================================
 Return
   TRUE  : All combine operator meeting left and right rule
@@ -58,7 +58,8 @@ int left_rule(t_token *left)
 
 int right_rule(t_token *right)
 {
-    if (right && (right->type == OB || right->type == STR))
+    if (right && (right->type == STR 
+        || (right->type >= 4 && right->type <= 8)))
         return (TRUE);
     return (FALSE);
 }

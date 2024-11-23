@@ -23,7 +23,7 @@ Example
     Type      :   10   5   10   1   10
 ==================================================================
 Method
-Input :  cat < in.txt && ls
+Input :  cat <in.txt && ls
          123456789012345678
 
 Stage1: Extract operator and replace with space character

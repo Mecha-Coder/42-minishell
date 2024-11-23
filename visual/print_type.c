@@ -17,6 +17,8 @@ void print_type_1(int i)
     else if (i == 8) printf("%-7s","<OB>");
     else if (i == 9) printf("%-7s","<CB>");
     else if (i == 10) printf("%-7s","<STR>");
+    else if (i == 11) printf("%-7s","EXE");
+    else if (i == 12) printf("%-7s","SUB");
 }
 
 
@@ -32,4 +34,6 @@ void print_type_2(int i)
     else if (i == 8) printf("<OB>");
     else if (i == 9) printf("<CB>");
     else if (i == 10) printf("<STR>");
+    else if (i == 11) printf("<EXE>");
+    else if (i == 12) printf("<SUB>");
 }

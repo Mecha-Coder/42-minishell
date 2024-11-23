@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 11:25:26 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/22 11:29:11 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/23 13:40:43 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int check_input_syntax(t_shell *data)
         || !check_bracket(data->input) 
         || !check_occurance(data->input))
     {
-        data->cmd_exit_no = 1;
+        data->cmd_exit_no = 2;
         return (FALSE);
     }
     return (TRUE);

@@ -20,6 +20,7 @@
 #include "token.h"
 #include "shell.h"
 #include "syntax.h"
+#include "tree.h"
 
 #include "../lib/libft.h"
 
