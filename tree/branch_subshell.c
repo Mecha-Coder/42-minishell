@@ -23,7 +23,7 @@ Method
 - Scan token inside node from left to right
 - Find OB and CB token pair, once match found
     * Update the node type to SUB
-    * Create left child branches
+    * Create left child branch
     * Pass the token after ob to left child node
     * The remainding token after cb will be kept in current node
     * Disconnect and free ob and cb token

@@ -12,9 +12,9 @@
 
 #include "../../include/minishell.h"
 
-#define SUB_ERR_1 "Invalid operator after bracket"
-#define SUB_ERR_2 "Misuse of subshell operator"
-#define SUB_ERR_3 "Redundant subshell operator"
+#define SUB_ERR_1 "invalid operator after bracket"
+#define SUB_ERR_2 "misuse of subshell operator"
+#define SUB_ERR_3 "redundant subshell operator"
 
 int redundant_rule(t_pair pair);
 int ob_left_rule(t_token *ob_left);
@@ -47,16 +47,16 @@ int check_pair(t_pair *pair, char *input)
     while (pair[++i].ob)
     {
         if (redundant_rule(pair[i]) && ++return_false)
-            err_msg_syntax(input, SUB_ERR_3, pair[i].ob->index);
+            err_msg_4(input, SUB_ERR_3, pair[i].ob->index);
 
         else if (ob_left_rule(pair[i].ob->prev) && ++return_false)
-            err_msg_syntax(input, SUB_ERR_2, pair[i].ob->index);
+            err_msg_4(input, SUB_ERR_2, pair[i].ob->index);
 
         else if (cb_left_rule(pair[i].cb->prev) && ++return_false)
-            err_msg_syntax(input, SUB_ERR_2, pair[i].cb->index);
+            err_msg_4(input, SUB_ERR_2, pair[i].cb->index);
 
         else if (cb_right_rule(pair[i].cb->next) && ++return_false)
-            err_msg_syntax(input, SUB_ERR_1, pair[i].cb->next->index);
+            err_msg_4(input, SUB_ERR_1, pair[i].cb->next->index);
 
         if (return_false)
             return (FALSE);

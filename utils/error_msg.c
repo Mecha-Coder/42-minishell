@@ -48,7 +48,7 @@ void	err_msg_3(char *builtin, char *msg)
 	ft_putstr_fd("\n", 2);
 }
 
-void err_msg_syntax(char *input, char *msg, int index)
+void err_msg_4(char *input, char *msg, int index)
 {
 	int i;
 

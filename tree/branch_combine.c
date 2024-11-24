@@ -24,7 +24,7 @@ Method
 - When encountered combine operator
     * Update the node type with (operator) found
     * Create left and right child branches
-    * Tokens before (operator) pass to left child node
+    * Token before (operator) pass to left child node
     * Token after (operator) pass to right child node
     * Disconnect and free combine operator node
 */

@@ -53,7 +53,7 @@ int check_quote(char *s)
     }
     if (!track)
         return (TRUE);
-    err_msg_syntax(s, "quote not in pair", index);
+    err_msg_4(s, "quote not in pair", index);
     return (FALSE);
 }
 

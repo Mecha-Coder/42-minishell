@@ -46,7 +46,7 @@ int check_occurance(char *s)
 				j++;
             if ((symbol(s[i]) && j > 2) || (s[i] == '&' && j != 2))
             {
-                err_msg_syntax(s, "invalid operator", i);
+                err_msg_4(s, "invalid operator", i);
                 return (FALSE);
             }
             i += j;

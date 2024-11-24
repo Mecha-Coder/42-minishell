@@ -200,7 +200,7 @@ run_ok() {
     run_command "echo  \$\$!lo\$a:User"
     run_command "echo \"##\$500\""
     run_command "echo \$USER\$!lo\$SWAP_VAR:User\$abc"
-    run_command "echo \$?Exit is \$?\$?### and \$?|\$? \$?"
+    run_command "echo \"\$?Exit is \$?\$?### and \$?|\$? \$?\""
     run_command "/usr/bin/ls"
     run_command "/bin/ls"
     run_command "ls"
@@ -417,5 +417,5 @@ run_ok() {
     run_command "(echo hi > ./file/out1) > ./file/out2"
 }
 # Run the tests
-run_error
-#run_ok
+#run_error
+run_ok

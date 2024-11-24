@@ -50,9 +50,9 @@ int check_bracket(char *s)
     if (!track)
         return (TRUE);
     if (track > 0)
-        err_msg_syntax(s, "invalid bracket placement", index);
+        err_msg_4(s, "invalid bracket placement", index);
     else
-        err_msg_syntax(s, "invalid bracket placement", i);
+        err_msg_4(s, "invalid bracket placement", i);
     return(FALSE);
 }
 

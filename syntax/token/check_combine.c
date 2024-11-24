@@ -12,6 +12,9 @@
 
 #include "../../include/minishell.h"
 
+#define CERR_1 "after combine opt must be a command"
+#define CERR_2 "misuse of combine operator"
+
 int left_rule(t_token *left);
 int right_rule(t_token *right);
 
@@ -33,16 +36,24 @@ Return
 int check_combine(t_shell *data)
 {
     t_token *current;
+    int return_false;
 
-    current = data->token;
+    (current = data->token, return_false = 0);
     while (current)
     {
-        if (current->type >= 1 && current->type <= 3
-            && (!left_rule(current->prev) || !right_rule(current->next)))
+        if (current->type >= 1 && current->type <= 3)
         {
-            err_msg_syntax(data->input, "misuse of combine operator"
-                , current->index);
-            return (FALSE);
+            if (!left_rule(current->prev) && ++return_false)
+                err_msg_4(data->input, CERR_2, current->index);
+            else if (!right_rule(current->next) && ++return_false)
+            {
+                if (current->next)
+                    err_msg_4(data->input, CERR_1, current->next->index);
+                else
+                    err_msg_4(data->input, CERR_1, current->index);
+            }
+            if (return_false)
+                return (FALSE);
         }
         current = current->next;
     }

@@ -12,6 +12,8 @@
 
 #include "../../include/minishell.h"
 
+#define REDIR_ERR "after redirect must be a word"
+
 /* >>> check_redirect
 Purpose: Check redirect token must be followed by word token<STR>
 ===================================================================
@@ -35,11 +37,10 @@ int check_redirect(t_shell *data)
             && (!current->next || current->next->type != STR))
         {
             if (current->next)
-                err_msg_syntax(data->input, "after redirect must be a word"
+                err_msg_4(data->input, REDIR_ERR
                     , current->next->index);
             else
-                err_msg_syntax(data->input, "after redirect must be a word"
-                    , current->index);
+                err_msg_4(data->input, REDIR_ERR, current->index);
             return (FALSE);
         }
         current = current->next;
