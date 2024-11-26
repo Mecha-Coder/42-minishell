@@ -1,17 +1,20 @@
 #ifndef EXPAND_H
 #define EXPAND_H
 
+// Step
+void del_quote(char *s);
+void sub_quote(char *s, int sub);
+void sub_wild(char *s, int sub);
+
 // Variable
-void sub_squote(char *s, int sub);
-void del_quote(char *s, int type);
 void exit_2_str(char *s, int code);
 char *insert_var(char *s, t_shell *data);
 char *insert_exit(char *s, int *i, int code);
 char *insert_value(char *s, int *i, int len, t_env *env);
-char *exp_var(char *s, t_shell *data);
 
 // Wildcard
-int wildcard_match(char *entry, char *pattern);
-t_token *exp_wild_str(char *pattern);
+int wild_match(char *entry, char *pattern);
+int wild_redir(char **match, char *pattern);
+t_token *wild_str(char *pattern);
 
 #endif

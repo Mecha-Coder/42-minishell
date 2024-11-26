@@ -39,7 +39,7 @@ void sub_wild(char *s, int sub)
     (i = -1, detect = ON);
     while (sub && s[++i])
     {
-        detection(s[i], &detect);
+        detection(s[i], &detect, TRUE);
         if (detect == ON && s[i] == '*')
             s[i] = (char)31;
     }
@@ -51,6 +51,44 @@ void sub_wild(char *s, int sub)
 }
 
 /* Test
+void print_none(char *s)
+{
+    int i = -1;
+
+    while(s[++i])
+    {
+        if (s[i] == 26)
+            printf("(");
+        else if (s[i] == 30)
+            printf(")");
+         else if (s[i] == 31)
+            printf("^");
+        else
+            printf("%c", s[i]);
+    }
+    printf("\n");
+}
+
+void answer(char *s)
+{
+    printf("Input       : %s\n", s);
+    
+    sub_quote(s, TRUE);
+    printf("Sub quote   : ");
+    print_none(s);
+
+    sub_wild(s, TRUE);
+    printf("Sub wildcard: ");
+    print_none(s);
+
+    del_quote(s);
+    printf("Del quote   : ");
+    print_none(s);
+
+    sub_wild(s, FALSE);
+    printf("Rev sub wild: %s\n", s);
+    printf("\n-------------------------\n\n");
+}
 
 int main()
 {
@@ -58,15 +96,11 @@ int main()
     char s2[] = "\"*Awesome*\"";
     char s3[] = "*Awesome*";
     char s4[] = "\"It's*\" a fantastic * day to *";
-    sub_wild(s1, TRUE);
-    sub_wild(s2, TRUE);
-    sub_wild(s3, TRUE);
-    sub_wild(s4, TRUE);
-    printf("%s\n%s\n%s\n%s", s1, s2, s3, s4);
-    sub_wild(s1, FALSE);
-    sub_wild(s2, FALSE);
-    sub_wild(s3, FALSE);
-    sub_wild(s4, FALSE);
-    printf("\n\n%s\n%s\n%s\n%s\n", s1, s2, s3, s4);
+    
+    answer(s1);
+    answer(s2);
+    answer(s3);
+    answer(s4);
 }
-*/
+ */
+

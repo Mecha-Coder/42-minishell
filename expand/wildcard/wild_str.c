@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exp_wild_str.c                                     :+:      :+:    :+:   */
+/*   wild_str.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -36,7 +36,7 @@ Return
                dummy.txt    dump.log
 */
 
-t_token *exp_wild_str(char *pattern)
+t_token *wild_str(char *pattern)
 {
     DIR *dir;
     struct dirent *entry;
@@ -51,7 +51,7 @@ t_token *exp_wild_str(char *pattern)
     entry = readdir(dir);
     while (entry)
     {
-        if (wildcard_match(entry->d_name, pattern))
+        if (wild_match(entry->d_name, pattern))
             current = create_token(STR, 
                 ft_strdup(entry->d_name), 
                 0, 
@@ -67,12 +67,18 @@ t_token *exp_wild_str(char *pattern)
 /* Test
 void answer(char *pattern)
 {
-    t_token *token = exp_wild_str(pattern);
-    t_token *current = token;
     printf("\npattern: %s\n\n", pattern);
+
+    sub_quote(pattern, TRUE);
+    sub_wild(pattern, TRUE);
+    del_quote(pattern);
+
+    t_token *token = wild_str(pattern);
+    t_token *current = token;
     if (!current)
     {
         printf("Match not found\n");
+        printf("\n------------------------\n");
         return;
     }
     while (current)
@@ -86,15 +92,28 @@ void answer(char *pattern)
 
 int main()
 {
-    answer("*");
-    answer("**");
-    answer("*log");
-    answer("*txt");
-    answer("du*log");
-    answer("tex*");
-    answer("*um*");
-    answer("du*m*t");
-    answer("*du*m");
-    answer("*dsad*");
+    char s1[] = "*";
+    char s2[] = "**";
+    char s3[] = "*log";
+    char s4[] = "*txt";
+    char s5[] = "du*log";
+    char s6[] = "tex*";
+    char s7[] = "*um*";
+    char s8[] = "du*m*t";
+    char s9[] = "*du*m";
+    char s10[] = "*dsad*";
+    char s11[] = "'d*'*";
+
+    answer(s1);
+    answer(s2);
+    answer(s3);
+    answer(s4);
+    answer(s5);
+    answer(s6);
+    answer(s7);
+    answer(s8);
+    answer(s9);
+    answer(s10);
+    answer(s11);
 }
 */

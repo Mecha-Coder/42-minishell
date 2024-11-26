@@ -38,7 +38,7 @@ int check_occurance(char *s)
     (i = 0, detect = ON);
     while (s && s[i])
     {
-        if (!detection(s[i], &detect) && detect == ON 
+        if (!detection(s[i], &detect, FALSE) && detect == ON 
             && (symbol(s[i]) || s[i] == '&'))
         {
             j = 1;

@@ -13,32 +13,21 @@
 #include "../../include/minishell.h"
 
 /* >> del_quote
-Purpose: 
-- Receive type of quote to remove
-- Remove it from string (don't remove opposite quote wrap inside)
+Purpose: Remove quotes operator from string (not quote string)
 =============================================================================
 Example
-    
-remove: "double-quote"
     
 given string:  This pc is named "'0'"
                         ↓ <-- copy all char to temp except those to be remove 
 malloc temp :  This pc is named '0'
                         ↓
-        <copy back to string and free temp>
-=============================================================================
-Param
-- char *s : input string
-- int type
-    1 : S_QUOTE
-    2 : D_QUOTE                        
+        <copy back to string and free temp>                 
 */
 
-void del_quote(char *s, int type)
+void del_quote(char *s)
 {
     int i;
     int j;
-    int num;
     int detect;
     char *temp;
 
@@ -51,10 +40,7 @@ void del_quote(char *s, int type)
     }
     while (s && s[++i])
     {
-        num = detection(s[i], &detect);
-        if (type == D_QUOTE && num != 1 && num != 3)
-            temp[j++] = s[i];
-        if (type == S_QUOTE && num != 2 && num != 4)
+        if (!detection(s[i], &detect, TRUE))
             temp[j++] = s[i];
     }
     temp[j] = '\0';
@@ -62,21 +48,42 @@ void del_quote(char *s, int type)
     free(temp);
 }
 
-/* Test
-
-void answer(char *s, int type)
+/* Test 
+void print_none(char *s)
 {
-    printf("Input : %s\n", s);
-    del_quote(s, type);
-    printf("Output: %s\n"
-           "-------------------------\n\n", s);
+    int i = -1;
+
+    while(s[++i])
+    {
+        if (s[i] == 26)
+            printf("(");
+        else if (s[i] == 30)
+            printf(")");
+         else if (s[i] == 31)
+            printf("^");
+        else
+            printf("%c", s[i]);
+    }
+    printf("\n");
+}
+
+void answer(char *s)
+{
+    printf("Input       : %s\n", s);
+    
+    sub_quote(s, TRUE);
+    printf("Sub to none : ");
+    print_none(s);
+
+    del_quote(s);
+    printf("Remove quote: ");
+    print_none(s);
+    printf("\n-------------------------\n\n");
 }
 
 
 int main()
 {
-    int type;
-
     char s1[] = "\"I'm\"";
     char s2[] = "'a's'f'f'g'h";
     char s3[] = "\"a\"s\"f\"g\"h\"";
@@ -89,22 +96,16 @@ int main()
     char s9[] = "\"a\"s\"f\"g\"h\"";
     char s10[] = "'A'B\"'C'\"";
 
-    printf("Remove double quote"
-           "\n====================\n\n");
-    type = D_QUOTE;
-    answer(s1, type);
-    answer(s2, type);
-    answer(s3, type);
-    answer(s4, type);
-    answer(s5, type);
-
-     printf("Remove single quote"
-           "\n====================\n\n");
-    type = S_QUOTE;
-    answer(s6, type);
-    answer(s8, type);
-    answer(s9, type);
-    answer(s7, type);
-    answer(s10, type);
+    printf("\n");
+    answer(s1);
+    answer(s2);
+    answer(s3);
+    answer(s4);
+    answer(s5);
+    answer(s6);
+    answer(s7);
+    answer(s8);
+    answer(s9);
+    answer(s10);
 }
 */

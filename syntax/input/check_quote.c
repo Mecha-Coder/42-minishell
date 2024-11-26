@@ -41,7 +41,7 @@ int check_quote(char *s)
     (i = -1, detect = ON, track = 0);
     while (s && s[++i])
     {
-        j = detection(s[i], &detect);
+        j = detection(s[i], &detect, FALSE);
         if (j > 0)
         {
             if (j > 2) 

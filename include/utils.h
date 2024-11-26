@@ -3,7 +3,7 @@
 
 #include "struct.h"
 
-int detection(char c, int *state);
+int detection(char c, int *state, int sub);
 char *join3(char *s1, char *s2, char *s3);
 int is_identifier(char *s, int *i);
 void free_list(char **list);

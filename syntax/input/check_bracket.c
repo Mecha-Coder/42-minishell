@@ -38,7 +38,7 @@ int check_bracket(char *s)
     (i = -1, detect = ON, track = 0);
     while (track >= 0 && s && s[++i])
     {
-        detection(s[i], &detect);
+        detection(s[i], &detect, FALSE);
         if (detect == ON && s[i] == '(')
         {
             track++;

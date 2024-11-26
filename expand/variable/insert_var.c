@@ -46,7 +46,7 @@ Return
        : NULL if no insertion occur 
 */
 
-char *expand_var(char *s, t_shell *data)
+char *insert_var(char *s, t_shell *data)
 {
     int i;
     int detect;
@@ -55,7 +55,7 @@ char *expand_var(char *s, t_shell *data)
     (i = 0, detect = ON);
     while (s && s[i])
     {
-        if (!detection(s[i], &detect) && detect != SQ_OFF && s[i] == '$')
+        if (!detection(s[i], &detect, TRUE) && detect != SQ_OFF && s[i] == '$')
         {
             temp = do_insertion(s, &i, data);
             if (temp)
@@ -94,7 +94,6 @@ char *insert_blank(char *s, int i)
 
 
 /* Test
-
 void answer(char *s, t_shell *data)
 {
     char *input;
@@ -104,7 +103,9 @@ void answer(char *s, t_shell *data)
     ft_strcpy(input, s);
     
     printf("Input : %s\n", input);
+    sub_quote(input, TRUE);
     output = insert_var(input, data);
+    del_quote(output);
     printf("Output: %s\n", output);
     printf("\n----------------------------\n\n");
     free(output);
@@ -115,21 +116,33 @@ int main()
     t_shell data;
 
     t_env n1;
+    t_env n2;
+
     n1.key = "USER";
     n1.val = "jc is awesome";
-    n1.next = NULL;
+    n1.next = &n2;
+
+    n2.key = "a";
+    n2.val = "\"Nice\"";
+    n2.next = NULL;
 
     data.env = &n1;
     data.cmd_exit_no = 127;
 
     printf("\n");
-    char s1[] = "Exit is $?";     
+    char s1[] = "Exit is $?'$?'";     
     char s2[] = "User$USER@42kl";    
     char s3[] = "$12345";  
     char s4[] = "$$!lo$a:User"; 
     char s5[] = "##$500";
     char s6[] = "Try expand '$USER'";
     char s7[] = "$USER\"$USER#right\"'$USER'";
+    char s8[] = "$$!lo\"$a\":User";
+    char s9[] = "$$!lo'$a':User";
+    char s10[] = "$Something'$Done:'";
+    char s11[] = "$hh";
+    char s12[] = "ec$a\"a\"";
+    char s13[] = "'Hello*'*";
 
     answer(s1, &data);
     answer(s2, &data);
@@ -138,6 +151,14 @@ int main()
     answer(s5, &data);
     answer(s6, &data);
     answer(s7, &data);
+    answer(s8, &data);
+    answer(s9, &data);
+    answer(s10, &data);
+    answer(s11, &data);
+    answer(s12, &data);
+    answer(s13, &data);
 }
 */
+
+
 

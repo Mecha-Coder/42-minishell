@@ -59,7 +59,7 @@ t_token *extract_word(char *s)
 
 int is_word(char c, int *detect)
 {
-    detection(c, detect);
+    detection(c, detect, FALSE);
     if (*detect == ON && delimiter(c))
         return (FALSE);
     else

@@ -44,7 +44,7 @@ int find_word(char *s, char *word)
     while (s && s[++i])
     {
         j = 0;
-        while (!detection(s[i], &detect) 
+        while (!detection(s[i], &detect, FALSE) 
             && detect == ON  && s[i + j] == word[j])
         {
             if (!word[j + 1])
