@@ -48,6 +48,11 @@ void	err_msg_3(char *builtin, char *msg)
 	ft_putstr_fd("\n", 2);
 }
 
+/*
+-    ↓
+echo "EE
+Syntax error: quote not in pair
+*/
 void err_msg_4(char *input, char *msg, int index)
 {
 	int i;

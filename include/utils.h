@@ -9,6 +9,7 @@ int is_identifier(char *s, int *i);
 void free_list(char **list);
 int find_word(char *s, char *word);
 int is_empty(char *s);
+int word_count(char *s);
 
 void	err_msg_1(char *builtin, char *arg, char *msg);
 void	err_msg_2(char *builtin, char *arg, char *msg);
