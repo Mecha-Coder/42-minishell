@@ -26,6 +26,8 @@ Return
 - TRUE : Match <= 1
 - FALSE: Match >1
 
+If no wildcard still can work like strcmp
+- NULL no match
 ===========================================================================
 Side effect
 - Update the char **match pointer either
@@ -102,11 +104,16 @@ int main()
     printf ("\n========== ERROR=========\n\n");
     char s6[] = "d*m*";
     char s7[] = "*";
-    
+    char s8[] = "dm";
+    char s9[] = "dm.txt";
+
     answer(s6);
     answer(s7);
+    answer(s8);
+    answer(s9);
 }
- */
+*/
+
 
 
 

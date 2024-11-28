@@ -10,6 +10,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <dirent.h>
+#include <fcntl.h>
+#include <errno.h>
 
 #include "struct.h"
 #include "constant.h"
@@ -21,6 +23,8 @@
 #include "shell.h"
 #include "syntax.h"
 #include "tree.h"
+#include "redirect.h"
+#include "execute.h"
 
 #include "../lib/libft.h"
 

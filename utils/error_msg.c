@@ -67,6 +67,19 @@ void err_msg_4(char *input, char *msg, int index)
 	ft_putstr_fd("\n", 2);
 }
 
+/*
+Here doc error message
+minishell: warning: here-document delimited by end-of-file (wanted `%s')
+*/
+void err_msg_5(char *delimiter)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd("warning: ", 2);
+	ft_putstr_fd("here-document delimited by end-of-file (wanted `", 2);
+	ft_putstr_fd(delimiter, 2);
+	ft_putstr_fd("')\n", 2);
+}
+
 
 // Message to JOHN: Revert to me if in doubt
 int	arg_count(char **args, char *builtin)

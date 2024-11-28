@@ -13,6 +13,7 @@
 #include "../../include/minishell.h"
 
 char *insert_blank(char *s, int i);
+char *insert_minishell(char *s, int i);
 char *do_insertion(char *s, int *i, t_shell *data);
 
 /* >>> insert_var
@@ -74,8 +75,13 @@ char *do_insertion(char *s, int *i, t_shell *data)
 {
     int len;
 
-    if (s[*i + 1] >= '1' && s[*i + 1] <= '9')     
+    if ((s[*i + 1] >= '1' && s[*i + 1] <= '9') 
+        || s[*i + 1] == '@'
+        || s[*i + 1] == '!')     
         return (insert_blank(s, *i));
+
+    else if (s[*i + 1] == '0')
+        return (insert_minishell(s, *i)) ;
 
     else if (s[*i + 1] == '?')                    
         return (insert_exit(s, i, data->cmd_exit_no));
@@ -90,6 +96,12 @@ char *insert_blank(char *s, int i)
 {
     s[i] = '\0';
     return (join3(s, NULL, &s[i + 2]));
+}
+
+char *insert_minishell(char *s, int i)
+{
+    s[i] = '\0';
+    return (join3(s, "-42minishell", &s[i + 2]));
 }
 
 

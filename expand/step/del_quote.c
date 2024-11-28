@@ -13,7 +13,7 @@
 #include "../../include/minishell.h"
 
 /* >> del_quote
-Purpose: Remove quotes operator from string (not quote string)
+Purpose: Remove quote operator from string (not quote in string)
 =============================================================================
 Example
     

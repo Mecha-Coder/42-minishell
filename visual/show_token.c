@@ -51,6 +51,8 @@ void show_token(t_token *current, char type)
             print_type_2(current->type);
             if (type == 'C' && current->content)
                 printf("%s ", current->content);
+            else
+                printf("NULL ");
         }
         current = current->next;
     }

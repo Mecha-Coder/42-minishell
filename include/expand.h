@@ -5,6 +5,9 @@
 void del_quote(char *s);
 void sub_quote(char *s, int sub);
 void sub_wild(char *s, int sub);
+int expand_redir(t_token *token, t_shell *data);
+t_token *expand_str(t_token *current, t_shell *data);
+int expansion(t_shell *data);
 
 // Variable
 void exit_2_str(char *s, int code);
