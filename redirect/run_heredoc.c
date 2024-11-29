@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   here_doc.c                                         :+:      :+:    :+:   */
+/*   run_heredoc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 20:59:48 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/28 20:59:48 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/29 11:12:48 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ void prompt_heredoc(int *fd, char *delimiter)
     char *input;
 
     if (pipe(fd) < 0) 
-    {
-        perror("Pipe fail");
-        exit(EXIT_FAILURE) ;
-    }
+        err_exit("pipe", errno);
     while (1) 
     {
         input = readline("> ");

@@ -9,6 +9,8 @@
         "string_view": "c",
         "ranges": "c",
         "span": "c",
-        "random": "c"
+        "random": "c",
+        "memory": "c",
+        "optional": "c"
     }
 }

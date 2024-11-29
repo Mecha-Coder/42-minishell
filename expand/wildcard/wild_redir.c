@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:28:59 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/19 14:00:20 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/29 11:12:05 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ int wild_redir(char **match, char *pattern)
     
     (*match = NULL, dir = opendir("."));
     if (!dir)
-    {
-        perror("Opendir fail");
-        exit(EXIT_FAILURE);
-    }
+        err_exit("opendir", errno);
     entry = readdir(dir);
     while (entry)
     {

@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_tree.c                                      :+:      :+:    :+:   */
+/*   run_subshell.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 22:10:51 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/29 11:15:20 by jpaul            ###   ########.fr       */
+/*   Created: 2024/11/29 10:29:13 by jpaul             #+#    #+#             */
+/*   Updated: 2024/11/29 11:09:22 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
-t_tree *create_tree(t_token *token)
+int run_subshell(t_tree *node, t_shell *data)
 {
-    t_tree *new;
+    int status;
+    pid_t id;
 
-    new = (t_tree *)malloc(sizeof(t_tree));
-    if (!new)
-        err_exit("malloc", errno);
-    ft_memset(new, 0, sizeof(t_tree));
-    new->token = token;
-    return (new);
+    node->left->terminate = TRUE;
+    id = fork();
+    if (id < 0)
+        err_exit("fork", errno);
+    else if (id == 0)
+        descent_tree(node->left, data);
+    waitpid(id, &status, 0);
+    return (WEXITSTATUS(status));
 }

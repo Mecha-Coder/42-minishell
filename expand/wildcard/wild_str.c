@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:28:59 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/19 14:00:20 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/29 11:12:21 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ t_token *wild_str(char *pattern)
     
     (current = NULL, dir = opendir("."));
     if (!dir)
-    {
-        perror("Opendir fail");
-        exit(EXIT_FAILURE);
-    }
+        err_exit("opendir", errno);
     entry = readdir(dir);
     while (entry)
     {
@@ -59,8 +56,7 @@ t_token *wild_str(char *pattern)
         entry = readdir(dir);
     }
     closedir(dir);
-    current = token_jumpback(current);
-    return (current);
+    return (sort_token(current, 'C'));
 }
 
 
@@ -117,3 +113,4 @@ int main()
     answer(s11);
 }
 */
+

@@ -18,10 +18,7 @@ static t_token *create_token_node(void)
 
     new = (t_token *)malloc(sizeof(t_token));
     if (!new)
-    {
-        perror("Malloc fail");
-        exit(EXIT_FAILURE);
-    }
+        err_exit("malloc", errno);
     return (new);
 }
 

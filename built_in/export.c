@@ -95,10 +95,7 @@ static char	**env_key_list(t_env *env)
 	i = 0;
 	list = (char **)malloc(sizeof(char *) * (env_len(env) + 1));
 	if (!list)
-	{
-		perror("Malloc fail");
-		exit (EXIT_FAILURE);
-	}
+		err_exit("malloc", errno);
 	while (env)
 	{
 		list[i++] = env->key;

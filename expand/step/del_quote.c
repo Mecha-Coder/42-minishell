@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 09:07:48 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/16 09:27:15 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/29 11:10:04 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ void del_quote(char *s)
     (i = -1, j = 0, detect = ON);
     temp = (char *)malloc(ft_strlen(s) + 1);
     if (!temp)
-    {
-        perror("Malloc fail");
-        exit(EXIT_FAILURE);
-    }
+        err_exit("malloc", errno);
     while (s && s[++i])
     {
         if (!detection(s[i], &detect, TRUE))

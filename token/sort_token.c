@@ -13,16 +13,19 @@
 #include "../include/minishell.h"
 
 t_token *lowest_token_index(t_token *head);
+t_token *lowest_token_ascii(t_token *head);
 
 /* >>> sort_token
-Purpose: Sort token based on the index
+Purpose: Sort token in ascending order based on 
+'I' - index
+'C' - content words
 ======================================================================
 Extra 
 - If input token is not the head. This function will jumpback to 
     head node first before sorting
 ======================================================================
 Method
-1) select the token with lowest index from linked list
+1) select the token with lowest index / ascii value from linked list
 2) Disconnect selected node
 3) Connect to sorted list
 ======================================================================
@@ -30,7 +33,7 @@ Return
 - t_token * : sorted by index
 */
 
-t_token *sort_token(t_token *head)
+t_token *sort_token(t_token *head, char c)
 {
     t_token *sorted;
     t_token *select;
@@ -39,7 +42,10 @@ t_token *sort_token(t_token *head)
     head = token_jumpback(head);
     while (head)
     {
-        select =  lowest_token_index(head);
+        if (c == 'I')
+            select = lowest_token_index(head);
+        if (c == 'C')
+            select = lowest_token_ascii(head);
         if (select->prev)
             select->prev->next = select->next;
         else
@@ -73,6 +79,22 @@ t_token *lowest_token_index(t_token *head)
     return (select);
 }
 
+t_token *lowest_token_ascii(t_token *head)
+{
+    t_token *current;
+    t_token *select;
+
+    select = head;
+    current = head->next;
+    while (current)
+    {
+        if (ft_strcmp(current->content, select->content) < 0)
+            select = current;
+        current = current->next;
+    }
+    return (select);
+}
+
 /* Test
 void show_result(t_token *sorted, t_token *head)
 {
@@ -81,6 +103,7 @@ void show_result(t_token *sorted, t_token *head)
     printf("Head   : "); show_token(head, 'H');
     printf("\n---------------------------------\n");
 }
+
 
 int main()
 {
@@ -150,5 +173,51 @@ int main()
 
     t_token *current = sort_token(&t1);
     show_token(current, 'I');
+}
+*/
+
+/*
+int main()
+{
+    t_token t1;
+    t_token t2;
+    t_token t3;
+    t_token t4;
+    t_token t5;
+ 
+
+    t1.type = STR;
+    t1.content = "dummy2.txt";
+    t1.index = 9;
+    t1.prev = NULL;
+    t1.next = &t2;
+    
+    t2.type = STR;
+    t2.content = "xxx";
+    t2.index = 13;
+    t2.prev = &t1;
+    t2.next = &t3;
+
+    t3.type = STR;
+    t3.content = "a.out";
+    t3.index = 5;
+    t3.prev = &t2;
+    t3.next = &t4;
+
+    t4.type = STR;
+    t4.content = "dummy.txt";
+    t4.index = 18;
+    t4.prev = &t3;
+    t4.next = &t5;
+
+    t5.type = STR;
+    t5.content = "read_content.c";
+    t5.index = 3;
+    t5.prev = &t4;
+    t5.next = NULL;
+
+
+    t_token *current = sort_token(&t1, 'C');
+    show_token(current, 'V');
 }
 */

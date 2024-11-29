@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 20:42:09 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/17 15:34:44 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/29 12:50:48 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ Purpose
 - If yes, find the corresponding value and insert inside string        
 ===========================================================================
 Criteria
-- $?            : expand to cmd_exit_no
-- $[digit: 1-9] : blank
-- $[identifier] : check key=identifier in env, expand to that
-                : else blank
+- $?                     : expand to cmd_exit_no
+- $[digit: 1-9] $[@] $[!]: blank
+- $[identifier]          : check key=identifier in env, expand to that
+                         : else blank
+- $0                     : minishell
 
 Note: 
 - If not meeting criteria, don't expand, leave it

@@ -77,26 +77,10 @@ int detection(char c, int *state, int sub)
 	char d_quote;
 
 	initialize_detection(&s_quote, &d_quote, sub);
-    if (c == d_quote && *state == ON)
-	{
-		*state = DQ_OFF; 
-		return (1);
-	}
-	if (c == s_quote && *state == ON)     
-	{
-		*state = SQ_OFF; 
-		return (2);
-	}
-	if (c == d_quote && *state == DQ_OFF)
-	{
-		*state = ON;
-		return (3);
-	}
-	if (c == s_quote && *state == SQ_OFF)
-	{
-		*state = ON;
-		return (4);
-	}
+    if (c == d_quote && *state == ON)      {*state = DQ_OFF; return (1);}
+	if (c == s_quote && *state == ON)      {*state = SQ_OFF; return (2);}
+	if (c == d_quote && *state == DQ_OFF)  {*state = ON;return (3);}
+	if (c == s_quote && *state == SQ_OFF)  {*state = ON;return (4);}
 	return (0);
 }
 

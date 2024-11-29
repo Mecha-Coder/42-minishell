@@ -36,10 +36,7 @@ char	**env_list(t_env *env)
 	i = 0;
 	list = (char **)malloc(sizeof(char *) * (env_len(env) + 1));
 	if (!list)
-	{
-		perror("Malloc fail");
-		exit(EXIT_FAILURE);
-	}
+		err_exit("malloc", errno);
 	while (env)
 	{
 		total = ft_strlen(env->key) + ft_strlen(env->val) + 2;

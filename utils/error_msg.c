@@ -68,6 +68,16 @@ void err_msg_4(char *input, char *msg, int index)
 }
 
 /*
+For handling malloc, pipe, fork error
+Exit program.
+*/
+void err_exit(char *action, int code)
+{
+	err_msg_3(action, strerror(code));
+	exit(EXIT_FAILURE);
+}
+
+/*
 Here doc error message
 minishell: warning: here-document delimited by end-of-file (wanted `%s')
 */

@@ -19,7 +19,7 @@ Purpose: Check operator symbol consecutive occurance meet below rule.
 =======================================================================
 Rule
 operator occur  <= 2 
-    < , <<  
+    < , <<
 	> , >> 
 	| , ||
 operator occur == 2

@@ -16,6 +16,7 @@ void	err_msg_2(char *builtin, char *arg, char *msg);
 void	err_msg_3(char *builtin, char *msg);
 void    err_msg_4(char *input, char *msg, int index);
 void err_msg_5(char *delimiter);
+void err_exit(char *action, int code);
 int	    arg_count(char **args, char *builtin);
 
 #endif

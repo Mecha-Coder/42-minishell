@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:06:43 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/22 08:58:19 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/29 11:13:54 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,7 @@ t_pair *pair_array(t_token *current)
     {
         new = (t_pair *)malloc(sizeof(t_pair) * (count + 1));
         if (!new)
-        {
-            perror("Malloc fail");
-            exit(EXIT_FAILURE);
-        }
+            err_exit("malloc", errno);
         ft_memset(new, 0 , sizeof(t_pair) * (count + 1));
     }
     return (new);

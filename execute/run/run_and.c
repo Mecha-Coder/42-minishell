@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_tree.c                                      :+:      :+:    :+:   */
+/*   run_and.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 22:10:51 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/29 11:15:20 by jpaul            ###   ########.fr       */
+/*   Created: 2024/11/29 10:21:38 by jpaul             #+#    #+#             */
+/*   Updated: 2024/11/29 10:22:55 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
-t_tree *create_tree(t_token *token)
+int run_and(t_tree *node, t_shell *data)
 {
-    t_tree *new;
+    int status;
 
-    new = (t_tree *)malloc(sizeof(t_tree));
-    if (!new)
-        err_exit("malloc", errno);
-    ft_memset(new, 0, sizeof(t_tree));
-    new->token = token;
-    return (new);
+    status = descent_tree(node->left, data);
+    if (node->pipe)
+    {
+        close(node->pipe[0]);
+        dup2(node->pipe[1], STDOUT_FILENO);
+        close(node->pipe[1]);
+    }
+    if (!status && !descent_tree(node->right, data))
+        return (EXIT_SUCCESS);
+    return (EXIT_FAILURE);
 }

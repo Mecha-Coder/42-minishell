@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wildcard_match.c                                   :+:      :+:    :+:   */
+/*   wild_match.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 14:59:14 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/18 14:59:14 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/11/29 09:36:19 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+int is_wild_match(char *entry, char *pattern);
 
 /* >>>wildcard_match
 Purpose: Determine if entry text meet wildcard pattern
@@ -41,6 +43,22 @@ Return:
     FALSE: Not matching wildcard pattern
 */
 int wild_match(char *entry, char *pattern)
+{
+    if (is_wild_match(entry, pattern))
+    {
+        if (!strcmp(entry, "..") || !strcmp(entry, "."))
+        {
+            if (strchr(pattern, '.'))
+                return (TRUE);
+            return (FALSE);
+        }
+        return (TRUE);
+    }
+    return (FALSE);
+    
+}
+
+int is_wild_match(char *entry, char *pattern)
 {
     if (*pattern == '\0')
         return (*entry == '\0');

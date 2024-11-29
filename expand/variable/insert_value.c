@@ -21,10 +21,7 @@ char *insert_value(char *s, int *i, int len, t_env *env)
     s[*i] = '\0';
     key = (char *)malloc(len + 1);
     if (!key)
-    {
-        perror("Malloc fail");
-        exit (EXIT_FAILURE);
-    }
+        err_exit("malloc", errno);
     ft_strlcpy(key, &s[*i + 1], len + 1);
     value = env_val(key, env);
     result = join3(s, value, &s[*i + len + 1]);

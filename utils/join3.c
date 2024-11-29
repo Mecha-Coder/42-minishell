@@ -31,10 +31,7 @@ char *join3(char *s1, char *s2, char *s3)
     total = ft_strlen(s1) + ft_strlen(s2) + ft_strlen(s3);
     new = (char *)malloc(total + 1);
     if (!new)
-    {
-        perror("Malloc fail");
-        exit(EXIT_FAILURE);
-    }
+        err_exit("malloc", errno);
     while (s1 && *s1)
         new[i++] = *s1++;
     while (s2 && *s2)

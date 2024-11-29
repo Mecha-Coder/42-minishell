@@ -46,10 +46,7 @@ static t_env	*create_env_node(char *s)
 	i = 0;
 	new = (t_env *)malloc(sizeof(t_env));
 	if (!new)
-	{
-		perror("Malloc fail");
-		exit(EXIT_FAILURE);
-	}
+		err_exit("malloc", errno);
 	while (s && s[i] != '=')
 		i++;
 	new->key = extract_key(s, i);
@@ -64,10 +61,7 @@ static char	*extract_key(char *s, int i)
 
 	key = (char *)malloc(i + 1);
 	if (!key)
-	{
-		perror("Malloc fail");
-		exit(EXIT_FAILURE);
-	}
+		err_exit("malloc", errno);
 	key[i] = '\0';
 	while (--i > -1)
 		key[i] = s[i];
@@ -82,10 +76,7 @@ static char	*extract_val(char *s, int i)
 	i = ft_strlen(s);
 	val = (char *)malloc(i + 1);
 	if (!val)
-	{
-		perror("Malloc failed");
-		exit(EXIT_FAILURE);
-	}
+		err_exit("malloc", errno);
 	val[i] = '\0';
 	while (--i > -1)
 		val[i] = s[i];

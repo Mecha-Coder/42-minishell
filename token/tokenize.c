@@ -71,8 +71,8 @@ t_token *join_token(t_token *t1, t_token *t2)
     if (t2)
         t2->prev = t1;
     if (t1)
-        return (sort_token(t1));
-    return (sort_token(t2));
+        return (sort_token(t1, 'I'));
+    return (sort_token(t2, 'I'));
 }
 
 /* Test 
