@@ -24,7 +24,7 @@ int	ft_env(char **args, t_shell *data)
 	current = data->env;
 	while (current)
 	{
-		printf("%s=%s\n", current->key, current->val);
+		ft_printf("%s=%s\n", current->key, current->val);
 		current = current->next;
 	}
 	return (EXIT_SUCCESS);

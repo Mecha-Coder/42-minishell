@@ -16,15 +16,13 @@ int descent_tree(t_tree *node, t_shell *data)
 {
     int status;
 
-    if      (node->type == EXE)   status = run_cmd(node, data);
+    if      (node->type == EXE)   status = run_exe(node, data);
     else if (node->type == PIPE)  status = run_pipe(node, data);
     else if (node->type == SUB)   status = run_subshell(node, data);
     else if (node->type == AND)   status = run_and(node, data);
     else if (node->type == OR)    status = run_or(node, data);
     if (node->terminate)
         exit(status);
-    dup2(data->oriterm_fd[STDIN_FILENO], STDIN_FILENO);
-    dup2(data->oriterm_fd[STDOUT_FILENO], STDOUT_FILENO);
     return (status);
 }
 

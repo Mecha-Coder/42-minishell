@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-void initialize_detection(char *s_quote, char *d_quote, int sub);
+static void initialize_detection(char *s_quote, char *d_quote, int sub);
 
 /* >>> detection
 Purpose:
@@ -84,7 +84,7 @@ int detection(char c, int *state, int sub)
 	return (0);
 }
 
-void initialize_detection(char *s_quote, char *d_quote, int sub)
+static void initialize_detection(char *s_quote, char *d_quote, int sub)
 {
 	if (sub)
 	{

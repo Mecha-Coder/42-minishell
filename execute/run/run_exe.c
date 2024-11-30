@@ -10,14 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
-int run_exe(t_tree *node, t_shell *data)
-{
-   
-}
-
-int execute(char **args, t_shell *data)
+static int execute(char **args, t_shell *data)
 {
     int status;
 
@@ -31,4 +26,25 @@ int execute(char **args, t_shell *data)
     else if (!ft_strcmp(args[0], "exit"))   status = ft_exit(args, data);
     else                                    status = none_builtin(args, data->env);
     return (status);
+}
+
+int run_exe(t_tree *node, t_shell *data)
+{
+    char **args;
+    int status;
+    int io[2];
+
+    manage_io(io, TRUE);
+    if (expansion(node, data) && do_redirect(node->token))
+    {
+        args = prep_arg(node->token);
+        status = EXIT_SUCCESS;
+        if (args)
+        {
+            status = execute(args, data);
+            free(args);
+        }
+        return (manage_io(io, FALSE), status);
+    }
+    return (manage_io(io, FALSE), EXIT_FAILURE);
 }

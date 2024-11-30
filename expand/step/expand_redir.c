@@ -12,7 +12,7 @@
 
 #include "../../include/minishell.h"
 
-void show_err(t_token *token);
+static void show_err(t_token *token);
 
 /* >>> expand_redir
 Purpose: If token is redirect, expand accordingly
@@ -39,7 +39,6 @@ Return
     FALSE: Erorr, prompt ambiguous redirect
     -      stop expansion process & don;t execute
 */
-
 int expand_redir(t_token *token, t_shell *data)
 {
     char *temp;
@@ -69,7 +68,7 @@ int expand_redir(t_token *token, t_shell *data)
     return (show_err(token), free(temp), FALSE);
 }
 
-void show_err(t_token *token)
+static void show_err(t_token *token)
 {
     err_msg_3(token->content, "ambiguous redirect");
 }

@@ -12,7 +12,7 @@
 
 #include "../../include/minishell.h"
 
-int symbol(char c);
+static int symbol(char c);
 
 /* >>> check_occurance
 Purpose: Check operator symbol consecutive occurance meet below rule.
@@ -57,7 +57,7 @@ int check_occurance(char *s)
     return (TRUE);
 }
 
-int symbol(char c)
+static int symbol(char c)
 {
     return (c == '<' ||c == '>' || c == '|');
 }

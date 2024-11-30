@@ -17,7 +17,7 @@ int	ft_pwd(void)
 	char	buf[1024];
 
 	if (getcwd(buf, sizeof(buf)) != NULL)
-		printf("%s\n", buf);
+		ft_printf("%s\n", buf);
 	else
 		return (perror("pwd"), EXIT_FAILURE);
 	return (EXIT_SUCCESS);

@@ -12,8 +12,8 @@
 
 #include "../../include/minishell.h"
 
-t_pair *pair_array(t_token *current);
-void find_pair(t_token *current, t_pair *pair);
+static t_pair *pair_array(t_token *current);
+static void find_pair(t_token *current, t_pair *pair);
 
 /* >>> check_subshell
 Purpose: Check  subshell operator pair meet rule
@@ -56,7 +56,7 @@ int check_subshell(t_shell *data)
 - Allocate the pair array
 - Return NULL if no bracket found
 */
-t_pair *pair_array(t_token *current)
+static t_pair *pair_array(t_token *current)
 {
     int count;
     t_pair *new;
@@ -81,7 +81,7 @@ t_pair *pair_array(t_token *current)
 /*
 - finds and group bracket pair in a struct
 */
-void find_pair(t_token *current, t_pair *pair)
+static void find_pair(t_token *current, t_pair *pair)
 {
     int i;
     

@@ -16,10 +16,10 @@
 #define SUB_ERR_2 "misuse of subshell operator"
 #define SUB_ERR_3 "redundant subshell operator"
 
-int redundant_rule(t_pair pair);
-int ob_left_rule(t_token *ob_left);
-int cb_left_rule(t_token *cb_left);
-int cb_right_rule(t_token *cb_right);
+static int redundant_rule(t_pair pair);
+static int ob_left_rule(t_token *ob_left);
+static int cb_left_rule(t_token *cb_left);
+static int cb_right_rule(t_token *cb_right);
 
 /* >>> check_pair
 Purpose:
@@ -64,14 +64,14 @@ int check_pair(t_pair *pair, char *input)
     return (TRUE);
 }
 
-int redundant_rule(t_pair pair)
+static int redundant_rule(t_pair pair)
 {
     return (pair.ob->prev && pair.cb->next
             && pair.ob->prev->type == OB
             && pair.cb->next->type == CB);
 }
 
-int ob_left_rule(t_token *ob_left)
+static int ob_left_rule(t_token *ob_left)
 {
   return (ob_left 
         && ob_left->type != AND
@@ -80,12 +80,12 @@ int ob_left_rule(t_token *ob_left)
         && ob_left->type != OB);
 }
 
-int cb_left_rule(t_token *cb_left)
+static int cb_left_rule(t_token *cb_left)
 {
   return (cb_left->type == OB);
 }
 
-int cb_right_rule(t_token *cb_right)
+static int cb_right_rule(t_token *cb_right)
 {
   return (cb_right 
         && (cb_right->type == OB

@@ -12,7 +12,7 @@
 
 #include "../../include/minishell.h"
 
-int is_wild_match(char *entry, char *pattern);
+static int is_wild_match(char *entry, char *pattern);
 
 /* >>>wildcard_match
 Purpose: Determine if entry text meet wildcard pattern
@@ -58,7 +58,7 @@ int wild_match(char *entry, char *pattern)
     
 }
 
-int is_wild_match(char *entry, char *pattern)
+static int is_wild_match(char *entry, char *pattern)
 {
     if (*pattern == '\0')
         return (*entry == '\0');

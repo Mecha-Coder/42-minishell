@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-int	is_numeric(char *str)
+static int	is_numeric(char *str)
 {
 	int	i;
 
@@ -27,23 +27,31 @@ int	is_numeric(char *str)
 	return (TRUE);
 }
 
+static void close_shell(int code, t_shell *data)
+{
+	free(data->input);
+	destroy_env(data);
+	destroy_tree(data->tree);
+	exit(code);
+}
+
 int	ft_exit(char **args, t_shell *data)
 {
 	if (args[1] == NULL)
 	{
 		ft_putstr_fd("exit\n", 2);
-		exit(data->cmd_exit_no);
+		close_shell(data->cmd_exit_no, data);
 	}
 	if (!is_numeric(args[1]))
 	{
 		ft_putstr_fd("exit\n", 2);
 		err_msg_2("exit", args[1], "numeric argument required");
-		exit(2);
+		close_shell(2, data);
 	}
 	if (args[2] == NULL)
 	{
 		ft_putstr_fd("exit\n", 2);
-		exit((unsigned char)ft_atoi(args[1]));
+		close_shell((unsigned char)ft_atoi(args[1]), data);
 	}
 	ft_putstr_fd("exit\n", 2);
 	arg_count(args, "exit");

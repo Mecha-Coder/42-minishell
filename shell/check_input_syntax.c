@@ -29,6 +29,7 @@ int check_input_syntax(t_shell *data)
         || !check_occurance(data->input))
     {
         data->cmd_exit_no = 2;
+        free(data->input);
         return (FALSE);
     }
     return (TRUE);

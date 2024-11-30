@@ -12,6 +12,7 @@
 #include <dirent.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <string.h>
 
 #include "struct.h"
 #include "constant.h"
@@ -27,6 +28,7 @@
 #include "execute.h"
 
 #include "../lib/libft.h"
+#include "../lib/ft_printf/ft_printf.h"
 
 #include "visual.h" // Remove this
 

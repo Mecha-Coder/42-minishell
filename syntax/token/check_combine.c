@@ -15,8 +15,8 @@
 #define CERR_1 "after combine opt must be a command"
 #define CERR_2 "misuse of combine operator"
 
-int left_rule(t_token *left);
-int right_rule(t_token *right);
+static int left_rule(t_token *left);
+static int right_rule(t_token *right);
 
 /* >>> check_combine
 Purpose: Check combine operator left & right token is a command
@@ -60,14 +60,14 @@ int check_combine(t_shell *data)
     return (TRUE);
 }
 
-int left_rule(t_token *left)
+static int left_rule(t_token *left)
 {
     if (left && (left->type == CB || left->type == STR))
         return (TRUE);
     return (FALSE);
 }
 
-int right_rule(t_token *right)
+static int right_rule(t_token *right)
 {
     if (right && (right->type == STR 
         || (right->type >= 4 && right->type <= 8)))

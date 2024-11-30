@@ -34,11 +34,11 @@ Side effect
 
 Note: type = HERE won't get expanded (skip)
 */
-int expansion(t_shell *data)
+int expansion(t_tree *node, t_shell *data)
 {
     t_token *current;
     
-    current = data->token; 
+    current = node->token; 
     while (current)
     {
         sub_quote(current->content, TRUE);
@@ -54,7 +54,7 @@ int expansion(t_shell *data)
         else
             break;
     }
-    data->token = token_jumpback(current);
+    node->token = token_jumpback(current);
     return (TRUE);
 }
 

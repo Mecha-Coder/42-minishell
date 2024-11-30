@@ -12,8 +12,8 @@
 
 #include "../include/minishell.h"
 
-void initialize_words(char words[][3]);
-void sub_to_space(char *s, int i, int size);
+static void initialize_words(char words[][3]);
+static void sub_to_space(char *s, int i, int size);
 
 /* >>> extract_operator
 Purpose: 
@@ -48,7 +48,7 @@ t_token *extract_operator(char *s)
     return (token_jumpback(operator));
 }
 
-void initialize_words(char words[][3])
+static void initialize_words(char words[][3])
 {
     ft_strcpy(words[AND], "&&");
     ft_strcpy(words[OR], "||");
@@ -62,7 +62,7 @@ void initialize_words(char words[][3])
     words[10][0] = '\0';
 }
 
-void sub_to_space(char *s, int i, int size)
+static void sub_to_space(char *s, int i, int size)
 {
     while (size--)
         s[i++] = ' ';

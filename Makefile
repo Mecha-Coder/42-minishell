@@ -7,6 +7,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 LIBFT = ./lib/libft.a
+PRINTF = ./lib/ft_printf.a
 
 #==============================================================
 # FILES
@@ -14,7 +15,12 @@ LIBFT = ./lib/libft.a
 
 SRCS =	$(wildcard ./built_in/*.c) \
 		$(wildcard ./env/*.c) \
-		$(wildcard ./expand/*.c) \
+		$(wildcard ./execute/none_builtin/*.c) \
+		$(wildcard ./execute/run/*.c) \
+		$(wildcard ./expand/step/*.c) \
+		$(wildcard ./expand/variable/*.c) \
+		$(wildcard ./expand/wildcard/*.c) \
+		$(wildcard ./redirect/*.c) \
 		$(wildcard ./shell/*.c) \
 		$(wildcard ./syntax/input/*.c) \
 		$(wildcard ./syntax/token/*.c) \
@@ -33,7 +39,7 @@ OBJS = $(SRCS:.c=.o)
 all: lib $(NAME)
 
 $(NAME): $(OBJS) 
-	$(CC) $(CFLAGS) -o $@ $^ -lreadline $(LIBFT)
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBFT) $(PRINTF) -lreadline
 	
 %.o: src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@

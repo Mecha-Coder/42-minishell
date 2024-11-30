@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-void branchout_tree(t_tree *node);
+static void branchout_tree(t_tree *node);
 
 /* >>> build_ast
 Purpose: Based on the token, build Abstract Syntax Tree (AST)
@@ -31,7 +31,7 @@ void build_ast(t_shell *data)
     branchout_tree(data->tree);
 }
 
-void branchout_tree(t_tree *node)
+static void branchout_tree(t_tree *node)
 {
     if (!node)
         return ;

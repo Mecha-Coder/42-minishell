@@ -12,8 +12,8 @@
 
 #include "../include/minishell.h"
 
-t_token *lowest_token_index(t_token *head);
-t_token *lowest_token_ascii(t_token *head);
+static t_token *lowest_token_index(t_token *head);
+static t_token *lowest_token_ascii(t_token *head);
 
 /* >>> sort_token
 Purpose: Sort token in ascending order based on 
@@ -63,7 +63,7 @@ t_token *sort_token(t_token *head, char c)
 }
 
 
-t_token *lowest_token_index(t_token *head)
+static t_token *lowest_token_index(t_token *head)
 {
     t_token *current;
     t_token *select;
@@ -79,7 +79,7 @@ t_token *lowest_token_index(t_token *head)
     return (select);
 }
 
-t_token *lowest_token_ascii(t_token *head)
+static t_token *lowest_token_ascii(t_token *head)
 {
     t_token *current;
     t_token *select;

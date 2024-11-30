@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-void	free_env_node(t_env *env);
+static void	free_env_node(t_env *env);
 
 /* >>> unset
 Description: Remove var from env listed-list
@@ -46,7 +46,7 @@ int	ft_unset(char **arg, t_shell *data)
 	return (EXIT_SUCCESS);
 }
 
-void	free_env_node(t_env *env)
+static void	free_env_node(t_env *env)
 {
 	free(env->key);
 	free(env->val);

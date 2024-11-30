@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-void prompt_heredoc(int *fd, char *delimiter);
+static void prompt_heredoc(int *fd, char *delimiter);
 
 /* >>>run_heredoc
 Purpose: Responsible to run through the tree and get heredoc input 
@@ -34,7 +34,7 @@ void run_heredoc(t_tree *node)
     run_heredoc(node->right);
 }
 
-void prompt_heredoc(int *fd, char *delimiter)
+static void prompt_heredoc(int *fd, char *delimiter)
 {
     char *input;
 

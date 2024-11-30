@@ -12,9 +12,9 @@
 
 #include "../../include/minishell.h"
 
-char *insert_blank(char *s, int i);
-char *insert_minishell(char *s, int i);
-char *do_insertion(char *s, int *i, t_shell *data);
+static char *insert_blank(char *s, int i);
+static char *insert_minishell(char *s, int i);
+static char *do_insertion(char *s, int *i, t_shell *data);
 
 /* >>> insert_var
 Purpose
@@ -72,7 +72,7 @@ char *insert_var(char *s, t_shell *data)
     return (s);
 }
 
-char *do_insertion(char *s, int *i, t_shell *data)
+static char *do_insertion(char *s, int *i, t_shell *data)
 {
     int len;
 
@@ -93,13 +93,13 @@ char *do_insertion(char *s, int *i, t_shell *data)
     return (NULL);
 }
 
-char *insert_blank(char *s, int i)
+static char *insert_blank(char *s, int i)
 {
     s[i] = '\0';
     return (join3(s, NULL, &s[i + 2]));
 }
 
-char *insert_minishell(char *s, int i)
+static char *insert_minishell(char *s, int i)
 {
     s[i] = '\0';
     return (join3(s, "-42minishell", &s[i + 2]));

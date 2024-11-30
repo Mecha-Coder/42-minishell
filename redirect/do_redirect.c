@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-int	open_file(char *file, int filemode);
+static int	open_file(char *file, int filemode);
 
 /* >>> do_redirect
 Purpose: Read the redirect token, using dup2 to change STDIN & STDOUT
@@ -49,12 +49,12 @@ int do_redirect(t_token *current)
                 dup2(fd, STDIN_FILENO);
             close(fd);
         }
-        current = current->next
+        current = current->next;
     }
     return (TRUE);
 }
 
-int	open_file(char *file, int filemode)
+static int	open_file(char *file, int filemode)
 {
 	int	fd;
 
@@ -65,6 +65,77 @@ int	open_file(char *file, int filemode)
 	if (filemode == APPD)
 		fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0777);
 	if (fd == -1)
-        err_msg_3(current->content, strerror(errno));
+        err_msg_3(file, strerror(errno));
     return (fd);
 }
+
+/*
+int main()
+{
+    t_token t;
+    // int readnum;
+    // int size = 20;
+    // char buffer[size];
+    char sample[] = "Hello the pipe";
+    int oriterm[2] = {dup(STDIN_FILENO), dup(STDOUT_FILENO)};
+
+    // printf("\nRead file\n=================\n");
+    // t.type = RD;
+    // t.content = "in";
+    // t.next = NULL;
+
+    //     do_redirect(&t);
+    //     readnum = read(STDIN_FILENO, buffer, size);
+    //     write(STDOUT_FILENO, buffer, readnum);
+    //     printf("\n");
+  
+    // dup2(oriterm[STDIN_FILENO], STDIN_FILENO);
+    // dup2(oriterm[STDOUT_FILENO], STDOUT_FILENO);
+
+    // printf("\nRead heredoc\n=================\n");
+    // t.type = HERE;
+    // t.content = NULL;
+    // t.next = NULL;
+    // pipe(t.herefd);
+    // write(t.herefd[1], sample, ft_strlen(sample));
+    
+    //     do_redirect(&t);
+    //     readnum = read(STDIN_FILENO, buffer, size);
+    //     write(STDOUT_FILENO, buffer, readnum);
+    //     printf("\n");
+
+    // close(t.herefd[0]);
+    // close(t.herefd[1]);
+
+    // dup2(oriterm[STDIN_FILENO], STDIN_FILENO);
+    // dup2(oriterm[STDOUT_FILENO], STDOUT_FILENO);
+
+    // printf("\nWrite file\n=================\n");
+    // t.type = WR;
+    // t.content = "out";
+    // t.next = NULL;
+   
+    //     do_redirect(&t);
+    //     write(STDOUT_FILENO, sample, ft_strlen(sample));
+    //     printf("\n");
+
+    // dup2(oriterm[STDIN_FILENO], STDIN_FILENO);
+    // dup2(oriterm[STDOUT_FILENO], STDOUT_FILENO);
+
+    printf("\nAppend file\n=================\n");
+    t.type = APPD;
+    t.content = "out";
+    t.next = NULL;
+   
+        do_redirect(&t);
+        write(STDOUT_FILENO, sample, ft_strlen(sample));
+        printf("\n");
+
+        char *arg[] = {"ls", NULL}; 
+        printf("Testing if printf can ...\n");
+        execve("/usr/bin/ls", arg , NULL);
+
+    dup2(oriterm[STDIN_FILENO], STDIN_FILENO);
+    dup2(oriterm[STDOUT_FILENO], STDOUT_FILENO);
+}
+*/

@@ -12,8 +12,8 @@
 
 #include "../include/minishell.h"
 
-int is_alphabet(char c);
-int is_alnumeric(char c);
+static int is_alphabet(char c);
+static int is_alnumeric(char c);
 
 /* >>> is_identifier
 Purpose: Check the first sub-string is an identifier
@@ -59,12 +59,12 @@ int is_identifier(char *s, int *i)
     return (*i);
 }
 
-int is_alphabet(char c) 
+static int is_alphabet(char c) 
 {
     return (ft_isalpha(c) || (c == '_'));
 }
 
-int is_alnumeric(char c) 
+static int is_alnumeric(char c) 
 {
     return (is_alphabet(c) || ft_isdigit(c));
 }

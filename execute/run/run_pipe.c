@@ -12,8 +12,8 @@
 
 #include "../../include/minishell.h"
 
-static void left(int *fd, t_tree *node, t_shell *data);
-static void right(int *fd, t_tree *node, t_shell *data);
+static void left(pid_t *id, int *fd, t_tree *node, t_shell *data);
+static void right(pid_t *id, int *fd, t_tree *node, t_shell *data);
 
 int run_pipe(t_tree *node, t_shell *data)
 {
@@ -28,17 +28,8 @@ int run_pipe(t_tree *node, t_shell *data)
     node->left->terminate = TRUE;
     node->right->terminate = TRUE;
 
-    id_1 = fork();
-    if (id_1 < 0)
-        err_exit("fork", errno);
-    else if (id_1 == 0)
-        left(fd, node, data);
-    
-    id_2 = fork();
-    if (id_2 < 0)
-        err_exit("fork", errno);
-    else if (id_2 == 0)
-        right(fd, node, data);
+    left(&id_1, fd, node, data);
+    right(&id_2, fd, node, data);
 
     close(fd[0]);
     close(fd[1]);
@@ -47,28 +38,39 @@ int run_pipe(t_tree *node, t_shell *data)
     return (WEXITSTATUS(status));
 }
 
-static void left(int *fd, t_tree *node, t_shell *data)
+static void left(pid_t *id, int *fd, t_tree *node, t_shell *data)
 {
-    if (node->left->type == EXE ||
-        node->left->type == SUB)
+    *id = fork();
+    if (*id < 0)
+        err_exit("fork", errno);
+    else if (*id == 0)
     {
-        close(fd[0]);
-        dup2(fd[1], STDOUT_FILENO);
-        close(fd[0]);
+        if (node->left->type == EXE || node->left->type == SUB)
+        {
+            close(fd[0]);
+            dup2(fd[1], STDOUT_FILENO);
+            close(fd[0]);
+        }
+        descent_tree(node->left, data);
     }
-    descent_tree(node->left, data);
 }
 
-static void right(int *fd, t_tree *node, t_shell *data)
+static void right(pid_t *id, int *fd, t_tree *node, t_shell *data)
 {
-    close(fd[1]);
-    dup2(fd[0], STDIN_FILENO);
-    close(fd[0]);
-    if (node->pipe)
+    *id = fork();
+    if (*id < 0)
+        err_exit("fork", errno);
+    else if (*id == 0)
     {
-        close(node->pipe[0]);
-        dup2(node->pipe[1], STDOUT_FILENO);
-        close(node->pipe[1]);
+        close(fd[1]);
+        dup2(fd[0], STDIN_FILENO);
+        close(fd[0]);
+        if (node->pipe)
+        {
+            close(node->pipe[0]);
+            dup2(node->pipe[1], STDOUT_FILENO);
+            close(node->pipe[1]);
+        }
+        descent_tree(node->right, data);
     }
-    descent_tree(node->right, data);
 }

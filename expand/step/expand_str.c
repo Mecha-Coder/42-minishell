@@ -12,9 +12,9 @@
 
 #include "../../include/minishell.h"
 
-t_token *expand_str_1(t_token *current);
-t_token *expand_str_2(t_token *current);
-t_token *expand_str_3(t_token *current);
+static t_token *expand_str_1(t_token *current);
+static t_token *expand_str_2(t_token *current);
+static t_token *expand_str_3(t_token *current);
 
 /* >>> expand_str
 Purpose: If token is word(STR), expand accordingly
@@ -50,7 +50,7 @@ t_token *expand_str(t_token *current, t_shell *data)
     return (expand_str_3(current));
 }
 
-t_token *expand_str_1(t_token *current)
+static t_token *expand_str_1(t_token *current)
 {
     free(current->content);
     current->content = NULL;
@@ -58,7 +58,7 @@ t_token *expand_str_1(t_token *current)
 }
 
 
-t_token *expand_str_2(t_token *current)
+static t_token *expand_str_2(t_token *current)
 {
     t_token *holder;
 
@@ -78,7 +78,7 @@ t_token *expand_str_2(t_token *current)
 /* 
 Note: return last new token
 */
-t_token *expand_str_3(t_token *current)
+static t_token *expand_str_3(t_token *current)
 {
     t_token *holder;
 

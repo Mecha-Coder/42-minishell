@@ -32,6 +32,7 @@ int check_token_syntax(t_shell *data)
     {
         data->cmd_exit_no = 2;
         destroy_token(data->token);
+        free(data->input);
         return (FALSE);
     }
     return (TRUE);

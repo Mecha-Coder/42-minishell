@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-int	n_option(char *str)
+static int	n_option(char *str)
 {
 	int	i;
 
@@ -44,13 +44,13 @@ int	ft_echo(char **args)
 	}
 	while (args[i])
 	{	
-		printf("%s", args[i]);
+		ft_printf("%s", args[i]);
 		if (args[i + 1] != NULL)
-			printf(" ");
+			ft_printf(" ");
 		i++;
 	}
 	if (new_line)
-		printf("\n");
+		ft_printf("\n");
 	return (EXIT_SUCCESS);
 }
 // int main(int ac, char **args)

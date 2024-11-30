@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-t_token *join_token(t_token *t1, t_token *t2);
+static t_token *join_token(t_token *t1, t_token *t2);
 
 /* >>> tokenize
 Purpose: Create a token representation of the input
@@ -63,7 +63,7 @@ void tokenize(t_shell *data)
 }
 
 // Note: Either one can be null but not both
-t_token *join_token(t_token *t1, t_token *t2)
+static t_token *join_token(t_token *t1, t_token *t2)
 {
     t1 = token_jumpfront(t1);
     if (t1)

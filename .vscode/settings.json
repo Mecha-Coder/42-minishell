@@ -11,6 +11,8 @@
         "span": "c",
         "random": "c",
         "memory": "c",
-        "optional": "c"
+        "optional": "c",
+        "cmath": "c",
+        "cstdlib": "c"
     }
 }

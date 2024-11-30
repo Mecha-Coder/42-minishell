@@ -83,7 +83,7 @@ static void	print_sorted_env(t_env *env)
 	list = env_key_list(env);
 	sort_list(list);
 	while (list[++i])
-		printf("declare -x %s=\"%s\"\n", list[i], env_val(list[i], env));
+		ft_printf("declare -x %s=\"%s\"\n", list[i], env_val(list[i], env));
 	free(list);
 }
 

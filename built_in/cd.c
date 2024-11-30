@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-void	update_oldpwd(t_shell *data)
+static void	update_oldpwd(t_shell *data)
 {
 	char	cwd[1024];
 	t_env	*current;
@@ -30,7 +30,7 @@ void	update_oldpwd(t_shell *data)
 	}
 }
 
-void	update_pwd(t_shell *data)
+static void	update_pwd(t_shell *data)
 {
 	char	cwd[1024];
 	t_env	*current;
@@ -72,7 +72,7 @@ void	update_pwd(t_shell *data)
 // 	update_pwd(data);
 // }
 
-int	cd_home(t_shell *data)
+static int	cd_home(t_shell *data)
 {
 	char	*home;
 

@@ -12,8 +12,8 @@
 
 #include "../include/minishell.h"
 
-int is_word(char c, int *detect);
-int delimiter(char c);
+static int is_word(char c, int *detect);
+static int delimiter(char c);
 
 /* >>> extract_word
 Purpose:
@@ -57,7 +57,7 @@ t_token *extract_word(char *s)
     return (token_jumpback(word));
 }
 
-int is_word(char c, int *detect)
+static int is_word(char c, int *detect)
 {
     detection(c, detect, FALSE);
     if (*detect == ON && delimiter(c))
@@ -66,7 +66,7 @@ int is_word(char c, int *detect)
         return (TRUE);
 }
 
-int delimiter(char c)
+static int delimiter(char c)
 {
     return(c == ' ' || c == '\0');
 }

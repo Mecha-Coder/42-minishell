@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-int space_char(char c);
+static int space_char(char c);
 
 /* >>>is_empty
 Purpose: Check if input string 
@@ -33,7 +33,7 @@ int is_empty(char *s)
 	return(TRUE);
 }
 
-int space_char(char c)
+static int space_char(char c)
 {
     return (c == ' ' || c == '\t');
 }
