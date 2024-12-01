@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_or.c                                           :+:      :+:    :+:   */
+/*   close_shell.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 10:23:07 by jpaul             #+#    #+#             */
-/*   Updated: 2024/12/01 20:06:10 by jpaul            ###   ########.fr       */
+/*   Created: 2024/12/01 19:10:07 by jpaul             #+#    #+#             */
+/*   Updated: 2024/12/01 19:22:20 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
-void run_or(t_tree *node, t_shell *data)
-{   
-    descent_tree(node->left, data);
-    if (!data->cmd_exit_no)
-        return ;
-    if (node->pipe)
-    {
-        close(node->pipe[0]);
-        dup2(node->pipe[1], STDOUT_FILENO);
-        close(node->pipe[1]);
-    }
-    descent_tree(node->right, data);
+void close_shell(int code, t_shell *data)
+{
+	int n;
+    
+	n = 999999999;
+    if (data->input)
+	    free(data->input);
+	destroy_env(data);
+	destroy_tree(data->tree);
+	rl_clear_history();
+	while (n)
+		n--;
+	exit(code);
 }

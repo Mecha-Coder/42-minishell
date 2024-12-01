@@ -25,6 +25,7 @@ int main(int ac, char **av, char **env)
         }
     }
     destroy_env(&data);
+    exit(data.cmd_exit_no);
 }
 
 

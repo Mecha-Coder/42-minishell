@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_token_syntax.c                               :+:      :+:    :+:   */
+/*   input_syntax.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 11:25:24 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/23 13:40:47 by jpaul            ###   ########.fr       */
+/*   Created: 2024/11/22 11:25:26 by jpaul             #+#    #+#             */
+/*   Updated: 2024/12/01 20:04:55 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-/* >> check_token_syntax
+/* >> check_input_syntax
 Purpose: 
-- Check operator placement for combine, redirect & subshell follow rule
-- If invalid syntax, stop checking and 
-    * update cmd_exit_no to 1
-    * free token
+- Check quote, operator symbol occurance and bracket placement
+- If invalid syntax, stop checking and update cmd_exit_no to 1
 
 ===================================================================
 Return
     TRUE  : Correct syntax
     FALSE : vice versa
 */
-int check_token_syntax(t_shell *data)
+int input_syntax(t_shell *data)
 {
-    if (!check_redirect(data)
-        || !check_combine(data)
-        || !check_subshell(data))
+    add_history(data->input);
+    if (!check_quote(data->input) 
+        || !check_bracket(data->input) 
+        || !check_occurance(data->input))
     {
         data->cmd_exit_no = 2;
-        destroy_token(data->token);
-        free(data->input);
         return (FALSE);
     }
     return (TRUE);

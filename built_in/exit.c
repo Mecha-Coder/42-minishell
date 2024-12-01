@@ -27,14 +27,6 @@ static int	is_numeric(char *str)
 	return (TRUE);
 }
 
-static void close_shell(int code, t_shell *data)
-{
-	free(data->input);
-	destroy_env(data);
-	destroy_tree(data->tree);
-	exit(code);
-}
-
 int	ft_exit(char **args, t_shell *data)
 {
 	if (args[1] == NULL)

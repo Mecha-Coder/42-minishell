@@ -20,12 +20,6 @@
 #define SQ_OFF 1
 #define DQ_OFF 2
 
-#define S_QUOTE 1
-#define D_QUOTE 2
-
-#define O_BRACKET 0
-#define C_BRACKET 1
-
 //===========================================================================
 //Type classification
 
@@ -42,5 +36,10 @@
 
 #define EXE 11   // Execution node
 #define SUB 12   // Subshell 
+
+//===========================================================================
+//Prompt
+
+#define PROMPT "\001\e[0;36m\002@ \001\e[0;33m\002Minishell>\001\e[0m\002 "
 
 #endif

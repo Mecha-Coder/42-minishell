@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:00:22 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/29 10:10:08 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/12/01 19:00:16 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,24 @@ static int execute(char **args, t_shell *data)
     return (status);
 }
 
-int run_exe(t_tree *node, t_shell *data)
+void run_exe(t_tree *node, t_shell *data)
 {
     char **args;
-    int status;
     int io[2];
 
     manage_io(io, TRUE);
     if (expansion(node, data) && do_redirect(node->token))
     {
         args = prep_arg(node->token);
-        status = EXIT_SUCCESS;
         if (args)
         {
-            status = execute(args, data);
+            data->cmd_exit_no = execute(args, data);
             free(args);
         }
-        return (manage_io(io, FALSE), status);
+        else
+            data->cmd_exit_no = EXIT_SUCCESS;
     }
-    return (manage_io(io, FALSE), EXIT_FAILURE);
+    else
+        data->cmd_exit_no = EXIT_FAILURE;
+    manage_io(io, FALSE);
 }

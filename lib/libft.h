@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
-//# include "ft_printf/ft_printf.h"
+# include "ft_printf/ft_printf.h"
 //# include "get_next_line/get_next_line.h"
 
 # define TRUE 1

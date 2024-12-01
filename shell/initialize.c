@@ -30,8 +30,6 @@ void initialize(t_shell *data, char **env)
     int shell_lvl;
 
     setup_env(data, env);
-    data->oriterm_fd[STDIN_FILENO] = dup(STDIN_FILENO);
-    data->oriterm_fd[STDOUT_FILENO] = dup(STDOUT_FILENO);
     data->cmd_exit_no = 0;
     strnum = env_val("SHLVL", data->env);
     shell_lvl = ft_atoi(strnum);

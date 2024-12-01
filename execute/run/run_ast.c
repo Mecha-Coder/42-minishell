@@ -6,27 +6,24 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:15:56 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/29 10:20:15 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/12/01 18:49:04 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int descent_tree(t_tree *node, t_shell *data)
+void descent_tree(t_tree *node, t_shell *data)
 {
-    int status;
-
-    if      (node->type == EXE)   status = run_exe(node, data);
-    else if (node->type == PIPE)  status = run_pipe(node, data);
-    else if (node->type == SUB)   status = run_subshell(node, data);
-    else if (node->type == AND)   status = run_and(node, data);
-    else if (node->type == OR)    status = run_or(node, data);
+    if      (node->type == EXE)   run_exe(node, data);
+    else if (node->type == PIPE)  run_pipe(node, data);
+    else if (node->type == SUB)   run_subshell(node, data);
+    else if (node->type == AND)   run_and(node, data);
+    else if (node->type == OR)    run_or(node, data);
     if (node->terminate)
-        exit(status);
-    return (status);
+        exit(data->cmd_exit_no);
 }
 
 void run_ast(t_shell *data)
 {
-    data->cmd_exit_no = descent_tree(data->tree, data);
+    descent_tree(data->tree, data);
 }

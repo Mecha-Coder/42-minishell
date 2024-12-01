@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:24:09 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/29 11:08:52 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/12/01 18:50:08 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void left(pid_t *id, int *fd, t_tree *node, t_shell *data);
 static void right(pid_t *id, int *fd, t_tree *node, t_shell *data);
 
-int run_pipe(t_tree *node, t_shell *data)
+void run_pipe(t_tree *node, t_shell *data)
 {
     int fd[2];
     int status;
@@ -35,7 +35,7 @@ int run_pipe(t_tree *node, t_shell *data)
     close(fd[1]);
     waitpid(id_1, &status, 0);
     waitpid(id_2, &status, 0);
-    return (WEXITSTATUS(status));
+    data->cmd_exit_no = WEXITSTATUS(status);
 }
 
 static void left(pid_t *id, int *fd, t_tree *node, t_shell *data)

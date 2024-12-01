@@ -40,7 +40,6 @@ typedef struct s_shell
     t_env *env;
     t_token *token;
     t_tree *tree;
-    int oriterm_fd[2];
     int cmd_exit_no;
 } t_shell;
 #endif

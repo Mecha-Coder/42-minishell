@@ -28,8 +28,6 @@
 #include "execute.h"
 
 #include "../lib/libft.h"
-#include "../lib/ft_printf/ft_printf.h"
-
 #include "visual.h" // Remove this
 
 #endif

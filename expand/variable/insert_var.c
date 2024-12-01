@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 20:42:09 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/29 12:50:48 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/12/01 20:00:37 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ static char *insert_blank(char *s, int i)
 static char *insert_minishell(char *s, int i)
 {
     s[i] = '\0';
-    return (join3(s, "-42minishell", &s[i + 2]));
+    return (join3(s, "_42_minishell", &s[i + 2]));
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 23:26:40 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/30 23:26:40 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/12/01 13:42:14 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ void manage_io(int *fd, int action)
     {
         dup2(fd[STDIN_FILENO], STDIN_FILENO);
         dup2(fd[STDOUT_FILENO], STDOUT_FILENO);
+        close(fd[STDIN_FILENO]);
+        close(fd[STDOUT_FILENO]);
     }
 }

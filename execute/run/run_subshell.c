@@ -6,13 +6,13 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:29:13 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/29 11:09:22 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/12/01 18:18:08 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int run_subshell(t_tree *node, t_shell *data)
+void run_subshell(t_tree *node, t_shell *data)
 {
     int status;
     pid_t id;
@@ -28,7 +28,9 @@ int run_subshell(t_tree *node, t_shell *data)
         else if (id == 0)
             descent_tree(node->left, data);
         waitpid(id, &status, 0);
-        return (manage_io(io, FALSE), WEXITSTATUS(status));
+        data->cmd_exit_no = WEXITSTATUS(status);
     }
-    return (manage_io(io, FALSE), EXIT_FAILURE);
+    else
+        data->cmd_exit_no = EXIT_FAILURE;
+    manage_io(io, FALSE);
 }
