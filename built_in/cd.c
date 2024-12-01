@@ -18,6 +18,8 @@ static void	update_oldpwd(t_shell *data)
 	t_env	*current;
 
 	current = data->env;
+	if (getcwd(cwd, sizeof(cwd)) == NULL)
+		err_exit("getcwd", errno);
 	while (current)
 	{
 		if (ft_strcmp(current->key, "OLDPWD") == 0)
@@ -37,10 +39,7 @@ static void	update_pwd(t_shell *data)
 
 	current = data->env;
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
-	{
-		perror("getcwd error");
-		return ;
-	}
+		err_exit("getcwd", errno);
 	while (current)
 	{
 		if (ft_strcmp(current->key, "PWD") == 0)

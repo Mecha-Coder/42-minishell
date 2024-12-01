@@ -14,12 +14,17 @@
 
 int	ft_env(char **args, t_shell *data)
 {
+	int i;
 	t_env	*current;
 
-	if (args[1])
-	{
-		err_msg_3("env", "too many arguments");
-		return (EXIT_FAILURE);
+	i = -1;
+	while (args[++i])
+	{	
+		if (ft_strcmp(args[i], "env"))
+		{
+			err_msg_3("env", "too many arguments");
+			return (EXIT_FAILURE);
+		}
 	}
 	current = data->env;
 	while (current)
