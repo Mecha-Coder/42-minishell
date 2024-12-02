@@ -13,6 +13,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
+#include <signal.h>
 
 #include "struct.h"
 #include "constant.h"
@@ -26,6 +27,7 @@
 #include "tree.h"
 #include "redirect.h"
 #include "execute.h"
+#include "signal.h"
 
 #include "../lib/libft.h"
 #include "visual.h" // Remove this

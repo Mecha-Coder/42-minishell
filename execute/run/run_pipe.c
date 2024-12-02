@@ -49,7 +49,7 @@ static void left(pid_t *id, int *fd, t_tree *node, t_shell *data)
         {
             close(fd[0]);
             dup2(fd[1], STDOUT_FILENO);
-            close(fd[0]);
+            close(fd[1]);
         }
         descent_tree(node->left, data);
     }
@@ -62,6 +62,8 @@ static void right(pid_t *id, int *fd, t_tree *node, t_shell *data)
         err_exit("fork", errno);
     else if (*id == 0)
     {
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
         close(fd[1]);
         dup2(fd[0], STDIN_FILENO);
         close(fd[0]);

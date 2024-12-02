@@ -43,6 +43,8 @@ void prompt(t_shell *data)
     char s[40];
 
     ft_strcpy(s, PROMPT);
+	signal(SIGINT, sigint_handler);
+	signal(SIGQUIT, SIG_IGN);
     while (1)
     {
         prev_status(s, data->cmd_exit_no);
@@ -63,5 +65,7 @@ void prompt(t_shell *data)
         }
         else
             break;
+		signal(SIGINT, sigint_handler);
+		signal(SIGQUIT, SIG_IGN);
     }
 }

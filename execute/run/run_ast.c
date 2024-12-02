@@ -25,5 +25,7 @@ void descent_tree(t_tree *node, t_shell *data)
 
 void run_ast(t_shell *data)
 {
+	signal(SIGINT, sigint_handler_child);
+	signal(SIGQUIT, sigquit_handler_child);
     descent_tree(data->tree, data);
 }

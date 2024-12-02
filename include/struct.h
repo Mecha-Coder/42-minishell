@@ -42,4 +42,7 @@ typedef struct s_shell
     t_tree *tree;
     int cmd_exit_no;
 } t_shell;
+
+extern int g_sig;
+
 #endif
