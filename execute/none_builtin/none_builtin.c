@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   none_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:19:42 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/29 11:32:40 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/12/02 15:20:25 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ int none_builtin(char **cmd, t_env *env)
         child(cmd, env);
     else
         waitpid(id, &status, 0);
-    return (WEXITSTATUS(status));
+    if (WIFSIGNALED(status))
+        return (WTERMSIG(status) + 128);
+    else
+        return(WEXITSTATUS(status));
+    // return (WEXITSTATUS(status));
 }
 
 static void	child(char **cmd, t_env *list)

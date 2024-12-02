@@ -35,7 +35,10 @@ void run_pipe(t_tree *node, t_shell *data)
     close(fd[1]);
     waitpid(id_1, &status, 0);
     waitpid(id_2, &status, 0);
-    data->cmd_exit_no = WEXITSTATUS(status);
+	if (WIFSIGNALED(status))
+		data->cmd_exit_no = WTERMSIG(status) + 128;
+	else
+    	data->cmd_exit_no = WEXITSTATUS(status);
 }
 
 static void left(pid_t *id, int *fd, t_tree *node, t_shell *data)

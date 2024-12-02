@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_subshell.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:29:13 by jpaul             #+#    #+#             */
-/*   Updated: 2024/12/01 18:18:08 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/12/02 15:14:41 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ void run_subshell(t_tree *node, t_shell *data)
         else if (id == 0)
             descent_tree(node->left, data);
         waitpid(id, &status, 0);
-        data->cmd_exit_no = WEXITSTATUS(status);
+        // data->cmd_exit_no = WEXITSTATUS(status);
+    if (WIFSIGNALED(status))
+		data->cmd_exit_no = WTERMSIG(status) + 128;
+	else
+    	data->cmd_exit_no = WEXITSTATUS(status);
     }
     else
         data->cmd_exit_no = EXIT_FAILURE;
