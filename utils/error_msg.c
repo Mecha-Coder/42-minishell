@@ -62,7 +62,7 @@ void err_msg_4(char *input, char *msg, int index)
 		ft_putstr_fd(" ", 2);
 	ft_putstr_fd("↓\n", 2);
 	ft_putstr_fd(input, 2);
-	ft_putstr_fd("\n\033[1m\033[31mSyntax error: \033[0m", 2);
+	ft_putstr_fd("\nminishell: syntax error: ", 2);
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd("\n", 2);
 }
