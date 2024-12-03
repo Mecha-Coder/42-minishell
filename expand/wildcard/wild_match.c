@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 14:59:14 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/29 09:36:19 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/12/03 11:49:43 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int wild_match(char *entry, char *pattern)
 {
     if (is_wild_match(entry, pattern))
     {
-        if (!strcmp(entry, "..") || !strcmp(entry, "."))
+        if (!ft_strcmp(entry, "..") || !ft_strcmp(entry, "."))
         {
-            if (strchr(pattern, '.'))
+            if (ft_strchr(pattern, '.'))
                 return (TRUE);
             return (FALSE);
         }
@@ -63,10 +63,10 @@ static int is_wild_match(char *entry, char *pattern)
     if (*pattern == '\0')
         return (*entry == '\0');
     if (*pattern == (char)31)
-        return (wild_match(entry, pattern + 1) 
-            || (*entry && wild_match(entry + 1, pattern)));
+        return (is_wild_match(entry, pattern + 1) 
+            || (*entry && is_wild_match(entry + 1, pattern)));
     if (*pattern == *entry)
-        return (wild_match(entry + 1, pattern + 1));
+        return (is_wild_match(entry + 1, pattern + 1));
     return FALSE;
 }
 /*
@@ -78,12 +78,18 @@ void answer(char *pattern)
         printf("Not match\n");
 }
 
+
 int main()
 {        //      0123 
-    char s[] = "d*m*";
-    s[3] = (char)31;
-    answer(s);
+    char s[] =  ".*";
     s[1] = (char)31;
-    answer(s);
+    // answer(s);
+    // s[1] = (char)31;
+    // answer(s);
+
+    if (is_wild_match("..", s))
+        printf("Match\n");
+    else
+        printf("Not match\n");
 }
 */
