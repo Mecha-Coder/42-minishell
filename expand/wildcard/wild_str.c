@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:28:59 by jpaul             #+#    #+#             */
-/*   Updated: 2024/11/29 11:12:21 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/12/03 12:51:48 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void answer(char *pattern)
     printf("\n------------------------\n");
 }
 
+
 int main()
 {
     char s1[] = "*";
@@ -111,6 +112,31 @@ int main()
     answer(s9);
     answer(s10);
     answer(s11);
+
+    // Font dot
+    .*   // Both . ..
+    .***  // Both . ..
+    
+    // Middle
+    .*.     // ..
+     .***.  // ..
+
+    // Back
+    **.  // None
+    *.   // None
+    
+    char s12[] = ".*";
+    char s13[] = ".***";
+    char s14[] = ".*.";
+    char s15[] = ".***.";
+    char s16[] = "**.";
+    char s17[] = "*.";
+    answer(s12);
+    answer(s13);
+    answer(s14);
+    answer(s15);
+    answer(s16);
+    answer(s17);
 }
 */
 
