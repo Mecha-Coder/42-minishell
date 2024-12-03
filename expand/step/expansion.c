@@ -58,7 +58,6 @@ int expansion(t_tree *node, t_shell *data)
     return (TRUE);
 }
 
-
 /* Test
 #define RED "\033[0;31m"
 #define GREEN "\033[0;32m"

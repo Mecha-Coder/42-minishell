@@ -15,7 +15,7 @@ int main(int ac, char **av, char **env)
         {
             tokenize(&data);
             if (token_syntax(&data))
-            {
+            {   
                 build_ast(&data);
                 run_heredoc(data.tree);
                 run_ast(&data);

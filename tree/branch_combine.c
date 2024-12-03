@@ -13,6 +13,8 @@
 #include "../include/minishell.h"
 
 static void branch(t_tree *node, t_token *release);
+static int split_and_or(t_tree *node, t_token *current);
+static int split_pipe(t_tree *node, t_token *current);
 
 /* >>> branch_combine
 Purpose:
@@ -27,22 +29,34 @@ Method
     * Token before (operator) pass to left child node
     * Token after (operator) pass to right child node
     * Disconnect and free combine operator node
+
+Modify: && and || have higher precedence and | 
 */
 int branch_combine(t_tree *node)
 {
     t_token *current;
-     int bracket;
 
-    bracket = 0;
     current = node->token;
     current = token_jumpfront(current);
+    if (split_and_or(node, current))
+        return (TRUE);
+    else if (split_pipe(node, current))
+        return (TRUE);
+    return (FALSE);
+}
+
+int split_and_or(t_tree *node, t_token *current)
+{
+    int bracket;
+
+    bracket = 0;
     while (current)
     {
         if (current->type == CB)
             bracket++;
         else if (current->type == OB)
             bracket--;
-        else if (!bracket && current->type >= 1 && current->type <= 3)
+        else if (!bracket && (current->type == AND || current->type == OR))
         {
             branch(node, current);
             return (TRUE);
@@ -52,6 +66,26 @@ int branch_combine(t_tree *node)
     return (FALSE);
 }
 
+int split_pipe(t_tree *node, t_token *current)
+{
+    int bracket;
+
+    bracket = 0;
+    while (current)
+    {
+        if (current->type == CB)
+            bracket++;
+        else if (current->type == OB)
+            bracket--;
+        else if (!bracket && current->type == PIPE)
+        {
+            branch(node, current);
+            return (TRUE);
+        }
+        current = current->prev;
+    }
+    return (FALSE);
+}
 
 static void branch(t_tree *node, t_token *release)
 {
