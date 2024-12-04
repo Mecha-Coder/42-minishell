@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:24:09 by jpaul             #+#    #+#             */
-/*   Updated: 2024/12/01 18:50:08 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/12/04 12:43:25 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void run_pipe(t_tree *node, t_shell *data)
 
     left(&id_1, fd, node, data);
     right(&id_2, fd, node, data);
-
+    
     close(fd[0]);
     close(fd[1]);
     waitpid(id_1, &status, 0);

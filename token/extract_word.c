@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-static int is_word(char c, int *detect);
+static int is_word(char c, int *detect, int sub);
 static int delimiter(char c);
 
 /* >>> extract_word
@@ -32,7 +32,7 @@ Return
 - NULL, if no word found
 */
 
-t_token *extract_word(char *s)
+t_token *extract_word(char *s, int sub)
 {
     int i;
     int j;
@@ -44,7 +44,7 @@ t_token *extract_word(char *s)
     (i = 0, detect = ON, word = NULL, prev = FALSE);
     while (1)
     {
-        now = is_word(s[i], &detect);
+        now = is_word(s[i], &detect, sub);
         if (now && !prev)
             j = i;
         if (!now && prev)
@@ -57,9 +57,9 @@ t_token *extract_word(char *s)
     return (token_jumpback(word));
 }
 
-static int is_word(char c, int *detect)
+static int is_word(char c, int *detect, int sub)
 {
-    detection(c, detect, FALSE);
+    detection(c, detect, sub);
     if (*detect == ON && delimiter(c))
         return (FALSE);
     else

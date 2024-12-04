@@ -9,7 +9,7 @@ t_token *token_jumpback(t_token *current);
 t_token *token_jumpfront(t_token *current);
 t_token *sort_token(t_token *head, char c);
 t_token *extract_operator(char *s);
-t_token *extract_word(char *s);
+t_token *extract_word(char *s, int sub);
 
 
 

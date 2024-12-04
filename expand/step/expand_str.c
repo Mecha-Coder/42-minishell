@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 21:22:28 by jpaul             #+#    #+#             */
-/*   Updated: 2024/12/03 12:52:48 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/12/04 09:54:37 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static t_token *expand_str_2(t_token *current)
 {
     t_token *holder;
 
-    holder = extract_word(current->content);
+    holder = extract_word(current->content, TRUE);
     while (holder)
     {
         holder = expand_str_3(holder);

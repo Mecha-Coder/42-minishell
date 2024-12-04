@@ -57,7 +57,7 @@ void tokenize(t_shell *data)
     
     s = ft_strdup(data->input);
     operator = extract_operator(s);
-    word = extract_word(s);
+    word = extract_word(s, FALSE);
     data->token = join_token(operator, word);
     free(s);
 }

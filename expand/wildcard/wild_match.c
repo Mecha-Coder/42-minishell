@@ -6,7 +6,7 @@
 /*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 14:59:14 by jpaul             #+#    #+#             */
-/*   Updated: 2024/12/03 11:49:43 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/12/04 10:18:19 by jpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,15 @@ int wild_match(char *entry, char *pattern)
 {
     if (is_wild_match(entry, pattern))
     {
-        if (!ft_strcmp(entry, "..") || !ft_strcmp(entry, "."))
+        if (entry[0] == '.' )
         {
-            if (ft_strchr(pattern, '.'))
+            if (pattern[0] == '.')
                 return (TRUE);
             return (FALSE);
         }
         return (TRUE);
     }
     return (FALSE);
-    
 }
 
 static int is_wild_match(char *entry, char *pattern)
