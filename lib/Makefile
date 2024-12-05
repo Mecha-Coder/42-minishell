@@ -10,7 +10,7 @@ GNL = get_next_line.a
 PRINTF_DIR = ft_printf/
 PRINTF = ft_printf.a
 
-CC = cc
+CC = gcc
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 

@@ -6,13 +6,20 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 16:29:23 by jetan             #+#    #+#             */
-/*   Updated: 2024/11/15 17:58:13 by jetan            ###   ########.fr       */
+/*   Updated: 2024/12/05 15:56:53 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 int	g_signal = 0;
+
+void	heredoc_handler(int signo)
+{
+	(void)signo;
+	printf("SIGINT\n");
+	exit(130);
+}
 
 void	sigint_handler(int signo)
 {

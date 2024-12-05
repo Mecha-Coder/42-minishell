@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:19:42 by jpaul             #+#    #+#             */
-/*   Updated: 2024/12/02 15:20:25 by jetan            ###   ########.fr       */
+/*   Updated: 2024/12/05 17:17:36 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,111 +34,112 @@ int : execution exit code
 
 int none_builtin(char **cmd, t_env *env)
 {
-    pid_t id;
-    int status;
-
-    id = fork();
-    if (id < 0)
-        err_exit("fork", errno);
-    else if (!id)
-        child(cmd, env);
-    else
-        waitpid(id, &status, 0);
-    if (WIFSIGNALED(status))
-        return (WTERMSIG(status) + 128);
-    else
-        return(WEXITSTATUS(status));
-    // return (WEXITSTATUS(status));
+	pid_t id;
+	int status;
+	
+	status = 0;
+	id = fork();
+	if (id < 0)
+		err_exit("fork", errno);
+	else if (!id)
+		child(cmd, env);
+	else
+		waitpid(id, &status, 0);
+	if (WIFSIGNALED(status))
+		return (WTERMSIG(status) + 128);
+	else
+		return(WEXITSTATUS(status));
+	// return (WEXITSTATUS(status));
 }
 
 static void	child(char **cmd, t_env *list)
 {
-    char **all;
-    char **env;
-    char *path;
+	char **all;
+	char **env;
+	char *path;
 
-    env = env_list(list);
-    all = all_path(list);
-    if (ft_strchr(cmd[0], '/') || !all)
-        execute(cmd[0], cmd, env);
-    else
-    {
-        path = get_path(cmd[0], all);
-        if (path)
-        {
-            execute(path, cmd, env);
-            free(path);
-        }
-        else    
-            no_cmd_msg(cmd[0]);
-    }
-    if (all)
-        free_list(all);
-    free_list(env);
-    exit(127);
+	env = env_list(list);
+	all = all_path(list);
+	if (ft_strchr(cmd[0], '/') || !all)
+		execute(cmd[0], cmd, env);
+	else
+	{
+		path = get_path(cmd[0], all);
+		if (path)
+		{
+			execute(path, cmd, env);
+			free(path);
+		}
+		else    
+			no_cmd_msg(cmd[0]);
+	}
+	if (all)
+		free_list(all);
+	free_list(env);
+	exit(127);
 }
 
 static void no_cmd_msg(char *command)
 {
-    ft_putstr_fd(command, 2);
-    ft_putstr_fd(": command not found\n", 2);
+	ft_putstr_fd(command, 2);
+	ft_putstr_fd(": command not found\n", 2);
 }
 
 static void execute(char *path, char **cmd, char **env)
 {
-    execve(path, cmd, env);
-    err_msg_3(path, strerror(errno));
+	execve(path, cmd, env);
+	err_msg_3(path, strerror(errno));
 }
 
 /*
 void answer(char **cmd, char *path)
 {
-    t_env n1;
-    t_env n2;
-    t_env n3;
+	t_env n1;
+	t_env n2;
+	t_env n3;
 
-    n1.key = "Hello";
-    n1.val = "there";
-    n1.next = &n2;
+	n1.key = "Hello";
+	n1.val = "there";
+	n1.next = &n2;
 
-    n2.key = "Haha";
-    n2.val = "lala";
-    n2.next = &n3;
+	n2.key = "Haha";
+	n2.val = "lala";
+	n2.next = &n3;
 
-    n3.key = "PATH";
-    n3.val = path;
-    n3.next = NULL;
+	n3.key = "PATH";
+	n3.val = path;
+	n3.next = NULL;
 
-    printf("\nExit code = %d\n", none_builtin(cmd, &n1));
+	printf("\nExit code = %d\n", none_builtin(cmd, &n1));
 }
 
 int main()
 {
-    char path[] = "";
-    // absolute path - valid / invalid / delete PATH
+	char path[] = "";
+	// absolute path - valid / invalid / delete PATH
 
-    // char *s1[] = {"/usr/bin/ls", NULL};
-    // char *s2[] = {"/usr/bin/env", NULL};
-    // char *s3[] = {"/usr/bin/log", NULL};
-    // char *s4[] = {"/dsads/dssda/dsas", NULL};
+	// char *s1[] = {"/usr/bin/ls", NULL};
+	// char *s2[] = {"/usr/bin/env", NULL};
+	// char *s3[] = {"/usr/bin/log", NULL};
+	// char *s4[] = {"/dsads/dssda/dsas", NULL};
 
-    
-    //--------------------------------------------------
+	
+	//--------------------------------------------------
 
-    // relative path - valid / invalid / delete PATH
+	// relative path - valid / invalid / delete PATH
 
-    // char *s5[] = {"/bin/ls", NULL};
-    // char *s6[] = {"/bin/env", NULL};
-    // char *s7[] = {"/dsas", NULL};
+	// char *s5[] = {"/bin/ls", NULL};
+	// char *s6[] = {"/bin/env", NULL};
+	// char *s7[] = {"/dsas", NULL};
 
    //--------------------------------------------------
 
-    // command - valid / invalid / deleted PATH
-    
-    // char *s8[] = {"ls", NULL};
-    // char *s9[] = {"env", NULL};
-    char *s10[] = {"dsadad", NULL};
+	// command - valid / invalid / deleted PATH
+	
+	// char *s8[] = {"ls", NULL};
+	// char *s9[] = {"env", NULL};
+	char *s10[] = {"dsadad", NULL};
 
-        answer(s10, path);
+		answer(s10, path);
 }
 */

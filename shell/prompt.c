@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpaul <jpaul@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 19:39:34 by jpaul             #+#    #+#             */
-/*   Updated: 2024/12/01 20:04:29 by jpaul            ###   ########.fr       */
+/*   Updated: 2024/12/05 15:10:41 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void prompt(t_shell *data)
                 if (token_syntax(data))
                 {
                     build_ast(data);
-                    run_heredoc(data->tree);
+                    if (run_heredoc(data->tree) == 1)
+                        continue ;
                     run_ast(data);
                 }
             }
