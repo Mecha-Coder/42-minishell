@@ -42,8 +42,7 @@ int none_builtin(char **cmd, t_env *env)
         err_exit("fork", errno);
     else if (!id)
         child(cmd, env);
-    else
-        waitpid(id, &status, 0);
+    waitpid(id, &status, 0);
     return (WEXITSTATUS(status));
 }
 

@@ -28,8 +28,14 @@ void run_pipe(t_tree *node, t_shell *data)
     node->left->terminate = TRUE;
     node->right->terminate = TRUE;
 
-    left(&id_1, fd, node, data);
     right(&id_2, fd, node, data);
+
+    if (node->pipe)
+    {
+        close(node->pipe[0]);
+        close(node->pipe[1]);
+    }
+    left(&id_1, fd, node, data);
     
     close(fd[0]);
     close(fd[1]);
@@ -47,9 +53,9 @@ static void left(pid_t *id, int *fd, t_tree *node, t_shell *data)
     {
         if (node->left->type == EXE || node->left->type == SUB)
         {
-            close(fd[0]);
             dup2(fd[1], STDOUT_FILENO);
             close(fd[0]);
+            close(fd[1]);
         }
         descent_tree(node->left, data);
     }
@@ -62,13 +68,13 @@ static void right(pid_t *id, int *fd, t_tree *node, t_shell *data)
         err_exit("fork", errno);
     else if (*id == 0)
     {
-        close(fd[1]);
         dup2(fd[0], STDIN_FILENO);
         close(fd[0]);
+        close(fd[1]);
         if (node->pipe)
         {
-            close(node->pipe[0]);
             dup2(node->pipe[1], STDOUT_FILENO);
+            close(node->pipe[0]);
             close(node->pipe[1]);
         }
         descent_tree(node->right, data);
