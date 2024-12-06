@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 19:39:34 by jpaul             #+#    #+#             */
-/*   Updated: 2024/12/05 15:10:41 by jetan            ###   ########.fr       */
+/*   Updated: 2024/12/06 14:05:21 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void prompt(t_shell *data)
                 if (token_syntax(data))
                 {
                     build_ast(data);
-                    if (run_heredoc(data->tree) == 1)
+                    if (run_heredoc(data->tree, data) == 1)
                         continue ;
                     run_ast(data);
                 }

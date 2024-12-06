@@ -6,7 +6,7 @@
 /*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 20:59:48 by jpaul             #+#    #+#             */
-/*   Updated: 2024/12/05 16:59:07 by jetan            ###   ########.fr       */
+/*   Updated: 2024/12/06 14:12:02 by jetan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ Purpose: Responsible to run through the tree and get heredoc input
 //     run_heredoc(node->left);
 //     run_heredoc(node->right);
 // }
-int run_heredoc(t_tree *node)
+int run_heredoc(t_tree *node, t_shell *data)
 {
 	t_token *current;
 	pid_t pid;
@@ -54,28 +54,28 @@ int run_heredoc(t_tree *node)
 			}
 			else if (pid == 0)
 			{
-				// signal(SIGINT, heredoc_handler);
 				signal(SIGINT, SIG_DFL);
 				prompt_heredoc(current->herefd, current->content);
 				exit(0); // Ensure child process exits after running prompt_heredoc
 			}
 			else
 			{
-				// Parent process
-				signal(SIGINT, sigint_handler_child);
+				signal(SIGINT, SIG_IGN);// Parent process
 				waitpid(pid, &status, 0); // Wait for child to finish
-				if (WIFSIGNALED(status))
+				signal(SIGINT, sigint_handler);
+				if (WTERMSIG(status) == SIGINT)
 				{
-					// data->cmd_exit_no = WTERMSIG(status) + 128;
+					printf("\n");
+					data->cmd_exit_no = WTERMSIG(status) + 128;
 					return (1);
 				}
 			}
 		}
 		current = current->next;
 	}
-	if (run_heredoc(node->left))
+	if (run_heredoc(node->left, data))
 		return (1);
-	if (run_heredoc(node->right))
+	if (run_heredoc(node->right, data))
 		return (1);
 	return (0);
 }
