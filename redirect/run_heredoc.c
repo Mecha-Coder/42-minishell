@@ -27,7 +27,10 @@ void run_heredoc(t_tree *node)
     while (current)
     {
         if (current->type == HERE)
+        {
             prompt_heredoc(current->herefd, current->content);
+            close(current->herefd[1]);
+        }
         current = current->next;
     }
     run_heredoc(node->left);

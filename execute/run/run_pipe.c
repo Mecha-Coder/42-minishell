@@ -46,6 +46,8 @@ void run_pipe(t_tree *node, t_shell *data)
 
 static void left(pid_t *id, int *fd, t_tree *node, t_shell *data)
 {
+    t_token *current;
+
     *id = fork();
     if (*id < 0)
         err_exit("fork", errno);
@@ -59,10 +61,22 @@ static void left(pid_t *id, int *fd, t_tree *node, t_shell *data)
         }
         descent_tree(node->left, data);
     }
+    current = node->token;
+    while (current)
+    {
+        if (current->type == HERE)
+        {
+            close(current->herefd[0]);
+            close(current->herefd[1]);
+        }
+        current = current->next;
+    }
 }
 
 static void right(pid_t *id, int *fd, t_tree *node, t_shell *data)
 {
+    t_token *current;
+
     *id = fork();
     if (*id < 0)
         err_exit("fork", errno);
@@ -78,5 +92,15 @@ static void right(pid_t *id, int *fd, t_tree *node, t_shell *data)
             close(node->pipe[1]);
         }
         descent_tree(node->right, data);
+    }
+    current = node->token;
+    while (current)
+    {
+        if (current->type == HERE)
+        {
+            close(current->herefd[0]);
+            close(current->herefd[1]);
+        }
+        current = current->next;
     }
 }

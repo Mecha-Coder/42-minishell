@@ -4,7 +4,7 @@
 // None_builtin
 char **all_path(t_env *env);
 char *get_path(char *file, char **all_path);
-int none_builtin(char **cmd, t_env *list);
+int none_builtin(char **cmd, t_env *list, int terminate);
 
 // Run
 void run_ast(t_shell *data);
