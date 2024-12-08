@@ -13,6 +13,7 @@
         "memory": "c",
         "optional": "c",
         "cmath": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "tree.h": "c"
     }
 }

@@ -17,7 +17,7 @@ int main(int ac, char **av, char **env)
             if (token_syntax(&data))
             {   
                 build_ast(&data);
-                run_heredoc(data.tree);
+                run_here(data.tree, &data);
                 run_ast(&data);
                 free(data.input);
                 destroy_tree(data.tree);

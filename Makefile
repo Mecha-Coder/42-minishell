@@ -27,7 +27,8 @@ SRCS =	$(wildcard ./built_in/*.c) \
 		$(wildcard ./token/*.c) \
 		$(wildcard ./utils/*.c) \
 		$(wildcard ./visual/*.c) \
-		main.c
+		$(wildcard ./signal/*.c) \
+		main2.c
 
 OBJS = $(SRCS:.c=.o)
 

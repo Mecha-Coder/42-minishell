@@ -14,10 +14,51 @@
 
 static void reset_prompt(t_shell *data);
 static void prev_status(char *s, int code);
+static int prep_token_for_ast(t_shell *data);
 
 /* >>> prompt
-Purpose: Show propmt and wait for input. This makes the shell interective
+Purpose: Show prompt and wait for input. This makes the shell interective
 */
+
+void prompt(t_shell *data)
+{
+    char s[40];
+
+    ft_strcpy(s, PROMPT);
+    signal(SIGINT, sigint_handler);
+	signal(SIGQUIT, SIG_IGN);
+    while (1)
+    {
+        prev_status(s, data->cmd_exit_no);
+        data->input = readline(s);
+        if (data->input)
+        {
+            if (prep_token_for_ast(data))  
+            {
+                build_ast(data);
+                 if (run_here(data->tree, data) == 1)
+                    continue ;
+                run_ast(data);
+            }
+            reset_prompt(data);
+        }
+        else
+            break;
+        signal(SIGINT, sigint_handler);
+		signal(SIGQUIT, SIG_IGN);
+    }
+}
+
+static int prep_token_for_ast(t_shell *data)
+{
+    if (!is_empty(data->input) && input_syntax(data))  
+    {
+        tokenize(data);
+        if (token_syntax(data))
+            return (TRUE);
+    }
+    return (FALSE);
+}
 
 static void reset_prompt(t_shell *data)
 {
@@ -38,30 +79,3 @@ static void prev_status(char *s, int code)
         s[6] = '6';
 }
 
-void prompt(t_shell *data)
-{
-    char s[40];
-
-    ft_strcpy(s, PROMPT);
-    while (1)
-    {
-        prev_status(s, data->cmd_exit_no);
-        data->input = readline(s);
-        if (data->input)
-        {
-            if (!is_empty(data->input) && input_syntax(data))  
-            {
-                tokenize(data);
-                if (token_syntax(data))
-                {
-                    build_ast(data);
-                    run_heredoc(data->tree);
-                    run_ast(data);
-                }
-            }
-            reset_prompt(data);
-        }
-        else
-            break;
-    }
-}

@@ -28,7 +28,10 @@ void run_subshell(t_tree *node, t_shell *data)
         else if (id == 0)
             descent_tree(node->left, data);
         waitpid(id, &status, 0);
-        data->cmd_exit_no = WEXITSTATUS(status);
+        if (WIFSIGNALED(status))
+		    data->cmd_exit_no = WTERMSIG(status) + 128;
+        else
+            data->cmd_exit_no = WEXITSTATUS(status);
     }
     else
         data->cmd_exit_no = EXIT_FAILURE;
