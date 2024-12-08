@@ -1,6 +1,8 @@
 #ifndef MINISHELL_H
 #define MINISHELL_H
 
+extern int g_sig;
+
 #include <stdio.h>
 #include <stddef.h>
 #include <unistd.h>

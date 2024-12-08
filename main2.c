@@ -12,6 +12,8 @@
 
 #include "include/minishell.h"
 
+int g_sig = 0;
+
 int main(int ac, char **av, char **env)
 {
     t_shell data;

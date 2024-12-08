@@ -14,6 +14,8 @@
 
 void descent_tree(t_tree *node, t_shell *data)
 {
+    if (g_sig)
+        return ;
     if      (node->type == EXE)   run_exe(node, data);
     else if (node->type == PIPE)  run_pipe(node, data);
     else if (node->type == SUB)   run_subshell(node, data);

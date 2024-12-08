@@ -46,7 +46,11 @@ int none_builtin(char **cmd, t_env *env)
     else
         waitpid(id, &status, 0);
     if (WIFSIGNALED(status))
-		return (WTERMSIG(status) + 128);
+    {
+        g_sig = TRUE;
+        return (WTERMSIG(status) + 128);
+    }
+		
 	return(WEXITSTATUS(status));
 }
 

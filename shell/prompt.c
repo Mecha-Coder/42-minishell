@@ -69,6 +69,7 @@ static void reset_prompt(t_shell *data)
     data->tree = NULL;
     data->token = NULL;
     rl_on_new_line();
+    g_sig = FALSE;
 }
 
 static void prev_status(char *s, int code)
