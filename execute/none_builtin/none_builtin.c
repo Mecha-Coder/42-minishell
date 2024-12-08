@@ -32,13 +32,11 @@ Return
 int : execution exit code
 */
 
-int none_builtin(char **cmd, t_env *env, int terminate)
+int none_builtin(char **cmd, t_env *env)
 {
     pid_t id;
     int status;
-
-    if (terminate)
-        child(cmd, env);
+    
     id = fork();
     if (id < 0)
         err_exit("fork", errno);

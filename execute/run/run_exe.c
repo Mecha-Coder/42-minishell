@@ -12,7 +12,7 @@
 
 #include "../../include/minishell.h"
 
-static int execute(char **args, t_shell *data, int terminate)
+static int execute(char **args, t_shell *data)
 {
     int status;
 
@@ -24,7 +24,7 @@ static int execute(char **args, t_shell *data, int terminate)
     else if (!ft_strcmp(args[0], "cd"))     status = ft_cd(args, data);
     else if (!ft_strcmp(args[0], "env"))    status = ft_env(args, data);
     else if (!ft_strcmp(args[0], "exit"))   status = ft_exit(args, data);
-    else                                    status = none_builtin(args, data->env, terminate);
+    else                                    status = none_builtin(args, data->env);
     return (status);
 }
 
@@ -39,7 +39,7 @@ void run_exe(t_tree *node, t_shell *data)
         args = prep_arg(node->token);
         if (args)
         {
-            data->cmd_exit_no = execute(args, data, node->terminate);
+            data->cmd_exit_no = execute(args, data);
             free(args);
         }
         else
