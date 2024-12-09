@@ -26,12 +26,13 @@ void run_subshell(t_tree *node, t_shell *data)
         if (id < 0)
             err_exit("fork", errno);
         else if (id == 0)
+        {
+            signal(SIGINT, SIG_DFL);
+		    signal(SIGQUIT, SIG_DFL);
             descent_tree(node->left, data);
+        }
         waitpid(id, &status, 0);
-        if (WIFSIGNALED(status))
-		    data->cmd_exit_no = WTERMSIG(status) + 128;
-        else
-            data->cmd_exit_no = WEXITSTATUS(status);
+        data->cmd_exit_no = get_status(status);
     }
     else
         data->cmd_exit_no = EXIT_FAILURE;

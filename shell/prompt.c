@@ -36,9 +36,8 @@ void prompt(t_shell *data)
             if (prep_token_for_ast(data))  
             {
                 build_ast(data);
-                 if (run_here(data->tree, data) == 1)
-                    continue ;
-                run_ast(data);
+                if (run_here(data->tree, data) == 0)
+                    run_ast(data);   
             }
             reset_prompt(data);
         }

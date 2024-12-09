@@ -43,15 +43,8 @@ int none_builtin(char **cmd, t_env *env)
         err_exit("fork", errno);
     else if (!id)
         child(cmd, env);
-    else
-        waitpid(id, &status, 0);
-    if (WIFSIGNALED(status))
-    {
-        g_sig = TRUE;
-        return (WTERMSIG(status) + 128);
-    }
-		
-	return(WEXITSTATUS(status));
+    waitpid(id, &status, 0);
+    return (get_status(status));
 }
 
 static void	child(char **cmd, t_env *list)
