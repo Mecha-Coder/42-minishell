@@ -14,15 +14,10 @@
 
 void close_shell(int code, t_shell *data)
 {
-	int n;
-    
-	n = 999999999;
     if (data->input)
 	    free(data->input);
 	destroy_env(data);
 	destroy_tree(data->tree);
 	rl_clear_history();
-	while (n)
-		n--;
 	exit(code);
 }

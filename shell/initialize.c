@@ -40,5 +40,6 @@ void initialize(t_shell *data, char **env)
     data->input = NULL;
     data->token = NULL;
     data->tree = NULL;
+    signal(SIGTSTP, SIG_IGN);
 }
 

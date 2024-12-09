@@ -34,7 +34,6 @@ int do_redirect(t_token *current)
     {
         if (current->type == HERE)
         {
-            close(current->herefd[1]);
             dup2(current->herefd[0], STDIN_FILENO);
             close(current->herefd[0]);
         }
