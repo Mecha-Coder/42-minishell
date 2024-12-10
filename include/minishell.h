@@ -1,7 +1,19 @@
-#ifndef MINISHELL_H
-#define MINISHELL_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jetan <jetan@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/10 14:50:39 by jetan             #+#    #+#             */
+/*   Updated: 2024/12/10 14:50:39 by jetan            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-extern int g_sig;
+#ifndef MINISHELL_H
+# define MINISHELL_H
+
+extern int	g_sig;
 
 #include <stdio.h>
 #include <stddef.h>
