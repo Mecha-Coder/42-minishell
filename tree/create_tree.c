@@ -12,14 +12,14 @@
 
 #include "../include/minishell.h"
 
-t_tree *create_tree(t_token *token)
+t_tree	*create_tree(t_token *token)
 {
-    t_tree *new;
+	t_tree	*new;
 
-    new = (t_tree *)malloc(sizeof(t_tree));
-    if (!new)
-        err_exit("malloc", errno);
-    ft_memset(new, 0, sizeof(t_tree));
-    new->token = token;
-    return (new);
+	new = (t_tree *)malloc(sizeof(t_tree));
+	if (!new)
+		err_exit("malloc", errno);
+	ft_memset(new, 0, sizeof(t_tree));
+	new->token = token;
+	return (new);
 }

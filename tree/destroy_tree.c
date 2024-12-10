@@ -12,13 +12,13 @@
 
 #include "../include/minishell.h"
 
-void destroy_tree(t_tree *node)
+void	destroy_tree(t_tree *node)
 {
-    if (!node)
-        return ;
-    if (node->token)
-        destroy_token(node->token);
-    destroy_tree(node->left);
-    destroy_tree(node->right);
-    free(node);
+	if (!node)
+		return ;
+	if (node->token)
+		destroy_token(node->token);
+	destroy_tree(node->left);
+	destroy_tree(node->right);
+	free(node);
 }

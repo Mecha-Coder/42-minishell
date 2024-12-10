@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-static void branchout_tree(t_tree *node);
+static void	branchout_tree(t_tree *node);
 
 /* >>> build_ast
 Purpose: Based on the token, build Abstract Syntax Tree (AST)
@@ -24,24 +24,24 @@ Precedence - tree branchout following this order
 Else: Default is EXE
 
 */
-void build_ast(t_shell *data)
+void	build_ast(t_shell *data)
 {
-    merge_redirect(data->token);
-    data->tree = create_tree(data->token);
-    branchout_tree(data->tree);
+	merge_redirect(data->token);
+	data->tree = create_tree(data->token);
+	branchout_tree(data->tree);
 }
 
-static void branchout_tree(t_tree *node)
+static void	branchout_tree(t_tree *node)
 {
-    if (!node)
-        return ;
-    if (branch_combine(node)) 
-    {
-        branchout_tree(node->left);
-        branchout_tree(node->right);
-    }
-    else if (branch_subshell(node))
-        branchout_tree(node->left);
-    else 
-        node->type = EXE;
+	if (!node)
+		return ;
+	if (branch_combine(node))
+	{
+		branchout_tree(node->left);
+		branchout_tree(node->right);
+	}
+	else if (branch_subshell(node))
+		branchout_tree(node->left);
+	else
+		node->type = EXE;
 }
