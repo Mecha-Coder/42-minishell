@@ -28,73 +28,74 @@ Refer util/detection for what 1,2,3,4 mean
 Param
 - char *s  : input string
 - int sub  : 
-    TRUE : sub quote  non-printable
-    FALSE: Reverse sub
+	TRUE : sub quote  non-printable
+	FALSE: Reverse sub
 */
 
-void sub_quote(char *s, int sub)
+void	sub_quote(char *s, int sub)
 {
-    int i;
-    int detect;
-    int quote;
+	int	i;
+	int	detect;
+	int	quote;
 
-    (i = -1, detect = ON);
-    while (s[++i])
-    {
-        quote = detection(s[i], &detect, !sub);
-        if (sub && (quote == 1 || quote == 3))
-            s[i] = (char)30;
-        else if (sub && (quote == 2 || quote == 4))
-            s[i] = (char)26;
-        else if (!sub && (quote == 1 || quote == 3))
-            s[i] = '\"';
-        else if (!sub && (quote == 2 || quote == 4))
-            s[i] = '\'';
-    }
+	i = -1;
+	detect = ON;
+	while (s[++i])
+	{
+		quote = detection(s[i], &detect, !sub);
+		if (sub && (quote == 1 || quote == 3))
+			s[i] = (char)30;
+		else if (sub && (quote == 2 || quote == 4))
+			s[i] = (char)26;
+		else if (!sub && (quote == 1 || quote == 3))
+			s[i] = '\"';
+		else if (!sub && (quote == 2 || quote == 4))
+			s[i] = '\'';
+	}
 }
 
 /* Test 
 void print_none(char *s)
 {
-    int i = -1;
+	int i = -1;
 
-    while(s[++i])
-    {
-        if (s[i] == 26)
-            printf("(");
-        else if (s[i] == 30)
-            printf(")");
-        else
-            printf("%c", s[i]);
-    }
-    printf("\n");
+	while(s[++i])
+	{
+		if (s[i] == 26)
+			printf("(");
+		else if (s[i] == 30)
+			printf(")");
+		else
+			printf("%c", s[i]);
+	}
+	printf("\n");
 }
 
 int main()
 {
-    char s1[] = "This 'is'";
-    char s2[] = "\"Awesome\"";
-    char s3[] = "\"It's\" a fantastic day to \"'skate'\"";
-    char s4[] = "'$USER' \"USER\"";
-    sub_quote(s1, TRUE);
-    sub_quote(s2, TRUE);
-    sub_quote(s3, TRUE);
-    sub_quote(s4, TRUE);
-    
-    print_none(s1);
-    print_none(s2);
-    print_none(s3);
-    print_none(s4);
-    
-    sub_quote(s1, FALSE);
-    sub_quote(s2, FALSE);
-    sub_quote(s3, FALSE);
-    sub_quote(s4, FALSE);
-    
-    printf("\n");
-    print_none(s1);
-    print_none(s2);
-    print_none(s3);
-    print_none(s4);
+	char s1[] = "This 'is'";
+	char s2[] = "\"Awesome\"";
+	char s3[] = "\"It's\" a fantastic day to \"'skate'\"";
+	char s4[] = "'$USER' \"USER\"";
+	sub_quote(s1, TRUE);
+	sub_quote(s2, TRUE);
+	sub_quote(s3, TRUE);
+	sub_quote(s4, TRUE);
+	
+	print_none(s1);
+	print_none(s2);
+	print_none(s3);
+	print_none(s4);
+	
+	sub_quote(s1, FALSE);
+	sub_quote(s2, FALSE);
+	sub_quote(s3, FALSE);
+	sub_quote(s4, FALSE);
+	
+	printf("\n");
+	print_none(s1);
+	print_none(s2);
+	print_none(s3);
+	print_none(s4);
 }
 */
