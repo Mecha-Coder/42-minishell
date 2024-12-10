@@ -32,7 +32,8 @@ t_token	*extract_operator(char *s)
 	char	opt_list[11][3];
 	t_token	*operator;
 
-	(i = 1, operator = NULL);
+	i = 1;
+	operator = NULL;
 	initialize_words(opt_list);
 	while (opt_list[i][0])
 	{

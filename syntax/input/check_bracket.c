@@ -12,6 +12,8 @@
 
 #include "../../include/minishell.h"
 
+int	check_track(int track, int index, int i, char *s);
+
 /* >>> check_bracket
 Purpose: Bracket must be in pair O_BRACKET followed by C_BRACKET
 ====================================================================
@@ -49,6 +51,11 @@ int	check_bracket(char *s)
 		else if (detect == ON && s[i] == ')')
 			track--;
 	}
+	return (check_track(track, index, i, s));
+}
+
+int	check_track(int track, int index, int i, char *s)
+{
 	if (!track)
 		return (TRUE);
 	if (track > 0)
@@ -57,7 +64,8 @@ int	check_bracket(char *s)
 		err_msg_4(s, "invalid bracket placement", i);
 	return (FALSE);
 }
-/*
+
+/* 
 void answer(char *s)
 {
 	if (check_bracket(s))

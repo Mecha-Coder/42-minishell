@@ -17,7 +17,7 @@ token_jumpback
 Purpose: 
 - Doesn't matter at which node, 
 - This function will reset to point to token 'head' node
-======================================================================                          
+======================================================================
 Illustration
 -                               ↓ --< CURRENT >  
 	Token list: node1 ⇋ node2 ⇋ node 3 

@@ -19,7 +19,7 @@ int	ft_env(char **args, t_shell *data)
 
 	i = -1;
 	while (args[++i])
-	{	
+	{
 		if (ft_strcmp(args[i], "env"))
 		{
 			err_msg_3("env", "too many arguments");

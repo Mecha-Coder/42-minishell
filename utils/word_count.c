@@ -25,7 +25,10 @@ int	word_count(char *s)
 	int	flag;
 	int	count;
 
-	(i = -1, detect = ON, count = 0, flag = FALSE);
+	i = -1;
+	detect = ON;
+	count = 0;
+	flag = FALSE;
 	while (s[++i])
 	{
 		detection(s[i], &detect, TRUE);

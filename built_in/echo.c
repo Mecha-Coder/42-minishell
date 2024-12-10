@@ -43,7 +43,7 @@ int	ft_echo(char **args)
 		i++;
 	}
 	while (args[i])
-	{	
+	{
 		ft_printf("%s", args[i]);
 		if (args[i + 1] != NULL)
 			ft_printf(" ");

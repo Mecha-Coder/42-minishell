@@ -16,7 +16,7 @@
 Purpose: 
 - Doesn't matter at which node, 
 - This function will move forward to point to token 'tail' node
-======================================================================                          
+======================================================================
 Illustration
 -               ↓ --< CURRENT >  
 	Token list: node1 ⇋ node2 ⇋ node 3 

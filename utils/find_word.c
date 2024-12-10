@@ -40,7 +40,8 @@ int	find_word(char *s, char *word)
 	int	j;
 	int	detect;
 
-	(i = -1, detect = ON);
+	i = -1;
+	detect = ON;
 	while (s && s[++i])
 	{
 		j = 0;

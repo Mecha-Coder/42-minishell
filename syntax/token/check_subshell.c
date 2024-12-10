@@ -60,7 +60,8 @@ static t_pair	*pair_array(t_token *current)
 	int		count;
 	t_pair	*new;
 
-	(count = 0, new = NULL);
+	count = 0;
+	new = NULL;
 	while (current)
 	{
 		if (current->type == OB)

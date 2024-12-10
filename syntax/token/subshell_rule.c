@@ -43,7 +43,8 @@ int	check_pair(t_pair *pair, char *input)
 	int	i;
 	int	return_false;
 
-	(i = -1, return_false = 0);
+	i = -1;
+	return_false = 0;
 	while (pair[++i].ob)
 	{
 		if (redundant_rule(pair[i]) && ++return_false)

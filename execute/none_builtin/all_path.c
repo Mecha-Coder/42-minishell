@@ -14,6 +14,7 @@
 
 static char	**allocate_path(char *s);
 static char	*extract_path(char *s, int size);
+static int	path_exist(char **s, t_env *env);
 
 /* >>> all_path
 Purpose: 
@@ -51,8 +52,7 @@ char	**all_path(t_env *env)
 
 	i = 0;
 	j = 0;
-	s = env_val("PATH", env);
-	if (!s || is_empty(s))
+	if (!path_exist(&s, env))
 		return (NULL);
 	all = allocate_path(s);
 	while (1)
@@ -70,6 +70,17 @@ char	**all_path(t_env *env)
 	}
 	all[j] = NULL;
 	return (all);
+}
+
+static int	path_exist(char **s, t_env *env)
+{
+	char	*str;
+
+	str = env_val("PATH", env);
+	if (!str || is_empty(str))
+		return (FALSE);
+	*s = str;
+	return (TRUE);
 }
 
 static char	*extract_path(char *s, int size)
@@ -124,10 +135,14 @@ void answer(char *s)
 	n3.next = NULL;
 
 	path = all_path(&n1);
-	while (path[++i])
+	if (!path)
+		printf("No path\n");
+	else
+	{
+		while (path[++i])
 		printf("%d) [%s]\n", i, path[i]);
-	free_list(path);
-
+		free_list(path);
+	}
 	printf("\n-------------------------\n");
 }
 
@@ -136,5 +151,7 @@ int main()
 	answer("/urs/local/bin:/local/sbin:/usr/bin/log");
 	answer("/urs/local/bin:/local/sbin");
 	answer("/urs/local/bin");
+	answer("/urs/local/bin");
+	answer("");
 }
 */
