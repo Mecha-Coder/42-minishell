@@ -18,18 +18,18 @@ Purpose: For managing input/output
 2) Action FALSE >> After done redirect & execute reset previous I/O
 */
 
-void manage_io(int *fd, int action)
+void	manage_io(int *fd, int action)
 {
-    if (action)
-    {
-        fd[STDIN_FILENO] = dup(STDIN_FILENO);
-        fd[STDOUT_FILENO] = dup(STDOUT_FILENO);
-    }
-    else
-    {
-        dup2(fd[STDIN_FILENO], STDIN_FILENO);
-        dup2(fd[STDOUT_FILENO], STDOUT_FILENO);
-        close(fd[STDIN_FILENO]);
-        close(fd[STDOUT_FILENO]);
-    }
+	if (action)
+	{
+		fd[STDIN_FILENO] = dup(STDIN_FILENO);
+		fd[STDOUT_FILENO] = dup(STDOUT_FILENO);
+	}
+	else
+	{
+		dup2(fd[STDIN_FILENO], STDIN_FILENO);
+		dup2(fd[STDOUT_FILENO], STDOUT_FILENO);
+		close(fd[STDIN_FILENO]);
+		close(fd[STDOUT_FILENO]);
+	}
 }
