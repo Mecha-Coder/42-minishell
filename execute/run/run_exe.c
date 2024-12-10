@@ -17,7 +17,6 @@ static int execute(char **args, t_shell *data)
     int status;
 
     if      (!ft_strcmp(args[0], "pwd"))    status = ft_pwd();
-    else if (!ft_strcmp(args[0], "clear"))  status = ft_clear();
     else if (!ft_strcmp(args[0], "echo"))   status = ft_echo(args);
     else if (!ft_strcmp(args[0], "export")) status = ft_export(args, data);
     else if (!ft_strcmp(args[0], "unset"))  status = ft_unset(args, data);
