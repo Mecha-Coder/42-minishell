@@ -12,7 +12,7 @@
 
 #include "../../include/minishell.h"
 
-static int is_wild_match(char *entry, char *pattern);
+static int	is_wild_match(char *entry, char *pattern);
 
 /* >>>wildcard_match
 Purpose: Determine if entry text meet wildcard pattern
@@ -39,56 +39,56 @@ Solution:
 - This help to differentiate "*" and [w]
 ===============================================================
 Return: 
-    TRUE : Match wildcard pattern
-    FALSE: Not matching wildcard pattern
+	TRUE : Match wildcard pattern
+	FALSE: Not matching wildcard pattern
 */
-int wild_match(char *entry, char *pattern)
+int	wild_match(char *entry, char *pattern)
 {
-    if (is_wild_match(entry, pattern))
-    {
-        if (entry[0] == '.' )
-        {
-            if (pattern[0] == '.')
-                return (TRUE);
-            return (FALSE);
-        }
-        return (TRUE);
-    }
-    return (FALSE);
+	if (is_wild_match(entry, pattern))
+	{
+		if (entry[0] == '.' )
+		{
+			if (pattern[0] == '.')
+				return (TRUE);
+			return (FALSE);
+		}
+		return (TRUE);
+	}
+	return (FALSE);
 }
 
-static int is_wild_match(char *entry, char *pattern)
+static int	is_wild_match(char *entry, char *pattern)
 {
-    if (*pattern == '\0')
-        return (*entry == '\0');
-    if (*pattern == (char)31)
-        return (is_wild_match(entry, pattern + 1) 
-            || (*entry && is_wild_match(entry + 1, pattern)));
-    if (*pattern == *entry)
-        return (is_wild_match(entry + 1, pattern + 1));
-    return FALSE;
+	if (*pattern == '\0')
+		return (*entry == '\0');
+	if (*pattern == (char)31)
+		return (is_wild_match(entry, pattern + 1)
+			|| (*entry && is_wild_match(entry + 1, pattern)));
+	if (*pattern == *entry)
+		return (is_wild_match(entry + 1, pattern + 1));
+	return (FALSE);
 }
 /*
 void answer(char *pattern)
 {
-    if (wildcard_match("d'mmy.txt", pattern))
-        printf("Match\n");
-    else
-        printf("Not match\n");
+	if (wildcard_match("d'mmy.txt", pattern))
+		printf("Match\n");
+	else
+		printf("Not match\n");
 }
 
 
 int main()
 {        //      0123 
-    char s[] =  ".*";
-    s[1] = (char)31;
-    // answer(s);
-    // s[1] = (char)31;
-    // answer(s);
+	char s[] =  ".*";
+	s[1] = (char)31;
+	// answer(s);
+	// s[1] = (char)31;
+	// answer(s);
 
-    if (is_wild_match("..", s))
-        printf("Match\n");
-    else
-        printf("Not match\n");
+	if (is_wild_match("..", s))
+		printf("Match\n");
+	else
+		printf("Not match\n");
 }
 */

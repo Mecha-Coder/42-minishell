@@ -31,86 +31,82 @@ If no wildcard still can work like strcmp
 ===========================================================================
 Side effect
 - Update the char **match pointer either
-    * Found 1 (malloc)
-    * NULL
+	* Found 1 (malloc)
+	* NULL
 */
 
-int wild_redir(char **match, char *pattern)
+int	wild_redir(char **match, char *pattern)
 {
-    DIR *dir;
-    struct dirent *entry;
-    
-    (*match = NULL, dir = opendir("."));
-    if (!dir)
-        err_exit("opendir", errno);
-    entry = readdir(dir);
-    while (entry)
-    {
-        if (wild_match(entry->d_name, pattern))
-        {
-            if (!(*match))
-                *match = ft_strdup(entry->d_name);
-            else
-                return (free(*match), closedir(dir), FALSE);
-        }
-        entry = readdir(dir);
-    }
-    closedir(dir);
-    return (TRUE);
-}
+	DIR				*dir;
+	struct dirent	*entry;
 
+	*match = NULL;
+	dir = opendir(".");
+	if (!dir)
+		err_exit("opendir", errno);
+	entry = readdir(dir);
+	while (entry)
+	{
+		if (wild_match(entry->d_name, pattern))
+		{
+			if (!(*match))
+				*match = ft_strdup(entry->d_name);
+			else
+				return (free(*match), closedir(dir), FALSE);
+		}
+		entry = readdir(dir);
+	}
+	closedir(dir);
+	return (TRUE);
+}
 
 /* Test
 void answer(char *pattern)
 {
-    char *s;
+	char *s;
 
-    sub_wild(pattern, TRUE);
-    if (wild_redir(&s, pattern))
-    {
-        if (s)
-        {
-            printf("%s\n", s);
-            free (s);
-        }
-        else  printf("NULL\n");
-    }
-    else printf("Ambiguous error prompt\n");
-    printf("\n------------------------\n");
+	sub_wild(pattern, TRUE);
+	if (wild_redir(&s, pattern))
+	{
+		if (s)
+		{
+			printf("%s\n", s);
+			free (s);
+		}
+		else  printf("NULL\n");
+	}
+	else printf("Ambiguous error prompt\n");
+	printf("\n------------------------\n");
 }
 
 int main()
 {   
-    
-    printf ("\n========== OK (MATCH)=========\n\n");
-    char s1[] = "file*";
-    char s2[] = "*logx";
-    char s3[] = "*ex*"; 
+	
+	printf ("\n========== OK (MATCH)=========\n\n");
+	char s1[] = "file*";
+	char s2[] = "*logx";
+	char s3[] = "*ex*"; 
 
-    answer(s1);
-    answer(s2);
-    answer(s3);
-    printf ("\n========== OK (NO MATCH)=========\n\n");
+	answer(s1);
+	answer(s2);
+	answer(s3);
+	printf ("\n========== OK (NO MATCH)=========\n\n");
 
-    char s4[] = "*tt*";
-    char s5[] = "*none*";
+	char s4[] = "*tt*";
+	char s5[] = "*none*";
 
-    answer(s4);
-    answer(s5);
+	answer(s4);
+	answer(s5);
 
-    printf ("\n========== ERROR=========\n\n");
-    char s6[] = "d*m*";
-    char s7[] = "*";
-    char s8[] = "dm";
-    char s9[] = "dm.txt";
+	printf ("\n========== ERROR=========\n\n");
+	char s6[] = "d*m*";
+	char s7[] = "*";
+	char s8[] = "dm";
+	char s9[] = "dm.txt";
 
-    answer(s6);
-    answer(s7);
-    answer(s8);
-    answer(s9);
+	answer(s6);
+	answer(s7);
+	answer(s8);
+	answer(s9);
 }
 */
-
-
-
-
