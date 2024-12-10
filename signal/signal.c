@@ -12,7 +12,6 @@
 
 #include "../include/minishell.h"
 
-
 void	heredoc_handler(int signo)
 {
 	(void)signo;

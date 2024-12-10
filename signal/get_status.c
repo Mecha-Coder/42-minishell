@@ -21,16 +21,16 @@ Param
 - int status -> same status give to waitpid 
 */
 
-int get_status(int status)
+int	get_status(int status)
 {
-    int exit_code;
+	int	exit_code;
 
-    if (WIFSIGNALED(status))
-    {
-        exit_code = WTERMSIG(status);
-        if (exit_code == 2)
-            g_sig = TRUE;
-        return (exit_code + 128);
-    }
-    return (WEXITSTATUS(status));
+	if (WIFSIGNALED(status))
+	{
+		exit_code = WTERMSIG(status);
+		if (exit_code == 2)
+			g_sig = TRUE;
+		return (exit_code + 128);
+	}
+	return (WEXITSTATUS(status));
 }
