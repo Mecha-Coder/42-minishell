@@ -12,21 +12,21 @@
 
 #include "../include/minishell.h"
 
-void destroy_token(t_token *token)
+void	destroy_token(t_token *token)
 {
-    t_token *temp;
-    
-    while (token)
-    {
-        if (token->content)
-            free(token->content);
-        if (token->herefd[0] > 2 && token->herefd[1] > 2)
-        {
-            close(token->herefd[0]);
-            close(token->herefd[1]);
-        }
-        temp = token->next;
-        free(token);
-        token = temp;
-    }
+	t_token	*temp;
+
+	while (token)
+	{
+		if (token->content)
+			free(token->content);
+		if (token->herefd[0] > 2 && token->herefd[1] > 2)
+		{
+			close(token->herefd[0]);
+			close(token->herefd[1]);
+		}
+		temp = token->next;
+		free(token);
+		token = temp;
+	}
 }

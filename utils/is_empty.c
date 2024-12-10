@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-static int space_char(char c);
+static int	space_char(char c);
 
 /* >>>is_empty
 Purpose: Check if input string 
@@ -20,20 +20,20 @@ Purpose: Check if input string
 - space character   "     "
 =======================================================
 Return  :
-    OK  : TRUE
-    KO  : FALSE
+	OK  : TRUE
+	KO  : FALSE
 */
-int is_empty(char *s)
+int	is_empty(char *s)
 {
 	while (s && *s)
 	{
 		if (!space_char(*s++))
 			return (FALSE);
 	}
-	return(TRUE);
+	return (TRUE);
 }
 
-static int space_char(char c)
+static int	space_char(char c)
 {
-    return (c == ' ' || c == '\t');
+	return (c == ' ' || c == '\t');
 }

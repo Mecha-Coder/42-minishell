@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-static void initialize_detection(char *s_quote, char *d_quote, int sub);
+static void	initialize_detection(char *s_quote, char *d_quote, int sub);
 
 /* >>> detection
 Purpose:
@@ -30,14 +30,14 @@ Param:
 - char c     : The current reading character by the parent
 - int *state : reference pointer to &state from parent function
 - int sub    : is quote sub wil non-printable
-    TRUE : non-printable
+	TRUE : non-printable
 	FALSE: Normal      
 =============================================================================
 Example
 
 state: ON  |  DQ_OFF   |  ON
-           "Hello there"
-           ^           ^
+		   "Hello there"
+		   ^           ^
 return     1000000000003 
 =============================================================================
 Slight modification for expansion
@@ -71,20 +71,20 @@ Side effect
  * DQ_OFF (2)
 */
 
-int detection(char c, int *state, int sub)
+int	detection(char c, int *state, int sub)
 {
-	char s_quote;
-	char d_quote;
+	char	s_quote;
+	char	d_quote;
 
 	initialize_detection(&s_quote, &d_quote, sub);
-    if (c == d_quote && *state == ON)      {*state = DQ_OFF; return (1);}
+	if (c == d_quote && *state == ON)      {*state = DQ_OFF; return (1);}
 	if (c == s_quote && *state == ON)      {*state = SQ_OFF; return (2);}
 	if (c == d_quote && *state == DQ_OFF)  {*state = ON;return (3);}
 	if (c == s_quote && *state == SQ_OFF)  {*state = ON;return (4);}
 	return (0);
 }
 
-static void initialize_detection(char *s_quote, char *d_quote, int sub)
+static void	initialize_detection(char *s_quote, char *d_quote, int sub)
 {
 	if (sub)
 	{

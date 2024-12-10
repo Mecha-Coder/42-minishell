@@ -12,39 +12,39 @@
 
 #include "../../include/minishell.h"
 
-static int execute(char **args, t_shell *data)
+static int	execute(char **args, t_shell *data)
 {
-    int status;
+	int	status;
 
-    if      (!ft_strcmp(args[0], "pwd"))    status = ft_pwd();
-    else if (!ft_strcmp(args[0], "echo"))   status = ft_echo(args);
-    else if (!ft_strcmp(args[0], "export")) status = ft_export(args, data);
-    else if (!ft_strcmp(args[0], "unset"))  status = ft_unset(args, data);
-    else if (!ft_strcmp(args[0], "cd"))     status = ft_cd(args, data);
-    else if (!ft_strcmp(args[0], "env"))    status = ft_env(args, data);
-    else if (!ft_strcmp(args[0], "exit"))   status = ft_exit(args, data);
-    else                                    status = none_builtin(args, data->env);
-    return (status);
+	if (!ft_strcmp(args[0], "pwd"))    status = ft_pwd();
+	else if (!ft_strcmp(args[0], "echo"))   status = ft_echo(args);
+	else if (!ft_strcmp(args[0], "export")) status = ft_export(args, data);
+	else if (!ft_strcmp(args[0], "unset"))  status = ft_unset(args, data);
+	else if (!ft_strcmp(args[0], "cd"))     status = ft_cd(args, data);
+	else if (!ft_strcmp(args[0], "env"))    status = ft_env(args, data);
+	else if (!ft_strcmp(args[0], "exit"))   status = ft_exit(args, data);
+	else                                    status = none_builtin(args, data->env);
+	return (status);
 }
 
 void run_exe(t_tree *node, t_shell *data)
 {
-    char **args;
-    int io[2];
+	char **args;
+	int io[2];
 
-    manage_io(io, TRUE);
-    if (expansion(node, data) && do_redirect(node->token))
-    {
-        args = prep_arg(node->token);
-        if (args)
-        {
-            data->cmd_exit_no = execute(args, data);
-            free(args);
-        }
-        else
-            data->cmd_exit_no = EXIT_SUCCESS;
-    }
-    else
-        data->cmd_exit_no = EXIT_FAILURE;
-    manage_io(io, FALSE);
+	manage_io(io, TRUE);
+	if (expansion(node, data) && do_redirect(node->token))
+	{
+		args = prep_arg(node->token);
+		if (args)
+		{
+			data->cmd_exit_no = execute(args, data);
+			free(args);
+		}
+		else
+			data->cmd_exit_no = EXIT_SUCCESS;
+	}
+	else
+		data->cmd_exit_no = EXIT_FAILURE;
+	manage_io(io, FALSE);
 }

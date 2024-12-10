@@ -16,10 +16,10 @@
 #define SUB_ERR_2 "misuse of subshell operator"
 #define SUB_ERR_3 "redundant subshell operator"
 
-static int redundant_rule(t_pair pair);
-static int ob_left_rule(t_token *ob_left);
-static int cb_left_rule(t_token *cb_left);
-static int cb_right_rule(t_token *cb_right);
+static int	redundant_rule(t_pair pair);
+static int	ob_left_rule(t_token *ob_left);
+static int	cb_left_rule(t_token *cb_left);
+static int	cb_right_rule(t_token *cb_right);
 
 /* >>> check_pair
 Purpose:
@@ -38,56 +38,52 @@ Redundant bracket is set as error (())
 
    <OB> (   ) <CB>  <----REDUNDANT BRACKET
 */
-int check_pair(t_pair *pair, char *input)
+int	check_pair(t_pair *pair, char *input)
 {
-    int i;
-    int return_false;
+	int	i;
+	int	return_false;
 
-    (i = -1, return_false = 0);
-    while (pair[++i].ob)
-    {
-        if (redundant_rule(pair[i]) && ++return_false)
-            err_msg_4(input, SUB_ERR_3, pair[i].ob->index);
-
-        else if (ob_left_rule(pair[i].ob->prev) && ++return_false)
-            err_msg_4(input, SUB_ERR_2, pair[i].ob->index);
-
-        else if (cb_left_rule(pair[i].cb->prev) && ++return_false)
-            err_msg_4(input, SUB_ERR_2, pair[i].cb->index);
-
-        else if (cb_right_rule(pair[i].cb->next) && ++return_false)
-            err_msg_4(input, SUB_ERR_1, pair[i].cb->next->index);
-
-        if (return_false)
-            return (FALSE);
-    }
-    return (TRUE);
+	(i = -1, return_false = 0);
+	while (pair[++i].ob)
+	{
+		if (redundant_rule(pair[i]) && ++return_false)
+			err_msg_4(input, SUB_ERR_3, pair[i].ob->index);
+		else if (ob_left_rule(pair[i].ob->prev) && ++return_false)
+			err_msg_4(input, SUB_ERR_2, pair[i].ob->index);
+		else if (cb_left_rule(pair[i].cb->prev) && ++return_false)
+			err_msg_4(input, SUB_ERR_2, pair[i].cb->index);
+		else if (cb_right_rule(pair[i].cb->next) && ++return_false)
+			err_msg_4(input, SUB_ERR_1, pair[i].cb->next->index);
+		if (return_false)
+			return (FALSE);
+	}
+	return (TRUE);
 }
 
-static int redundant_rule(t_pair pair)
+static int	redundant_rule(t_pair pair)
 {
-    return (pair.ob->prev && pair.cb->next
-            && pair.ob->prev->type == OB
-            && pair.cb->next->type == CB);
+	return (pair.ob->prev && pair.cb->next
+		&& pair.ob->prev->type == OB
+		&& pair.cb->next->type == CB);
 }
 
-static int ob_left_rule(t_token *ob_left)
+static int	ob_left_rule(t_token *ob_left)
 {
-  return (ob_left 
-        && ob_left->type != AND
-        && ob_left->type != OR
-        && ob_left->type != PIPE
-        && ob_left->type != OB);
+	return (ob_left
+		&& ob_left->type != AND
+		&& ob_left->type != OR
+		&& ob_left->type != PIPE
+		&& ob_left->type != OB);
 }
 
-static int cb_left_rule(t_token *cb_left)
+static int	cb_left_rule(t_token *cb_left)
 {
-  return (cb_left->type == OB);
+	return (cb_left->type == OB);
 }
 
-static int cb_right_rule(t_token *cb_right)
+static int	cb_right_rule(t_token *cb_right)
 {
-  return (cb_right 
-        && (cb_right->type == OB
-        || cb_right->type == STR));
+	return (cb_right
+		&& (cb_right->type == OB
+			|| cb_right->type == STR));
 }

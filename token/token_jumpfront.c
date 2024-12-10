@@ -19,19 +19,19 @@ Purpose:
 ======================================================================                          
 Illustration
 -               ↓ --< CURRENT >  
-  Token list: node1 ⇋ node2 ⇋ node 3 
+	Token list: node1 ⇋ node2 ⇋ node 3 
 
 -                               ↓ --< MOVE >  
-  Token list: node1 ⇋ node2 ⇋ node 3 
+	Token list: node1 ⇋ node2 ⇋ node 3 
 
 Node: Token is a douply linked-list
 ======================================================================
 Return: address of the tail node
 */
 
-t_token *token_jumpfront(t_token *current)
+t_token	*token_jumpfront(t_token *current)
 {
-    while (current && current->next)
-        current = current->next;
-    return (current);
+	while (current && current->next)
+		current = current->next;
+	return (current);
 }

@@ -12,29 +12,29 @@
 
 #include "../include/minishell.h"
 
-static t_token *create_token_node(void)
+static t_token	*create_token_node(void)
 {
-    t_token *new;
+	t_token	*new;
 
-    new = (t_token *)malloc(sizeof(t_token));
-    if (!new)
-        err_exit("malloc", errno);
-    return (new);
+	new = (t_token *)malloc(sizeof(t_token));
+	if (!new)
+		err_exit("malloc", errno);
+	return (new);
 }
 
-t_token *create_token(int type, char *content, int index, t_token *prev_token)
+t_token	*create_token(int type, char *content, int index, t_token *prev_token)
 {
-    t_token *new;
-    
-    new = create_token_node();
-    new->type = type;
-    new->content = content;
-    new->index = index;
-    new->next = NULL;
-    new->prev = prev_token;
-    if (prev_token)
-        prev_token->next = new;
-    new->herefd[0] = 0;
-    new->herefd[1] = 0;
-    return (new);
+	t_token	*new;
+
+	new = create_token_node();
+	new->type = type;
+	new->content = content;
+	new->index = index;
+	new->next = NULL;
+	new->prev = prev_token;
+	if (prev_token)
+		prev_token->next = new;
+	new->herefd[0] = 0;
+	new->herefd[1] = 0;
+	return (new);
 }

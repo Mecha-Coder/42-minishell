@@ -12,10 +12,10 @@
 
 #include "../../include/minishell.h"
 
-void run_or(t_tree *node, t_shell *data)
-{   
-    descent_tree(node->left, data);
-    if (!data->cmd_exit_no)
-        return ;
-    descent_tree(node->right, data);
+void	run_or(t_tree *node, t_shell *data)
+{
+	descent_tree(node->left, data);
+	if (!data->cmd_exit_no)
+		return ;
+	descent_tree(node->right, data);
 }

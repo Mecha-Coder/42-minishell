@@ -53,12 +53,12 @@ void	err_msg_3(char *builtin, char *msg)
 echo "EE
 Syntax error: quote not in pair
 */
-void err_msg_4(char *input, char *msg, int index)
+void	err_msg_4(char *input, char *msg, int index)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(i++ < index)
+	while (i++ < index)
 		ft_putstr_fd(" ", 2);
 	ft_putstr_fd("↓\n", 2);
 	ft_putstr_fd(input, 2);
@@ -71,7 +71,7 @@ void err_msg_4(char *input, char *msg, int index)
 For handling malloc, pipe, fork error
 Exit program.
 */
-void err_exit(char *action, int code)
+void	err_exit(char *action, int code)
 {
 	err_msg_3(action, strerror(code));
 	exit(EXIT_FAILURE);
@@ -81,7 +81,7 @@ void err_exit(char *action, int code)
 Here doc error message
 minishell: warning: here-document delimited by end-of-file (wanted `%s')
 */
-void err_msg_5(char *delimiter)
+void	err_msg_5(char *delimiter)
 {
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd("warning: ", 2);
@@ -95,14 +95,14 @@ void err_msg_5(char *delimiter)
 int	arg_count(char **args, char *builtin)
 {
 	int		count;
-	
+
 	count = 0;
 	while (args[count])
 		count++;
 	if (count > 2)
 	{
 		err_msg_3(builtin, "too many arguments");
-		return(FALSE);
+		return (FALSE);
 	}
 	return (TRUE);
 }

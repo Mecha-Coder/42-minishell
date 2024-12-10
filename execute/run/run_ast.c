@@ -12,22 +12,22 @@
 
 #include "../../include/minishell.h"
 
-void descent_tree(t_tree *node, t_shell *data)
+void	descent_tree(t_tree *node, t_shell *data)
 {
-    if (g_sig)
-        return ;
-    if      (node->type == EXE)   run_exe(node, data);
-    else if (node->type == PIPE)  run_pipe(node, data);
-    else if (node->type == SUB)   run_subshell(node, data);
-    else if (node->type == AND)   run_and(node, data);
-    else if (node->type == OR)    run_or(node, data);
-    if (node->terminate)
-        exit(data->cmd_exit_no);
+	if (g_sig)
+		return ;
+	if      (node->type == EXE)   run_exe(node, data);
+	else if (node->type == PIPE)  run_pipe(node, data);
+	else if (node->type == SUB)   run_subshell(node, data);
+	else if (node->type == AND)   run_and(node, data);
+	else if (node->type == OR)    run_or(node, data);
+	if (node->terminate)
+		exit(data->cmd_exit_no);
 }
 
 void run_ast(t_shell *data)
 {
-    signal(SIGINT, sigint_handler_child);
+	signal(SIGINT, sigint_handler_child);
 	signal(SIGQUIT, sigquit_handler_child);
-    descent_tree(data->tree, data);
+	descent_tree(data->tree, data);
 }

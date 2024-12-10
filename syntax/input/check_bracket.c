@@ -28,55 +28,56 @@ Return
   TRUE  : All bracket have pair
   FALSE : vice versa
 */
-int check_bracket(char *s)
+int	check_bracket(char *s)
 {
-    int i;
-    int detect;
-    int track;
-    int index;
+	int	i;
+	int	detect;
+	int	track;
+	int	index;
 
-    (i = -1, detect = ON, track = 0);
-    while (track >= 0 && s && s[++i])
-    {
-        detection(s[i], &detect, FALSE);
-        if (detect == ON && s[i] == '(')
-        {
-            track++;
-            index = i;
-        }
-        else if (detect == ON && s[i] == ')')
-            track--;
-    }
-    if (!track)
-        return (TRUE);
-    if (track > 0)
-        err_msg_4(s, "invalid bracket placement", index);
-    else
-        err_msg_4(s, "invalid bracket placement", i);
-    return(FALSE);
+	i = -1;
+	detect = ON;
+	track = 0;
+	while (track >= 0 && s && s[++i])
+	{
+		detection(s[i], &detect, FALSE);
+		if (detect == ON && s[i] == '(')
+		{
+			track++;
+			index = i;
+		}
+		else if (detect == ON && s[i] == ')')
+			track--;
+	}
+	if (!track)
+		return (TRUE);
+	if (track > 0)
+		err_msg_4(s, "invalid bracket placement", index);
+	else
+		err_msg_4(s, "invalid bracket placement", i);
+	return (FALSE);
 }
-
 /*
 void answer(char *s)
 {
-    if (check_bracket(s))
-        printf("%s\nOK\n", s);
-    printf("\n\n------------------\n");
+	if (check_bracket(s))
+		printf("%s\nOK\n", s);
+	printf("\n\n------------------\n");
 }
 
 int main()
 {
-    answer(") ) echo hello ( ( || cat");
-    answer("echo hello ( \")\"");
-    answer("echo ((");
-    answer("( echo hello ) && (( echo hi  )  ");
-    answer("(echo hello");
-    answer("(echo hello))");
+	answer(") ) echo hello ( ( || cat");
+	answer("echo hello ( \")\"");
+	answer("echo ((");
+	answer("( echo hello ) && (( echo hi  )  ");
+	answer("(echo hello");
+	answer("(echo hello))");
 
-    answer("(echo hello)");
-    answer("echo hello && (echo nice && ls) && echo hi");
-    answer("((echo hello))");
-    answer("(echo hi) (echo hello)");
-    answer("hello");
+	answer("(echo hello)");
+	answer("echo hello && (echo nice && ls) && echo hi");
+	answer("((echo hello))");
+	answer("(echo hi) (echo hello)");
+	answer("hello");
 }
 */

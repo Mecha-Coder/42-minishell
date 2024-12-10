@@ -12,8 +12,8 @@
 
 #include "../include/minishell.h"
 
-static int is_word(char c, int *detect, int sub);
-static int delimiter(char c);
+static int	is_word(char c, int *detect, int sub);
+static int	delimiter(char c);
 
 /* >>> extract_word
 Purpose:
@@ -22,8 +22,8 @@ Purpose:
 ==============================================================
 Example
 -                ON      |    OFF      | ON 
-    Input:  Month   of   "November 2024"\0
-          0011111000110001111111111111110
+	Input:  Month   of   "November 2024"\0
+		  0011111000110001111111111111110
 -           ^    ^  ^ ^  ^              ^
 -           S    C  S C  S              C               
 ==============================================================
@@ -32,52 +32,52 @@ Return
 - NULL, if no word found
 */
 
-t_token *extract_word(char *s, int sub)
+t_token	*extract_word(char *s, int sub)
 {
-    int i;
-    int j;
-    int detect;
-    int prev;
-    int now;
-    t_token *word;
+	int	i;
+	int	j;
+	int	detect;
+	int	prev;
+	int	now;
+	t_token	*word;
 
-    (i = 0, detect = ON, word = NULL, prev = FALSE);
-    while (1)
-    {
-        now = is_word(s[i], &detect, sub);
-        if (now && !prev)
-            j = i;
-        if (!now && prev)
-            word = create_token(STR, ft_strndup(&s[j], i - j), j, word);
-        prev = now;
-        if (s[i] == '\0')
-            break;
-        i++;
-    }
-    return (token_jumpback(word));
+	(i = 0, detect = ON, word = NULL, prev = FALSE);
+	while (1)
+	{
+		now = is_word(s[i], &detect, sub);
+		if (now && !prev)
+			j = i;
+		if (!now && prev)
+			word = create_token(STR, ft_strndup(&s[j], i - j), j, word);
+		prev = now;
+		if (s[i] == '\0')
+			break ;
+		i++;
+	}
+	return (token_jumpback(word));
 }
 
-static int is_word(char c, int *detect, int sub)
+static int	is_word(char c, int *detect, int sub)
 {
-    detection(c, detect, sub);
-    if (*detect == ON && delimiter(c))
-        return (FALSE);
-    else
-        return (TRUE);
+	detection(c, detect, sub);
+	if (*detect == ON && delimiter(c))
+		return (FALSE);
+	else
+		return (TRUE);
 }
 
-static int delimiter(char c)
+static int	delimiter(char c)
 {
-    return(c == ' ' || c == '\0');
+	return (c == ' ' || c == '\0');
 }
 
 /* Test 
 int main()
 {
-    t_token *new;
-    char s[] =  "out1.txt echo \">>>>> && out.txt\"   in.txt '|'";
-    new = extract_word(s);
-    show_token(new, 'V');
-    destroy_token(new);
+	t_token *new;
+	char s[] =  "out1.txt echo \">>>>> && out.txt\"   in.txt '|'";
+	new = extract_word(s);
+	show_token(new, 'V');
+	destroy_token(new);
 }
 */
