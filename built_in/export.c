@@ -59,9 +59,10 @@ int	ft_export(char **arg, t_shell *data)
 static int	process_var(char *s, t_env *env, int *track)
 {
 	int	i;
-	int count;
+	int	count;
 
-	(i = 0, count = 0);
+	i = 0;
+	count = 0;
 	while (s[i] != '=' && s[i] != '\0')
 	{
 		i++;
@@ -136,79 +137,3 @@ static void	sort_list(char **list)
 		}
 	}
 }
-/* Test
-
-void answer(char **a)
-{
-	t_shell data;
-
-    t_env n1;
-    t_env n2; 
-    t_env n3;
-
-    n1.key = "HOME";
-    n1.val = "/home/jpaul";
-    n1.next = &n2;
-
-    n2.key = "USER";
-    n2.val = "Jason";
-    n2.next = &n3;
-
-    n3.key = "SHELL";
-    n3.val = "/bash/";
-    n3.next = NULL;
-
-    data.env = &n1;
-
-	ft_export(a, &data);
-    t_env *current =data.env;
-    while (current)
-    {
-        printf("%s=%s\n", current->key, current->val);
-        current = current->next;
-    }
-	printf("\n================================\n");
-}
-int main()
-{
-    char *a0[] = {"export", NULL};
-    char *a1[] = {"export", strdup("TEST=test"), NULL};
-    char *a2[] = {"export", strdup("TEST=test"), NULL};
-    char *a3[] = {"export", strdup("TEST=test user"), NULL};           
-    char *a4[] = {"export", strdup("TEST=ici=coucou"), NULL};
-    char *a5[] = {"export", strdup("TEST"), NULL};
-    char *a6[] = {"export", strdup("$DDD"), NULL};                        
-    char *a7[] = {"export", strdup("TEST="), NULL};     
-    char *a8[] = {"export", strdup("=Yoyo"), NULL};   
-    char *a9[] = {"export", strdup("_A55==Rolling+"), NULL};          
-    char *a10[] = {"export", strdup("VAR"), NULL};                       
-    char *a11[] = {"export", strdup("AI=haha")
-	, strdup("BI=yoyo"), strdup("TEST=change please"), NULL};
-
-    char *a12[] = {"export", "VAR", "=", "Hello", NULL};                                                      
-    char *a13[] = {"export", "55@=Time", NULL};   
-    char *a14[] = {"export", "", "et", "unset", "", NULL};
-    char *a15[] = {"export", "312=313", "#sddfs", NULL};
-	char *a16[] = {"export", "variable-name", NULL};
-
-	printf("\n\n==== OK ======\n\n");
-	answer(a0);
-	answer(a1);
-	answer(a2);
-	answer(a3);
-	answer(a4);
-	answer(a5);
-	answer(a6);
-	answer(a7);
-	answer(a8);
-	answer(a9);
-	answer(a10);
-	answer(a11);
-	printf("\n\n==== ERROR ======\n\n");
-	answer(a12);
-	answer(a13);
-	answer(a14);
-	answer(a15);
-	answer(a16);
-}
-*/

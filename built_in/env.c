@@ -14,7 +14,7 @@
 
 int	ft_env(char **args, t_shell *data)
 {
-	int i;
+	int		i;
 	t_env	*current;
 
 	i = -1;
