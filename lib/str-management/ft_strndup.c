@@ -12,14 +12,14 @@
 
 #include "../libft.h"
 
-char *ft_strndup(const char *s, size_t len)
+char	*ft_strndup(const char *s, size_t len)
 {
-    char *new;
+	char	*new;
 
-    new = (char *)malloc(len + 1);
-    if (new)
-        ft_strlcpy(new, s, len + 1);
-    return (new);
+	new = (char *)malloc(len + 1);
+	if (new)
+		ft_strlcpy(new, s, len + 1);
+	return (new);
 }
 
 /*
@@ -27,16 +27,16 @@ char *ft_strndup(const char *s, size_t len)
 #include "lib/libft.h"
 int main ()
 {
-    char s1[] = "Hello@there"; // 5
-    char s2[] = "Welcome"; // 7
-    char *new;
+	char s1[] = "Hello@there"; // 5
+	char s2[] = "Welcome"; // 7
+	char *new;
 
-    new = ft_strndup(s1, 5);
-    printf("[%s]\n", new);
-    free(new);
+	new = ft_strndup(s1, 5);
+	printf("[%s]\n", new);
+	free(new);
 
-    new = ft_strndup(s2, 7);
-    printf("[%s]\n", new);
-    free(new);
+	new = ft_strndup(s2, 7);
+	printf("[%s]\n", new);
+	free(new);
 }
 */
