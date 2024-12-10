@@ -12,16 +12,16 @@
 
 #include "../include/minishell.h"
 
-int g_sig = 0;
+int	g_sig = 0;
 
-int main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **env)
 {
-    t_shell data;
+	t_shell	data;
 
-    (void)ac;
-    (void)av;
-    initialize(&data, env);
-    prompt(&data);
-    ft_putstr_fd("exit\n", 2);
-    close_shell(data.cmd_exit_no, &data);
+	(void)ac;
+	(void)av;
+	initialize(&data, env);
+	prompt(&data);
+	ft_putstr_fd("exit\n", 2);
+	close_shell(data.cmd_exit_no, &data);
 }

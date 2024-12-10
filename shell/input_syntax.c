@@ -19,18 +19,18 @@ Purpose:
 
 ===================================================================
 Return
-    TRUE  : Correct syntax
-    FALSE : vice versa
+	TRUE  : Correct syntax
+	FALSE : vice versa
 */
-int input_syntax(t_shell *data)
+int	input_syntax(t_shell *data)
 {
-    add_history(data->input);
-    if (!check_quote(data->input) 
-        || !check_bracket(data->input) 
-        || !check_occurance(data->input))
-    {
-        data->cmd_exit_no = 2;
-        return (FALSE);
-    }
-    return (TRUE);
+	add_history(data->input);
+	if (!check_quote(data->input)
+		|| !check_bracket(data->input)
+		|| !check_occurance(data->input))
+	{
+		data->cmd_exit_no = 2;
+		return (FALSE);
+	}
+	return (TRUE);
 }

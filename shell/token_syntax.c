@@ -16,23 +16,23 @@
 Purpose: 
 - Check operator placement for combine, redirect & subshell follow rule
 - If invalid syntax, stop checking and 
-    * update cmd_exit_no to 1
-    * free token
+	* update cmd_exit_no to 1
+	* free token
 
 ===================================================================
 Return
-    TRUE  : Correct syntax
-    FALSE : vice versa
+	TRUE  : Correct syntax
+	FALSE : vice versa
 */
-int token_syntax(t_shell *data)
+int	token_syntax(t_shell *data)
 {
-    if (!check_redirect(data)
-        || !check_combine(data)
-        || !check_subshell(data))
-    {
-        data->cmd_exit_no = 2;
-        destroy_token(data->token);
-        return (FALSE);
-    }
-    return (TRUE);
+	if (!check_redirect(data)
+		|| !check_combine(data)
+		|| !check_subshell(data))
+	{
+		data->cmd_exit_no = 2;
+		destroy_token(data->token);
+		return (FALSE);
+	}
+	return (TRUE);
 }

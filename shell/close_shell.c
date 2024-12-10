@@ -12,10 +12,10 @@
 
 #include "../include/minishell.h"
 
-void close_shell(int code, t_shell *data)
+void	close_shell(int code, t_shell *data)
 {
-    if (data->input)
-	    free(data->input);
+	if (data->input)
+		free(data->input);
 	destroy_env(data);
 	destroy_tree(data->tree);
 	rl_clear_history();
