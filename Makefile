@@ -2,6 +2,8 @@
 # DECLARATION
 #==============================================================
 
+# https://docs.google.com/presentation/d/1rcPz4ajolZtAr2M0I41reJHuVogjdWeL/edit?usp=sharing&ouid=117690636457397361031&rtpof=true&sd=true
+
 NAME = minishell
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
