@@ -12,6 +12,12 @@ A command-line interface (shell) that interacts with the Kernal, similar to Bash
 
 ---
 
+### **Learnings**
+- Implementing and traversing binary trees using recursion
+- Designing a tokenizer and parser for shell commands
+
+---
+
 ### **About** 
 
 👉 [**Project requirement**](https://github.com/Mecha-Coder/42-minishell/blob/main/demo/en.subject.pdf)
@@ -53,6 +59,12 @@ For more details click, [**here**](https://github.com/Mecha-Coder/42-minishell/b
 
 ---
 
+### **Demo**
+
+![demo](https://github.com/Mecha-Coder/42-minishell/blob/main/demo/demo.gif)
+
+---
+
 ### **Feature** 
 - Command history
 - Input/output redirection and heredoc
@@ -81,14 +93,6 @@ For more details click, [**here**](https://github.com/Mecha-Coder/42-minishell/b
 --- 
 
 
-
-### **Learnings**
-- Implementing and traversing binary trees using recursion
-- Designing a tokenizer and parser for shell commands
-
----
-
-
 ### **How to run**
 
 System requirement: **Debian/Ubuntu/WSL2**
@@ -113,8 +117,3 @@ make
 
 ### **Resource**
 
----
-
-### **Demo**
-
-![demo](https://github.com/Mecha-Coder/42-minishell/blob/main/demo/demo.gif)
